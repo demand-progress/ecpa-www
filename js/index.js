@@ -25,9 +25,9 @@ http://${DOMAIN}/?source=${SOURCE_CLEANED}-emailshare
 Thanks!`;
 let TWEET_TEXT = `Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=${SOURCE_CLEANED}-twittershare #ObamaMustAct`;
 let REQUIRED_FIELDS = [
-    'first_name',
-    'last_name',
+    'name',
     'email',
+    'address1',
     'postcode',
 ];
 let NON_SWAP_SOURCES = [];
@@ -153,8 +153,8 @@ let committeeMembers = [{
 
 // Campaign
 let campaign = {
-    actionKitPage : 'sample1',
-    callCampaign  : 'sample1',
+    actionKitPage : 'ecpa-www-goodlatte',
+    callCampaign  : 'ecpa-goodlatte',
     twitterId     : 'RepGoodlatte',
 };
 
@@ -228,8 +228,8 @@ $(() => {
                             (committeeMember.state === representative.state)
                         ) {
                             campaign = {
-                                actionKitPage : 'sample2',
-                                callCampaign  : 'sample2',
+                                actionKitPage : 'ecpa-www-zip',
+                                callCampaign  : 'ecpa-zip',
                                 twitterId     : representative.twitter_id,
                             };
 
