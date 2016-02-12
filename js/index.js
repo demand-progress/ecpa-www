@@ -68,10 +68,6 @@ $(() => {
             return true;
         }
 
-        if (window.optimizely) {
-            window.optimizely.push(["trackEvent", "formSubmissionAttempt"]);
-        }
-
         e.preventDefault();
 
         let valid = true;
@@ -101,10 +97,6 @@ $(() => {
             $('#email').focus();
             alert('Please enter your valid email');
             return;
-        }
-
-        if (window.optimizely) {
-            window.optimizely.push(['trackEvent', 'formSubmissionSuccess']);
         }
 
         // Thanking user
@@ -263,13 +255,17 @@ $(() => {
     }
 
     function fetchPetitionCount() {
-        $.get('./data/combined-signatures.html', (res) => {
-            if (res) {
-                res = res.replace(/[^\d]/g, '');
+        $.ajax({
+            cache   : false,
+            url     : './data/combined-signatures.html',
+            success : (res) => {
+                if (res) {
+                    res = res.replace(/[^\d]/g, '');
 
-                $('.counter').addClass('loaded');
-                $('.counter .number-of-signatures').text(numberWithCommas(res));
-            }
+                    $('.counter').addClass('loaded');
+                    $('.counter .number-of-signatures').text(numberWithCommas(res));
+                }
+            },
         });
     }
 

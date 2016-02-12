@@ -98,10 +98,6 @@
 	            return true;
 	        }
 
-	        if (window.optimizely) {
-	            window.optimizely.push(["trackEvent", "formSubmissionAttempt"]);
-	        }
-
 	        e.preventDefault();
 
 	        var valid = true;
@@ -131,10 +127,6 @@
 	            (0, _jquery2.default)('#email').focus();
 	            alert('Please enter your valid email');
 	            return;
-	        }
-
-	        if (window.optimizely) {
-	            window.optimizely.push(['trackEvent', 'formSubmissionSuccess']);
 	        }
 
 	        // Thanking user
@@ -284,12 +276,16 @@
 	    }
 
 	    function fetchPetitionCount() {
-	        _jquery2.default.get('./data/combined-signatures.html', function (res) {
-	            if (res) {
-	                res = res.replace(/[^\d]/g, '');
+	        _jquery2.default.ajax({
+	            cache: false,
+	            url: './data/combined-signatures.html',
+	            success: function success(res) {
+	                if (res) {
+	                    res = res.replace(/[^\d]/g, '');
 
-	                (0, _jquery2.default)('.counter').addClass('loaded');
-	                (0, _jquery2.default)('.counter .number-of-signatures').text(numberWithCommas(res));
+	                    (0, _jquery2.default)('.counter').addClass('loaded');
+	                    (0, _jquery2.default)('.counter .number-of-signatures').text(numberWithCommas(res));
+	                }
 	            }
 	        });
 	    }
