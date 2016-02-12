@@ -51,19 +51,20 @@ em {
 
 body {
     background-color: #000812;
-    background-image: url(../images/background.jpg);
+    background-image: url(../images/background.png);
     background-position: top center;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 173px 200px;
     font-family: 'Open Sans', sans-serif;
     min-width: 320px;
     text-align: center;
 }
 @media screen and (max-width: 899px) {
-    body {
-        background-size: 110%;
-    }
 }
 @media screen and (max-width: 769px) {
+    body {
+        background-size: 121px 140px;
+    }
     img {
         max-width: 100%;
         height: auto;
@@ -71,9 +72,6 @@ body {
     }
 }
 @media screen and (max-width: 599px) {
-    body {
-        background-image: none;
-    }
 }
 header {}
 header .headlines {}
@@ -81,14 +79,13 @@ header .headlines h1, header .headlines h2, header .headlines h3 {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     line-height: 1;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
     margin: 0 auto;
 }
 header .headlines h1 {
     color: #f1f1f1;
-    font-size: 44px;
+    font-size: 64px;
     letter-spacing: 1px;
-    padding: 8px 16px 11px;
+    padding: 32px 16px;
 }
 header .headlines h2 {
     color: #b41615;
@@ -106,12 +103,12 @@ header .headlines h3 {
 }
 @media screen and (max-width: 839px) {
     header .headlines h1 {
-        font-size: 37px;
+        font-size: 54px;
     }
 }
 @media screen and (max-width: 769px) {
     header .headlines h1 {
-        font-size: 32px;
+        font-size: 44px;
         line-height: 1.2;
         max-width: 320px;
     }
@@ -315,6 +312,7 @@ header .headlines h3 {
     background-image: url(../images/pattern-dark-blue.png);
     margin: 0 auto;
     max-width: 413px;
+    padding: 0 0 32px;
     position: relative;
     z-index: 9;
 }

@@ -1,4 +1,4 @@
-const $ = require('./vendor/jquery.min');
+import $ from 'jquery';
 
 const StaticKit = {};
 

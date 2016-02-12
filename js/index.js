@@ -1,18 +1,18 @@
 // Modules
-const Email = require('./email');
-const Modal = require('./modal');
-const StaticKit = require('./statickit');
-const $ = require('./vendor/jquery.min');
+import $ from 'jquery';
+import Email from './email';
+import Modal from './modal';
+import StaticKit from './statickit';
 
 // Constants
-const SOURCE = StaticKit.query.source;
-const SOURCE_CLEANED = StaticKit.query.cleanedSource;
-const FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
-const CALL_TOOL_URL = 'https://call-congress.fightforthefuture.org/create?callback=?';
-const CALL_TOOL_COUNT_URL = 'https://dp-call-tool-meta.herokuapp.com/api/count/sunsetthepatriotact?callback=?';
-const DOMAIN = 'presidentobamaslegacy.org';
-const EMAIL_SUBJECT = 'Sign this petition: Tell Obama to fight secret money in politics right away';
-const EMAIL_BODY = `Hi,
+let SOURCE = StaticKit.query.source;
+let SOURCE_CLEANED = StaticKit.query.cleanedSource;
+let FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
+let CALL_TOOL_URL = 'https://call-congress.fightforthefuture.org/create?callback=?';
+let CALL_TOOL_COUNT_URL = 'https://dp-call-tool-meta.herokuapp.com/api/count/sunsetthepatriotact?callback=?';
+let DOMAIN = 'presidentobamaslegacy.org';
+let EMAIL_SUBJECT = 'Sign this petition: Tell Obama to fight secret money in politics right away';
+let EMAIL_BODY = `Hi,
 
 I just signed a petition at PresidentObamasLegacy.org telling President Obama to immediately act to fight the secret money corroding our political system.
 
@@ -23,19 +23,14 @@ The petition is integrated with the White House We The People petition platform 
 http://${DOMAIN}/?source=${SOURCE_CLEANED}-emailshare
 
 Thanks!`;
-const TWEET_TEXT = `Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=${SOURCE_CLEANED}-twittershare #ObamaMustAct`;
-const WTP_API_COUNT_KEY = '942780e090350c6e7fc8db478df66201ff195601650f56bde98bda19b7205e90';
-const WTP_API_COUNT_URL = 'https://dp-wethepeople.herokuapp.com/api/v1/count?callback=?';
-const WTP_API_SIGN_KEY = '8b35b90fe50197fed0e480e109a9e77757a84a9e6815f3611b5da34fd37bb50a';
-const WTP_API_SIGN_URL = 'https://dp-wethepeople.herokuapp.com/api/v1/sign?callback=?';
-const WTP_PETITION_ID = '2158641';
-const REQUIRED_FIELDS = [
+let TWEET_TEXT = `Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=${SOURCE_CLEANED}-twittershare #ObamaMustAct`;
+let REQUIRED_FIELDS = [
     'first_name',
     'last_name',
     'email',
     'postcode',
 ];
-const NON_SWAP_SOURCES = [
+let NON_SWAP_SOURCES = [
     'dk',
     'dk1',
     'dk2',
@@ -52,12 +47,9 @@ const NON_SWAP_SOURCES = [
     'mjns',
     'rsns',
 ];
-const NON_SWAP_3RD_PARTY_SOURCES = {
+let NON_SWAP_3RD_PARTY_SOURCES = {
     maydayns: 'MAYDAY.US',
 };
-
-// Globalize jQuery
-window.jQuery = window.$ = $;
 
 // After the page loads
 $(() => {
@@ -271,13 +263,12 @@ $(() => {
     }
 
     function fetchPetitionCount() {
-        $.getJSON(WTP_API_COUNT_URL, {
-            key: WTP_API_COUNT_KEY,
-            petition_id: WTP_PETITION_ID,
-        }, (res) => {
-            if (res.count) {
+        $.get('./data/combined-signatures.html', (res) => {
+            if (res) {
+                res = res.replace(/[^\d]/g, '');
+
                 $('.counter').addClass('loaded');
-                $('.counter .number-of-signatures').text(numberWithCommas(res.count));
+                $('.counter .number-of-signatures').text(numberWithCommas(res));
             }
         });
     }
