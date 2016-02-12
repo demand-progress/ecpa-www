@@ -76,9 +76,132 @@
 	var EMAIL_BODY = 'Hi,\n\nI just signed a petition at PresidentObamasLegacy.org telling President Obama to immediately act to fight the secret money corroding our political system.\n\nNearly 6 years after Citizens United, President Obama still hasn\'t used any of the tools he has to reduce secret money spent by billionaires and wealthy special interests in our elections\n\nThe petition is integrated with the White House We The People petition platform – so if we get to 100,000 signatures, Obama will publicly respond. Could you help us get there?\n\nhttp://' + DOMAIN + '/?source=' + SOURCE_CLEANED + '-emailshare\n\nThanks!';
 	var TWEET_TEXT = 'Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=' + SOURCE_CLEANED + '-twittershare #ObamaMustAct';
 	var REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'postcode'];
-	var NON_SWAP_SOURCES = ['dk', 'dk1', 'dk2', 'dk3', 'dk4', 'dkns', 'la', 'lans', 'lans1', 'lans2', 'lans3', 'lans4', 'mj', 'mjns', 'rsns'];
-	var NON_SWAP_3RD_PARTY_SOURCES = {
-	    maydayns: 'MAYDAY.US'
+	var NON_SWAP_SOURCES = [];
+	var NON_SWAP_3RD_PARTY_SOURCES = {};
+	var committeeMembers = [{
+	    state: 'VA',
+	    district: 6
+	}, {
+	    state: 'WI',
+	    district: 5
+	}, {
+	    state: 'TX',
+	    district: 21
+	}, {
+	    state: 'OH',
+	    district: 1
+	}, {
+	    state: 'CA',
+	    district: 49
+	}, {
+	    state: 'VA',
+	    district: 4
+	}, {
+	    state: 'IA',
+	    district: 4
+	}, {
+	    state: 'AZ',
+	    district: 8
+	}, {
+	    state: 'TX',
+	    district: 1
+	}, {
+	    state: 'OH',
+	    district: 4
+	}, {
+	    state: 'TX',
+	    district: 2
+	}, {
+	    state: 'UT',
+	    district: 3
+	}, {
+	    state: 'PA',
+	    district: 10
+	}, {
+	    state: 'SC',
+	    district: 4
+	}, {
+	    state: 'ID',
+	    district: 1
+	}, {
+	    state: 'TX',
+	    district: 27
+	}, {
+	    state: 'GA',
+	    district: 9
+	}, {
+	    state: 'FL',
+	    district: 6
+	}, {
+	    state: 'CA',
+	    district: 45
+	}, {
+	    state: 'CO',
+	    district: 4
+	}, {
+	    state: 'TX',
+	    district: 4
+	}, {
+	    state: 'MI',
+	    district: 11
+	}, {
+	    state: 'MI',
+	    district: 8
+	}, {
+	    state: 'MI',
+	    district: 13
+	}, {
+	    state: 'NY',
+	    district: 10
+	}, {
+	    state: 'CA',
+	    district: 19
+	}, {
+	    state: 'TX',
+	    district: 18
+	}, {
+	    state: 'TN',
+	    district: 9
+	}, {
+	    state: 'GA',
+	    district: 4
+	}, {
+	    state: 'PR',
+	    district: 0
+	}, {
+	    state: 'CA',
+	    district: 27
+	}, {
+	    state: 'FL',
+	    district: 21
+	}, {
+	    state: 'IL',
+	    district: 4
+	}, {
+	    state: 'CA',
+	    district: 37
+	}, {
+	    state: 'LA',
+	    district: 2
+	}, {
+	    state: 'WA',
+	    district: 1
+	}, {
+	    state: 'NY',
+	    district: 8
+	}, {
+	    state: 'RI',
+	    district: 1
+	}, {
+	    state: 'CA',
+	    district: 52
+	}];
+
+	// Campaign
+	var campaign = {
+	    actionKitPage: 'sample1',
+	    callCampaign: 'sample1',
+	    twitterId: 'RepGoodlatte'
 	};
 
 	// After the page loads
@@ -91,15 +214,14 @@
 	    (0, _jquery2.default)('[name=source]').val(SOURCE_CLEANED);
 	    (0, _jquery2.default)('[name=url]').val(location.href);
 
-	    var petitionWasSentToWH = false;
 	    var $signatureForm = (0, _jquery2.default)('.home-page .action form');
+	    var zipWasFetched = false;
 	    $signatureForm.on('submit', function (e) {
-	        if (petitionWasSentToWH) {
+	        if (zipWasFetched) {
 	            return true;
 	        }
 
 	        e.preventDefault();
-
 	        var valid = true;
 
 	        REQUIRED_FIELDS.forEach(function (field) {
@@ -129,24 +251,84 @@
 	            return;
 	        }
 
-	        // Thanking user
-	        showThanks();
+	        _jquery2.default.ajax({
+	            data: {
+	                apikey: '3779f52f552743d999b2c5fe1cda70b6',
+	                zip: (0, _jquery2.default)('#postcode').val()
+	            },
+	            dataType: 'json',
+	            success: function success(res) {
+	                // We can submit to AK after this
+	                zipWasFetched = true;
 
-	        // Sending request to WH API
-	        _jquery2.default.getJSON(WTP_API_SIGN_URL, {
-	            email: email,
-	            key: WTP_API_SIGN_KEY,
-	            first_name: (0, _jquery2.default)('#first_name').val().trim(),
-	            last_name: (0, _jquery2.default)('#last_name').val().trim(),
-	            petition_id: WTP_PETITION_ID
-	        }, function (res) {
-	            if (res.success) {
-	                petitionWasSentToWH = true;
+	                // Search for a committee member who represents the visitor
+	                var _iteratorNormalCompletion = true;
+	                var _didIteratorError = false;
+	                var _iteratorError = undefined;
+
+	                try {
+	                    for (var _iterator = res.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                        var representative = _step.value;
+
+	                        if (representative.chamber !== 'house') {
+	                            continue;
+	                        }
+
+	                        var _iteratorNormalCompletion2 = true;
+	                        var _didIteratorError2 = false;
+	                        var _iteratorError2 = undefined;
+
+	                        try {
+	                            for (var _iterator2 = committeeMembers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                                var committeeMember = _step2.value;
+
+	                                if (committeeMember.district === representative.district && committeeMember.state === representative.state) {
+	                                    campaign = {
+	                                        actionKitPage: 'sample2',
+	                                        callCampaign: 'sample2',
+	                                        twitterId: representative.twitter_id
+	                                    };
+
+	                                    break;
+	                                }
+	                            }
+	                        } catch (err) {
+	                            _didIteratorError2 = true;
+	                            _iteratorError2 = err;
+	                        } finally {
+	                            try {
+	                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                                    _iterator2.return();
+	                                }
+	                            } finally {
+	                                if (_didIteratorError2) {
+	                                    throw _iteratorError2;
+	                                }
+	                            }
+	                        }
+	                    }
+	                } catch (err) {
+	                    _didIteratorError = true;
+	                    _iteratorError = err;
+	                } finally {
+	                    try {
+	                        if (!_iteratorNormalCompletion && _iterator.return) {
+	                            _iterator.return();
+	                        }
+	                    } finally {
+	                        if (_didIteratorError) {
+	                            throw _iteratorError;
+	                        }
+	                    }
+	                }
+
 	                $signatureForm.submit();
-	            } else {
-	                alert('Sorry, something went wrong with your submission. The servers might be overloaded. Please try again later.');
-	            }
+	            },
+	            url: 'https://congress.api.sunlightfoundation.com/legislators/locate'
 	        });
+
+	        // Thanking user, and disabling form
+	        showThanks();
 	    });
 
 	    var $callForm = (0, _jquery2.default)('.call-page .action form');

@@ -30,25 +30,132 @@ let REQUIRED_FIELDS = [
     'email',
     'postcode',
 ];
-let NON_SWAP_SOURCES = [
-    'dk',
-    'dk1',
-    'dk2',
-    'dk3',
-    'dk4',
-    'dkns',
-    'la',
-    'lans',
-    'lans1',
-    'lans2',
-    'lans3',
-    'lans4',
-    'mj',
-    'mjns',
-    'rsns',
-];
-let NON_SWAP_3RD_PARTY_SOURCES = {
-    maydayns: 'MAYDAY.US',
+let NON_SWAP_SOURCES = [];
+let NON_SWAP_3RD_PARTY_SOURCES = {};
+let committeeMembers = [{
+    state: 'VA',
+    district: 6
+}, {
+    state: 'WI',
+    district: 5
+}, {
+    state: 'TX',
+    district: 21
+}, {
+    state: 'OH',
+    district: 1
+}, {
+    state: 'CA',
+    district: 49
+}, {
+    state: 'VA',
+    district: 4
+}, {
+    state: 'IA',
+    district: 4
+}, {
+    state: 'AZ',
+    district: 8
+}, {
+    state: 'TX',
+    district: 1
+}, {
+    state: 'OH',
+    district: 4
+}, {
+    state: 'TX',
+    district: 2
+}, {
+    state: 'UT',
+    district: 3
+}, {
+    state: 'PA',
+    district: 10
+}, {
+    state: 'SC',
+    district: 4
+}, {
+    state: 'ID',
+    district: 1
+}, {
+    state: 'TX',
+    district: 27
+}, {
+    state: 'GA',
+    district: 9
+}, {
+    state: 'FL',
+    district: 6
+}, {
+    state: 'CA',
+    district: 45
+}, {
+    state: 'CO',
+    district: 4
+}, {
+    state: 'TX',
+    district: 4
+}, {
+    state: 'MI',
+    district: 11
+}, {
+    state: 'MI',
+    district: 8
+}, {
+    state: 'MI',
+    district: 13
+}, {
+    state: 'NY',
+    district: 10
+}, {
+    state: 'CA',
+    district: 19
+}, {
+    state: 'TX',
+    district: 18
+}, {
+    state: 'TN',
+    district: 9
+}, {
+    state: 'GA',
+    district: 4
+}, {
+    state: 'PR',
+    district: 0
+}, {
+    state: 'CA',
+    district: 27
+}, {
+    state: 'FL',
+    district: 21
+}, {
+    state: 'IL',
+    district: 4
+}, {
+    state: 'CA',
+    district: 37
+}, {
+    state: 'LA',
+    district: 2
+}, {
+    state: 'WA',
+    district: 1
+}, {
+    state: 'NY',
+    district: 8
+}, {
+    state: 'RI',
+    district: 1
+}, {
+    state: 'CA',
+    district: 52
+}];
+
+// Campaign
+let campaign = {
+    actionKitPage : 'sample1',
+    callCampaign  : 'sample1',
+    twitterId     : 'RepGoodlatte',
 };
 
 // After the page loads
@@ -61,15 +168,14 @@ $(() => {
     $('[name=source]').val(SOURCE_CLEANED);
     $('[name=url]').val(location.href);
 
-    let petitionWasSentToWH = false;
-    const $signatureForm = $('.home-page .action form');
+    let $signatureForm = $('.home-page .action form');
+    let zipWasFetched  = false;
     $signatureForm.on('submit', (e) => {
-        if (petitionWasSentToWH) {
+        if (zipWasFetched) {
             return true;
         }
 
         e.preventDefault();
-
         let valid = true;
 
         REQUIRED_FIELDS.forEach((field) => {
@@ -77,8 +183,8 @@ $(() => {
                 return;
             }
 
-            const $field = $('#' + field);
-            const value = $field.val() && $field.val().trim();
+            let $field = $('#' + field);
+            let value = $field.val() && $field.val().trim();
             if (!value) {
                 alert('Please enter your ' + $field.attr('placeholder'));
                 $field.focus();
@@ -91,7 +197,7 @@ $(() => {
             return;
         }
 
-        const email = $('#email').val().trim().toLowerCase();
+        let email = $('#email').val().trim().toLowerCase();
 
         if (!Email.validate(email)) {
             $('#email').focus();
@@ -99,31 +205,53 @@ $(() => {
             return;
         }
 
-        // Thanking user
-        showThanks();
+        $.ajax({
+            data: {
+                apikey: '3779f52f552743d999b2c5fe1cda70b6',
+                zip: $('#postcode').val(),
+            },
+            dataType: 'json',
+            success: (res) => {
+                // We can submit to AK after this
+                zipWasFetched = true;
 
-        // Sending request to WH API
-        $.getJSON(WTP_API_SIGN_URL, {
-            email: email,
-            key: WTP_API_SIGN_KEY,
-            first_name: $('#first_name').val().trim(),
-            last_name: $('#last_name').val().trim(),
-            petition_id: WTP_PETITION_ID,
-        }, (res) => {
-            if (res.success) {
-                petitionWasSentToWH = true;
+                // Search for a committee member who represents the visitor
+                for (let representative of res.results) {
+                    if (representative.chamber !== 'house') {
+                        continue;
+                    }
+
+                    for (let committeeMember of committeeMembers) {
+                        if (
+                            (committeeMember.district === representative.district)
+                            &&
+                            (committeeMember.state === representative.state)
+                        ) {
+                            campaign = {
+                                actionKitPage : 'sample2',
+                                callCampaign  : 'sample2',
+                                twitterId     : representative.twitter_id,
+                            };
+
+                            break;
+                        }
+                    }
+                }
+
                 $signatureForm.submit();
-            } else {
-                alert('Sorry, something went wrong with your submission. The servers might be overloaded. Please try again later.')
-            }
+            },
+            url: 'https://congress.api.sunlightfoundation.com/legislators/locate',
         });
+
+        // Thanking user, and disabling form
+        showThanks();
     });
 
-    const $callForm = $('.call-page .action form');
+    let $callForm = $('.call-page .action form');
     $callForm.on('submit', (e) => {
         e.preventDefault();
 
-        const phone = $('#phone').val().replace(/[^\d]/g, '');
+        let phone = $('#phone').val().replace(/[^\d]/g, '');
 
         if (phone.length < 10) {
             $('#phone').focus();
@@ -158,12 +286,12 @@ $(() => {
         }
     }
 
-    const $feedbackForm = $('.calling-wrapper form');
+    let $feedbackForm = $('.calling-wrapper form');
     $feedbackForm.on('submit', (e) => {
         e.preventDefault();
 
         let message = '';
-        const fields = $feedbackForm.serializeArray();
+        let fields = $feedbackForm.serializeArray();
         fields.forEach((field) => {
             message += `${field.name}:\n${field.value}\n\n`;
         });
@@ -178,7 +306,7 @@ $(() => {
     });
 
     $('.animated-scroll').on('click', (e) => {
-        const target = $(e.target).data('target');
+        let target = $(e.target).data('target');
         $('html, body').stop().animate({
             scrollTop: $(target).offset().top,
         }, 640);
@@ -187,7 +315,7 @@ $(() => {
     $('a.facebook').on('click', (e) => {
         e.preventDefault();
 
-        const url =
+        let url =
             'https://www.facebook.com/sharer/sharer.php?u=' +
             encodeURIComponent(`${DOMAIN}/?source=${SOURCE_CLEANED}-fbshare`);
         window.open(url);
@@ -196,7 +324,7 @@ $(() => {
     $('a.twitter').on('click', (e) => {
         e.preventDefault();
 
-        const url =
+        let url =
             'https://twitter.com/intent/tweet?text=' +
             encodeURIComponent(TWEET_TEXT);
         window.open(url);
@@ -205,7 +333,7 @@ $(() => {
     $('a.email').on('click', (e) => {
         e.preventDefault();
 
-        const url =
+        let url =
             'mailto:?subject=' + encodeURIComponent(EMAIL_SUBJECT) +
             '&body=' + encodeURIComponent(EMAIL_BODY);
         window.location.href = url;
@@ -291,7 +419,7 @@ $(() => {
     }
 
     function showCheckYourEmailPrompt() {
-        const $prompt = $('.check-your-email-prompt');
+        let $prompt = $('.check-your-email-prompt');
         $prompt.addClass('visible');
         $prompt[0].offsetHeight; // Reflow
         $prompt.css({
