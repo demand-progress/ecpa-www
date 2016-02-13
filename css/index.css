@@ -50,11 +50,7 @@ em {
 }
 
 body {
-    background-color: #651519;
-    background-image: url(../images/background.png);
-    background-position: top center;
-    background-attachment: fixed;
-    background-size: 173px 200px;
+    background-color: #262525;
     font-family: 'Open Sans', sans-serif;
     min-width: 320px;
     text-align: center;
@@ -62,9 +58,6 @@ body {
 @media screen and (max-width: 899px) {
 }
 @media screen and (max-width: 769px) {
-    body {
-        background-size: 121px 140px;
-    }
     img {
         max-width: 100%;
         height: auto;
@@ -74,7 +67,16 @@ body {
 @media screen and (max-width: 599px) {
 }
 header {}
-header .headlines {}
+header .headlines {
+    background-attachment: fixed;
+    background-color: #651519;
+    background-image: url(../images/background-v2.png);
+    background-position: 0 50px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    position: relative;
+    z-index: 0;
+}
 header .headlines h1, header .headlines h2, header .headlines h3 {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
@@ -88,7 +90,7 @@ header .headlines h1 {
     padding: 32px 16px;
 }
 header .headlines h2 {
-    color: #b41615;
+    color: #d3640a;
     font-size: 30px;
     letter-spacing: 1px;
     padding: 48px 16px 1px;
@@ -107,6 +109,9 @@ header .headlines h3 {
     }
 }
 @media screen and (max-width: 769px) {
+    header .headlines {
+        background-size: 121px 140px;
+    }
     header .headlines h1 {
         font-size: 44px;
         line-height: 1.2;
@@ -128,20 +133,19 @@ header .headlines h3 {
 .petition-and-form-wrapper {
     margin: 0 auto;
     max-width: 998px;
+    position: relative;
+    z-index: 1;
 }
 .petition-and-form-wrapper > .outer-padding {
-    background-image: url(../images/pattern-dark-blue.png);
     margin: 0 16px;
 }
 .petition {
-    background-color: #f1f1f1;
-    background-image: url(../images/pattern-gray.png);
-    color: #000812;
+    color: #fff;
     font-size: 20px;
     line-height: 1.4;
     margin: 0 413px 0 0;
     min-height: 705px;
-    padding: 22px 40px 24px;
+    padding: 16px 40px 24px;
     text-align: left;
     position: relative;
 }
@@ -154,7 +158,6 @@ header .headlines h3 {
     font-size: 30px;
     font-weight: bold;
     padding: 0 0 25px;
-    text-align: center;
 }
 .petition p {
     font-family: 'Arvo', sans-serif;
@@ -167,9 +170,7 @@ header .headlines h3 {
     position: relative;
 }
 .action {
-    background: #192c4b;
-    background-image: url('../images/pattern-blue.png');
-    margin: 0 auto;
+    background: #575757;
     max-width: 413px;
     padding: 24px 0 32px;
     position: relative;
@@ -220,7 +221,7 @@ header .headlines h3 {
     vertical-align: top;
 }
 .action .form-wrapper #thanks {
-    background: #b41615;
+    background: #d3640a;
     color: #f0f4f5;
     display: none;
     font-size: 24px;
@@ -269,7 +270,7 @@ header .headlines h3 {
     }
 }
 .action .form-wrapper button {
-    background-color: #b41615;
+    background-color: #d3640a;
     color: #f0f4f5;
     font-size: 24px;
     font-weight: bold;
@@ -278,7 +279,7 @@ header .headlines h3 {
     width: 100%;
 }
 .action .form-wrapper button:hover {
-    background-color: #a90a09;
+    background-color: #d3440c;
 }
 .action hr {
     background-color: #101c30;
@@ -290,7 +291,7 @@ header .headlines h3 {
 }
 .action span.disclaimer {
     clear: both;
-    color: #96a2ba;
+    color: #ffffff;
     display: block;
     font-size: 14px;
     line-height: 1.4;
@@ -309,8 +310,11 @@ header .headlines h3 {
     margin: 8px auto -13px;
 }
 .action-wrapper .counter {
-    background-color: #101c30;
-    background-image: url(../images/pattern-dark-blue.png);
+    background-attachment: fixed;
+    background-color: #651519;
+    background-image: url(../images/background-v3.png);
+    background-position: 0 50px;
+    border-radius: 0 0 32px 32px;
     margin: 0 auto;
     max-width: 413px;
     padding: 0 0 32px;
@@ -326,12 +330,12 @@ header .headlines h3 {
 }
 .action-wrapper .counter .number-of-signatures-label {
     clear: both;
-    color: #b41615;
+    color: #e0e0e0;
     font-size: 28px;
     font-weight: bold;
 }
 .action-wrapper .counter hr {
-    background-color: #192c4b;
+    background-color: #710024;
     border: none;
     height: 1px;
     margin: 38px auto 0;
@@ -351,20 +355,10 @@ header .headlines h3 {
     padding: 28px 0 4px;
 }
 .action-wrapper .counter .signatures-needed-label {
-    color: #b41615;
+    color: #d3640a;
     font-size: 28px;
     line-height: 1.2;
     padding: 0 0 32px;
-}
-.action-wrapper .counter::after {
-    background-color: #101c30;
-    background-image: url(../images/pattern-dark-blue.png);
-    content: '';
-    display: none;
-    height: 900px;
-    left: 0;
-    position: absolute;
-    width: 100%;
 }
 button {
     height: 60px;
@@ -406,7 +400,7 @@ button {
     width: 100%;
 }
 .petition .sign-the-petition, .more-info-header .sign-the-petition {
-    background-color: #b41615;
+    background-color: #d3640a;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.16);
     display: none;
     font-size: 20px;
@@ -419,7 +413,7 @@ button {
     width: 244px;
 }
 .petition .sign-the-petition:hover, .more-info-header .sign-the-petition:hover {
-    background-color: #a90a09;
+    background-color: #d3440c;
 }
 .petition .sign-the-petition {
     bottom: -28px;
@@ -432,7 +426,6 @@ button {
         display: none;
     }
     .more-info-header {
-        /*max-width: 413px;*/
         padding: 0;
     }
     .more-info-header h4 {
@@ -442,278 +435,25 @@ button {
         display: block;
     }
 }
-section.more-info {
-    color: #f1f1f1;
-    font-size: 18px;
-    margin: -36px auto 0;
-    padding: 0 16px 25px;
-    position: relative;
-}
-section.more-info h4, section.even-more-info h4 {
-    color: #0099ff;
-    font-size: 34px;
+section.twitter-title {
+    background-attachment: fixed;
+    background-color: #651519;
+    background-image: url(../images/background-v2.png);
+    background-position: 0 50px;
+    color: #fff;
     font-weight: bold;
-    line-height: 1.2;
-    margin: 0 auto;
+    font-size: 32px;
+    padding: 32px;
 }
-section.more-info h4.gradient-dark-blue {
-    background-image: url('../images/gradient-dark-blue.png');
+section.twitter {
+    background-color: #363535;
+    padding: 32px 0;
 }
-section.more-info h4.header-a {
-    max-width: 550px;
-    padding: 20px 0 42px;
-}
-section.more-info h4.header-b {
-    font-size: 24px;
-    font-style: italic;
-    font-weight: bold;
-    padding: 20px 0 0;
-}
-section.even-more-info {
-    background-image: url('../images/gradient-dark-blue.png');
-    background-repeat: repeat-x;
-    color: #f1f1f1;
-    font-size: 18px;
-    margin: 0 auto;
-    padding: 54px 16px 25px;
-    position: relative;
-}
-section.even-more-info h4 {
-    padding: 0 32px 38px;
-}
-section.even-more-info h4.header-c {
-    max-width: 790px;
-}
-section.even-more-info h4.header-d {
-    max-width: 980px;
-}
-section.even-more-info h4.header-e {
-    max-width: 900px;
-}
-section.even-more-info p {
-    max-width: 870px;
-}
-section.even-more-info .quote-and-portrait {
-    overflow: hidden;
-}
-section.even-more-info .quote-and-portrait .quote {
-    display: inline-block;
-    font-style: italic;
-    position: relative;
-    padding: 36px 20px 0 55px;
-}
-section.even-more-info .quote-and-portrait .quote .quote-open {
-    background-image: url('../images/quote-open.png');
-    background-position: 0;
-    background-repeat: no-repeat;
-    background-size: 154px 97px;
-    height: 97px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transition: background-size .32s;
-    width: 154px;
-}
-section.even-more-info .quote-and-portrait .quote .quote-close {
-    background-image: url('../images/quote-close.png');
-    background-position: 100%;
-    background-repeat: no-repeat;
-    background-size: 154px 97px;
-    bottom: 12px;
-    height: 97px;
-    position: absolute;
-    right: 0;
-    transition: background-size .32s;
-    width: 154px;
-}
-section.even-more-info .quote-and-portrait .quote .text {
-    font-size: 20px;
-    line-height: 1.5;
-    position: relative;
-    z-index: 9;
-}
-section.even-more-info .quote-and-portrait .portrait {
-    display: inline-block;
-}
-section.even-more-info .quote-and-portrait.obama {
-    padding: 0 0 117px;
-}
-section.even-more-info .quote-and-portrait.obama .portrait {
-    height: 327px;
-    position: relative;
-    top: 40px;
-    width: 325px;
-}
-section.even-more-info .quote-and-portrait.obama .quote {
-    left: -25px;
-    max-width: 100%;
-    position: relative;
-    width: 635px;
-}
-section.even-more-info .quote-and-portrait.biden {
-    padding: 3px 0 91px;
-}
-section.even-more-info .quote-and-portrait.biden .portrait {
-    height: 318px;
-    margin: 0 0 0 40px;
-    position: relative;
-    width: 269px;
-}
-section.even-more-info .quote-and-portrait.biden .quote {
-    max-width: 100%;
-    position: relative;
-    top: -7px;
-    width: 710px;
-}
-@media screen and (max-width: 1099px) {
-    section.even-more-info .quote-and-portrait.obama {
-        padding: 54px 0 117px;
-    }
-    section.even-more-info .quote-and-portrait.obama .quote {
-        width: 480px;
-    }
-    section.even-more-info .quote-and-portrait.biden {
-        padding: 46px 0 91px;
-    }
-    section.even-more-info .quote-and-portrait.biden .quote {
-        width: 480px;
-    }
-}
-@media screen and (max-width: 859px) {
-    section.even-more-info .quote-and-portrait.obama .portrait {
-        height: 163px;
-        top: -60px;
-        width: 162px;
-    }
-    section.even-more-info .quote-and-portrait.biden .portrait {
-        height: 159px;
-        top: -40px;
-        width: 135px;
-    }
-}
-@media screen and (max-width: 709px) {
-    section.even-more-info .quote-and-portrait .portrait {
-        display: none;
-    }
-    section.even-more-info .quote-and-portrait.obama .quote, section.even-more-info .quote-and-portrait.biden .quote {
-        bottom: auto;
-        left: auto;
-        max-width: 720px;
-        position: relative;
-        right: auto;
-        top: auto;
-        width: 100%;
-    }
-    section.even-more-info .quote-and-portrait.obama, section.even-more-info .quote-and-portrait.biden {
-        padding: 32px 0;
-    }
-}
-@media screen and (max-width: 549px) {
-    section.even-more-info .quote-and-portrait .quote {
-        padding: 32px;
-    }
-    section.even-more-info .quote-and-portrait .quote .text {
-        font-size: 16px;
-    }
-    section.even-more-info .quote-and-portrait .quote .quote-open {
-        background-size: 77px 49px;
-        left: 0;
-        top: 0;
-    }
-    section.even-more-info .quote-and-portrait .quote .quote-close {
-        background-size: 77px 49px;
-        bottom: 12px;
-        right: 0;
-    }
-}
-section.even-more-info button.sign-the-petition {
-    font-size: 22px;
-    padding: 0 28px;
-}
-section .year {
-    margin: 0 auto 26px;
-    max-width: 550px;
-    overflow: hidden;
-    position: relative;
-    text-align: left;
-}
-section .year .number {
-    color: #b41615;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1.3;
-    width: 66px;
-}
-section .year .description {
-    color: #f1f1f1;
-    float: right;
-    line-height: 1.4;
-    padding: 0 0 0 17px;
-    position: relative;
-    width: calc(100% - 66px);
-}
-section .year .description::before {
-    content: '';
-    background-color: #b41615;
-    top: 7px;
-    height: calc(100% - 15px);
-    width: 3px;
-    left: 0;
-    position: absolute;
-}
-section .branch {
-    margin: 0 auto 26px;
-    max-width: 720px;
-    overflow: hidden;
-    position: relative;
-    text-align: left;
-}
-section .branch .name {
-    color: #b41615;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1.3;
-    text-align: right;
-    width: 120px;
-}
-section .branch .description {
-    color: #f1f1f1;
-    float: right;
-    line-height: 1.4;
-    margin: 0 0 0 18px;
-    padding: 0 0 0 28px;
-    position: relative;
-    width: calc(100% - 138px);
-}
-section .branch .description::before {
-    content: '';
-    background-color: #b41615;
-    top: 7px;
-    height: calc(100% - 15px);
-    width: 3px;
-    left: 0;
-    position: absolute;
-}
-@media screen and (max-width: 399px) {
-    section .branch .name {
-        font-size: 18px;
-        width: 70px;
-    }
-    section .branch .name.executive-order {
-        font-size: 13px;
-    }
-    section .branch .description {
-        font-size: 15px;
-        margin: 0;
-        padding: 0 0 0 18px;
-        width: calc(100% - 84px);
-    }
-}
-section .undisclosed-spending-infographic {
-    padding: 18px 0 15px;
-    max-width: 100%;
+section.footer {
+    background-color: #3c6731;
+    border-top: 8px solid #579542;
+    box-sizing: content-box;
+    height: 12px;
 }
 section a {
     color: #0099ff;
@@ -732,7 +472,7 @@ section p {
     text-align: center;
 }
 section button.sign-the-petition {
-    background-color: #b41615;
+    background-color: #d3640a;
     color: #f0f4f5;
     font-size: 24px;
     font-weight: bold;
@@ -742,7 +482,7 @@ section button.sign-the-petition {
     transition: background-color 0.16s;
 }
 section button.sign-the-petition:hover {
-    background-color: #a90a09;
+    background-color: #d3440c;
 }
 @media screen and (max-width: 769px) {
     section.more-info {
@@ -967,7 +707,10 @@ div.social-buttons a.email {
     background-image: url(../images/social/icon-email.gif);
 }
 section.midnight-share-train {
-    background-color: #192c4b;
+    background-attachment: fixed;
+    background-color: #651519;
+    background-image: url(../images/background-v2.png);
+    background-position: 0 50px;
     margin: 0 auto;
     padding: 18px 16px 0;
     max-width: 100%;
@@ -979,7 +722,7 @@ section.midnight-share-train a:hover {
 /* Checkbox */
 
 .squaredFour {
-    color: #96a2ba;
+    color: #ffffff;
     display: block;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
