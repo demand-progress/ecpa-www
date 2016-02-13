@@ -58,7 +58,7 @@
 
 	var _modal2 = _interopRequireDefault(_modal);
 
-	var _statickit = __webpack_require__(7);
+	var _statickit = __webpack_require__(4);
 
 	var _statickit2 = _interopRequireDefault(_statickit);
 
@@ -75,7 +75,7 @@
 	var EMAIL_SUBJECT = 'Sign this petition: Tell Obama to fight secret money in politics right away';
 	var EMAIL_BODY = 'Hi,\n\nI just signed a petition at PresidentObamasLegacy.org telling President Obama to immediately act to fight the secret money corroding our political system.\n\nNearly 6 years after Citizens United, President Obama still hasn\'t used any of the tools he has to reduce secret money spent by billionaires and wealthy special interests in our elections\n\nThe petition is integrated with the White House We The People petition platform – so if we get to 100,000 signatures, Obama will publicly respond. Could you help us get there?\n\nhttp://' + DOMAIN + '/?source=' + SOURCE_CLEANED + '-emailshare\n\nThanks!';
 	var TWEET_TEXT = 'Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=' + SOURCE_CLEANED + '-twittershare #ObamaMustAct';
-	var REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'postcode'];
+	var REQUIRED_FIELDS = ['name', 'email', 'address1', 'postcode'];
 	var NON_SWAP_SOURCES = [];
 	var NON_SWAP_3RD_PARTY_SOURCES = {};
 	var committeeMembers = [{
@@ -199,8 +199,8 @@
 
 	// Campaign
 	var campaign = {
-	    actionKitPage: 'sample1',
-	    callCampaign: 'sample1',
+	    actionKitPage: 'ecpa-www-goodlatte',
+	    callCampaign: 'ecpa-goodlatte',
 	    twitterId: 'RepGoodlatte'
 	};
 
@@ -284,8 +284,8 @@
 
 	                                if (committeeMember.district === representative.district && committeeMember.state === representative.state) {
 	                                    campaign = {
-	                                        actionKitPage: 'sample2',
-	                                        callCampaign: 'sample2',
+	                                        actionKitPage: 'ecpa-www-zip',
+	                                        callCampaign: 'ecpa-zip',
 	                                        twitterId: representative.twitter_id
 	                                    };
 
@@ -10456,10 +10456,7 @@
 	module.exports = Modal;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

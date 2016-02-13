@@ -5,14 +5,14 @@ import Modal from './modal';
 import StaticKit from './statickit';
 
 // Constants
-let SOURCE = StaticKit.query.source;
-let SOURCE_CLEANED = StaticKit.query.cleanedSource;
-let FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
-let CALL_TOOL_URL = 'https://call-congress.fightforthefuture.org/create?callback=?';
+let SOURCE              = StaticKit.query.source;
+let SOURCE_CLEANED      = StaticKit.query.cleanedSource;
+let FEEDBACK_TOOL_URL   = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
+let CALL_TOOL_URL       = 'https://call-congress.fightforthefuture.org/create?callback=?';
 let CALL_TOOL_COUNT_URL = 'https://dp-call-tool-meta.herokuapp.com/api/count/sunsetthepatriotact?callback=?';
-let DOMAIN = 'presidentobamaslegacy.org';
-let EMAIL_SUBJECT = 'Sign this petition: Tell Obama to fight secret money in politics right away';
-let EMAIL_BODY = `Hi,
+let DOMAIN              = 'presidentobamaslegacy.org';
+let EMAIL_SUBJECT       = 'Sign this petition: Tell Obama to fight secret money in politics right away';
+let EMAIL_BODY          = `Hi,
 
 I just signed a petition at PresidentObamasLegacy.org telling President Obama to immediately act to fight the secret money corroding our political system.
 
@@ -23,16 +23,16 @@ The petition is integrated with the White House We The People petition platform 
 http://${DOMAIN}/?source=${SOURCE_CLEANED}-emailshare
 
 Thanks!`;
-let TWEET_TEXT = `Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=${SOURCE_CLEANED}-twittershare #ObamaMustAct`;
+let TWEET_TEXT      = `Join me: Tell @POTUS that he must fight secret money in politics right away. PresidentObamasLegacy.org/?source=${SOURCE_CLEANED}-twittershare #ObamaMustAct`;
 let REQUIRED_FIELDS = [
     'name',
     'email',
     'address1',
     'postcode',
 ];
-let NON_SWAP_SOURCES = [];
+let NON_SWAP_SOURCES           = [];
 let NON_SWAP_3RD_PARTY_SOURCES = {};
-let committeeMembers = [{
+let committeeMembers           = [{
     state: 'VA',
     district: 6
 }, {
@@ -184,7 +184,7 @@ $(() => {
             }
 
             let $field = $('#' + field);
-            let value = $field.val() && $field.val().trim();
+            let value  = $field.val() && $field.val().trim();
             if (!value) {
                 alert('Please enter your ' + $field.attr('placeholder'));
                 $field.focus();
