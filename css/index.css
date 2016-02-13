@@ -71,7 +71,7 @@ header .headlines {
     background-attachment: fixed;
     background-color: #651519;
     background-image: url(../images/background-v2.png);
-    background-position: 0 50px;
+    background-position: 50% 50px;
     margin-bottom: 16px;
     padding-bottom: 16px;
     position: relative;
@@ -311,7 +311,7 @@ header .headlines h3 {
     background-attachment: fixed;
     background-color: #651519;
     background-image: url(../images/background-v3.png);
-    background-position: 0 50px;
+    background-position: 50% 50px;
     border-radius: 0 0 32px 32px;
     margin: 0 auto;
     max-width: 413px;
@@ -437,7 +437,7 @@ section.twitter-title {
     background-attachment: fixed;
     background-color: #651519;
     background-image: url(../images/background-v2.png);
-    background-position: 0 50px;
+    background-position: 50% 50px;
     color: #fff;
     font-weight: bold;
     font-size: 32px;
@@ -708,7 +708,7 @@ section.midnight-share-train {
     background-attachment: fixed;
     background-color: #651519;
     background-image: url(../images/background-v2.png);
-    background-position: 0 50px;
+    background-position: 50% 50px;
     margin: 0 auto;
     padding: 18px 16px 0;
     max-width: 100%;
