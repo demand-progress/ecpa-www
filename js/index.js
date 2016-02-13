@@ -153,9 +153,8 @@ let committeeMembers           = [{
 
 // Campaign
 let campaign = {
-    actionKitPage : 'ecpa-www-goodlatte',
-    callCampaign  : 'ecpa-goodlatte',
-    twitterId     : 'RepGoodlatte',
+    callCampaign : 'ecpa-goodlatte',
+    twitterId    : 'RepGoodlatte',
 };
 
 // After the page loads
@@ -228,9 +227,8 @@ $(() => {
                             (committeeMember.state === representative.state)
                         ) {
                             campaign = {
-                                actionKitPage : 'ecpa-www-zip',
-                                callCampaign  : 'ecpa-zip',
-                                twitterId     : representative.twitter_id,
+                                callCampaign : 'ecpa-zip',
+                                twitterId    : representative.twitter_id,
                             };
 
                             break;

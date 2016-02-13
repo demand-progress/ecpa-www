@@ -199,7 +199,6 @@
 
 	// Campaign
 	var campaign = {
-	    actionKitPage: 'ecpa-www-goodlatte',
 	    callCampaign: 'ecpa-goodlatte',
 	    twitterId: 'RepGoodlatte'
 	};
@@ -284,7 +283,6 @@
 
 	                                if (committeeMember.district === representative.district && committeeMember.state === representative.state) {
 	                                    campaign = {
-	                                        actionKitPage: 'ecpa-www-zip',
 	                                        callCampaign: 'ecpa-zip',
 	                                        twitterId: representative.twitter_id
 	                                    };
