@@ -168,6 +168,7 @@ header .headlines h3 {
 }
 .action {
     background: #575757;
+    border-radius: 32px 32px 0 0;
     margin: 0 auto;
     max-width: 413px;
     padding: 24px 0 32px;
@@ -309,7 +310,7 @@ header .headlines h3 {
 }
 .action-wrapper .counter {
     background-attachment: fixed;
-    background-color: #651519;
+    background-color: #579542;
     background-image: url(../images/background-v3.png);
     background-position: 50% 50px;
     border-radius: 0 0 32px 32px;
