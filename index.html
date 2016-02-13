@@ -22,98 +22,103 @@
 </head>
 
 <body class="home-page">
+    <div class="floating-background"></div>
     <header>
         <div class="headlines">
             <h1>FIX the ECPA</h1>
         </div>
 
-        <div class="petition-and-form-wrapper">
-            <div class="outer-padding">
-                <div class="action-wrapper">
-                    <div class="action">
-                        <h2>SIGN THE PETITION</h2>
+        <div class="petition-and-form-wrapper-background">
+            <div class="petition-and-form-wrapper">
+                <div class="outer-padding">
+                    <div class="action-wrapper">
+                        <div class="action">
+                            <h2>SIGN THE PETITION</h2>
 
-                        <form method="GET" action="https://act.demandprogress.org/act/" accept-charset="utf-8">
-                            <div class="form-wrapper">
-                                <div class="input-grid">
-                                    <input id="name" name="name" placeholder="Name" type="text" autocomplete="on" required="required" />
-                                    <input id="email" name="email" placeholder="Email" type="" autocomplete="on" required="required" />
-                                    <input id="address1" name="address1" placeholder="Address" type="text" autocomplete="on" required="required" />
-                                    <input id="postcode" name="zip" placeholder="ZIP code" type="text" autocomplete="on" maxlength="10" required="required" />
-                                    <div id="thanks">Thanks!</div>
-                                    <button type="submit">Send now</button>
+                            <form method="GET" action="https://act.demandprogress.org/act/" accept-charset="utf-8">
+                                <div class="form-wrapper">
+                                    <div class="input-grid">
+                                        <input id="name" name="name" placeholder="Name" type="text" autocomplete="on" required="required" />
+                                        <input id="email" name="email" placeholder="Email" type="" autocomplete="on" required="required" />
+                                        <input id="address1" name="address1" placeholder="Address" type="text" autocomplete="on" required="required" />
+                                        <input id="postcode" name="zip" placeholder="ZIP code" type="text" autocomplete="on" maxlength="10" required="required" />
+                                        <div id="thanks">Thanks!</div>
+                                        <button type="submit">Send now</button>
+                                    </div>
+
+                                    <div className="hidden">
+                                        <input type="hidden" name="action_user_agent" value="" />
+                                        <input type="hidden" name="country" value="United States" />
+                                        <input type="hidden" name="form_name" value="act-petition" />
+                                        <input type="hidden" name="js" value="1" />
+                                        <input type="hidden" name="opt_in" value="1" />
+                                        <input type="hidden" name="page" value="ecpa-www" />
+                                        <input type="hidden" name="source" value="" />
+                                        <input type="hidden" name="url" value="" />
+                                        <input type="hidden" name="want_progress" value="1" />
+                                    </div>
                                 </div>
 
-                                <div className="hidden">
-                                    <input type="hidden" name="action_user_agent" value="" />
-                                    <input type="hidden" name="country" value="United States" />
-                                    <input type="hidden" name="form_name" value="act-petition" />
-                                    <input type="hidden" name="js" value="1" />
-                                    <input type="hidden" name="opt_in" value="1" />
-                                    <input type="hidden" name="page" value="ecpa-www" />
-                                    <input type="hidden" name="source" value="" />
-                                    <input type="hidden" name="url" value="" />
-                                    <input type="hidden" name="want_progress" value="1" />
+                                <div class="squaredFour pooling">
+                                    <input type="checkbox" value="consent" id="pooling-opt-in" name="action_swappable" checked="checked">
+                                    <label class="checkbox" for="pooling-opt-in"></label>
+                                    <label class="text" for="pooling-opt-in">
+                                        One or more of the participating organizations listed below may contact you about future campaigns.
+                                        <br>
+                                    </label>
                                 </div>
+                            </form>
+
+                            <span class="disclaimer disclaimer-specific">
+                                <span class="organization">Rootstrikers and Demand Progress</span> may contact you about future campaigns.
+                            </span>
+                        </div>
+
+                        <div class="counter">
+                            <div class="number-of-signatures">...</div>
+                            <div class="number-of-signatures-label">
+                                signatures are in
                             </div>
-
-                            <div class="squaredFour pooling">
-                                <input type="checkbox" value="consent" id="pooling-opt-in" name="action_swappable" checked="checked">
-                                <label class="checkbox" for="pooling-opt-in"></label>
-                                <label class="text" for="pooling-opt-in">
-                                    One or more of the participating organizations listed below may contact you about future campaigns.
-                                    <br>
-                                </label>
-                            </div>
-                        </form>
-
-                        <span class="disclaimer disclaimer-specific">
-                            <span class="organization">Rootstrikers and Demand Progress</span> may contact you about future campaigns.
-                        </span>
-                    </div>
-
-                    <div class="counter">
-                        <div class="number-of-signatures">...</div>
-                        <div class="number-of-signatures-label">
-                            signatures are in
                         </div>
                     </div>
+                    <!-- .action-wrapper -->
+
+                    <div class="petition">
+                        <h2>PETITION TO THE PRESIDENT:</h2>
+
+                        <p>
+                            <strong>President Obama:</strong> In the nearly 6 years since
+                            <em>Citizens United</em>, super PACs and undisclosed money have come to dominate elections.
+                        </p>
+
+                        <p>
+                            You have tools at your disposal to fight this influx of secret money into politics.
+                        </p>
+
+                        <p>
+                            <strong>But you have done nothing.</strong>
+                        </p>
+
+                        <p>
+                            You must act now or be remembered as the president whose inaction aided the rise of secret money politics.
+                        </p>
+
+                        <p>
+                            <strong>We demand</strong> that before your State of the Union address, you issue an executive order requiring federal contractors to disclose their political spending within 24 hours of it happening, taking effect before July 4, 2016.
+                        </p>
+
+                        <p>
+                            <strong>We also demand</strong> that you immediately call on the leaders you appointed to the SEC, IRS, and FCC to use their authority to unmask secret political donors, and fill all 5 FEC openings with nominees who will enforce the law.
+                        </p>
+                    </div>
+                    <!-- .petition -->
                 </div>
-                <!-- .action-wrapper -->
-
-                <div class="petition">
-                    <h2>PETITION TO THE PRESIDENT:</h2>
-
-                    <p>
-                        <strong>President Obama:</strong> In the nearly 6 years since
-                        <em>Citizens United</em>, super PACs and undisclosed money have come to dominate elections.
-                    </p>
-
-                    <p>
-                        You have tools at your disposal to fight this influx of secret money into politics.
-                    </p>
-
-                    <p>
-                        <strong>But you have done nothing.</strong>
-                    </p>
-
-                    <p>
-                        You must act now or be remembered as the president whose inaction aided the rise of secret money politics.
-                    </p>
-
-                    <p>
-                        <strong>We demand</strong> that before your State of the Union address, you issue an executive order requiring federal contractors to disclose their political spending within 24 hours of it happening, taking effect before July 4, 2016.
-                    </p>
-
-                    <p>
-                        <strong>We also demand</strong> that you immediately call on the leaders you appointed to the SEC, IRS, and FCC to use their authority to unmask secret political donors, and fill all 5 FEC openings with nominees who will enforce the law.
-                    </p>
-                </div>
-                <!-- .petition -->
+                <!-- .outer-padding -->
             </div>
-            <!-- .outer-padding -->
+            <!-- .petition-and-form-wrapper -->
         </div>
-        <!-- .petition-and-form-wrapper -->
+        <!-- .petition-and-form-wrapper-background -->
+
     </header>
 
     <section class="twitter-title">

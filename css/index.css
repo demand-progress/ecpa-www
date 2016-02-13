@@ -66,12 +66,17 @@ body {
 }
 @media screen and (max-width: 599px) {
 }
-header {}
-header .headlines {
-    background-attachment: fixed;
+div.floating-background {
     background-color: #651519;
     background-image: url(../images/background-v4.png);
-    background-position: 50% 50px;
+    background-position: 50% 20px;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: -1;
+}
+header {}
+header .headlines {
     margin-bottom: 16px;
     padding-bottom: 16px;
     position: relative;
@@ -126,6 +131,9 @@ header .headlines h3 {
         padding-bottom: 27px;
         padding-top: 0;
     }
+}
+.petition-and-form-wrapper-background {
+    background-color: #262525;
 }
 .petition-and-form-wrapper {
     margin: 0 auto;
@@ -435,10 +443,6 @@ button {
     }
 }
 section.twitter-title {
-    background-attachment: fixed;
-    background-color: #651519;
-    background-image: url(../images/background-v4.png);
-    background-position: 50% 50px;
     color: #fff;
     font-weight: bold;
     font-size: 32px;
@@ -706,10 +710,6 @@ div.social-buttons a.email {
     background-image: url(../images/social/icon-email.gif);
 }
 section.midnight-share-train {
-    background-attachment: fixed;
-    background-color: #651519;
-    background-image: url(../images/background-v4.png);
-    background-position: 50% 50px;
     margin: 0 auto;
     padding: 18px 16px 0;
     max-width: 100%;
