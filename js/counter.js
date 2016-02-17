@@ -2,9 +2,9 @@ import $ from 'jquery';
 
 
 let Counter = {
-    update: () => {
+    update: (page) => {
         $.ajax({
-            url: 'https://act.demandprogress.org/progress/ecpa-www?callback=?',
+            url: `https://act.demandprogress.org/progress/${page}?callback=?`,
             dataType: 'jsonp',
             success: (data) => {
                 $('.counter').addClass('loaded');

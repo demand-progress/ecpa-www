@@ -203,6 +203,7 @@
 
 	// Campaign
 	var campaign = {
+	    actionKit: 'ecpa-www',
 	    callCampaign: 'ecpa-goodlatte',
 	    twitterId: 'RepGoodlatte'
 	};
@@ -385,13 +386,13 @@
 	        _jquery2.default.getJSON(CALL_TOOL_COUNT_URL, function (res) {
 	            if (res.count) {
 	                (0, _jquery2.default)('.counter').addClass('loaded');
-	                (0, _jquery2.default)('.counter .number-of-signatures').text(numberWithCommas(res.count));
+	                (0, _jquery2.default)('.counter .number-of-signatures').text(commafiy(res.count));
 	            }
 	        });
 	    }
 
 	    if ((0, _jquery2.default)('body.home-page').length) {
-	        _counter2.default.update();
+	        _counter2.default.update(campaign.actionKit);
 	    }
 
 	    // if ($('body.call-page').length) {
@@ -408,10 +409,8 @@
 	            dataType: 'json',
 	            success: function success(res) {
 	                // Default
-	                campaign = {
-	                    callCampaign: 'ecpa-goodlatte',
-	                    twitterId: 'RepGoodlatte'
-	                };
+	                campaign.callCampaign = 'ecpa-goodlatte';
+	                campaign.twitterId = 'RepGoodlatte';
 
 	                // Search for a committee member who represents the visitor
 	                var _iteratorNormalCompletion = true;
@@ -482,8 +481,8 @@
 	        });
 	    }
 
-	    function numberWithCommas(x) {
-	        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    function commafiy(number) {
+	        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	    }
 
 	    function showCheckYourEmailPrompt() {
@@ -10542,9 +10541,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Counter = {
-	    update: function update() {
+	    update: function update(page) {
 	        _jquery2.default.ajax({
-	            url: 'https://act.demandprogress.org/progress/ecpa-www?callback=?',
+	            url: 'https://act.demandprogress.org/progress/' + page + '?callback=?',
 	            dataType: 'jsonp',
 	            success: function success(data) {
 	                (0, _jquery2.default)('.counter').addClass('loaded');

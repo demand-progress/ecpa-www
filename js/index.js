@@ -154,6 +154,7 @@ let committeeMembers           = [{
 
 // Campaign
 let campaign = {
+    actionKit    : 'ecpa-www',
     callCampaign : 'ecpa-goodlatte',
     twitterId    : 'RepGoodlatte',
 };
@@ -345,13 +346,13 @@ $(() => {
         $.getJSON(CALL_TOOL_COUNT_URL, (res) => {
             if (res.count) {
                 $('.counter').addClass('loaded');
-                $('.counter .number-of-signatures').text(numberWithCommas(res.count));
+                $('.counter .number-of-signatures').text(commafiy(res.count));
             }
         });
     }
 
     if ($('body.home-page').length) {
-        Counter.update();
+        Counter.update(campaign.actionKit);
     }
 
     // if ($('body.call-page').length) {
@@ -368,10 +369,8 @@ $(() => {
             dataType : 'json',
             success  : (res) => {
                 // Default
-                campaign = {
-                    callCampaign : 'ecpa-goodlatte',
-                    twitterId    : 'RepGoodlatte',
-                };
+                campaign.callCampaign = 'ecpa-goodlatte';
+                campaign.twitterId    = 'RepGoodlatte';
 
                 // Search for a committee member who represents the visitor
                 for (let representative of res.results) {
@@ -404,8 +403,8 @@ $(() => {
         });
     }
 
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    function commafiy(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     function showCheckYourEmailPrompt() {
