@@ -50,6 +50,10 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _counter = __webpack_require__(5);
+
+	var _counter2 = _interopRequireDefault(_counter);
+
 	var _email = __webpack_require__(2);
 
 	var _email2 = _interopRequireDefault(_email);
@@ -65,8 +69,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Constants
-	// Modules
-	var SOURCE = _statickit2.default.query.source;
+	var SOURCE = _statickit2.default.query.source; // Modules
+
 	var SOURCE_CLEANED = _statickit2.default.query.cleanedSource;
 	var FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
 	var CALL_TOOL_URL = 'https://call-congress.fightforthefuture.org/create?callback=?';
@@ -214,12 +218,7 @@
 	    (0, _jquery2.default)('[name=url]').val(location.href);
 
 	    var $signatureForm = (0, _jquery2.default)('.home-page .action form');
-	    var zipWasFetched = false;
 	    $signatureForm.on('submit', function (e) {
-	        if (zipWasFetched) {
-	            return true;
-	        }
-
 	        e.preventDefault();
 	        var valid = true;
 
@@ -250,80 +249,7 @@
 	            return;
 	        }
 
-	        _jquery2.default.ajax({
-	            data: {
-	                apikey: '3779f52f552743d999b2c5fe1cda70b6',
-	                zip: (0, _jquery2.default)('#postcode').val()
-	            },
-	            dataType: 'json',
-	            success: function success(res) {
-	                // We can submit to AK after this
-	                zipWasFetched = true;
-
-	                // Search for a committee member who represents the visitor
-	                var _iteratorNormalCompletion = true;
-	                var _didIteratorError = false;
-	                var _iteratorError = undefined;
-
-	                try {
-	                    for (var _iterator = res.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	                        var representative = _step.value;
-
-	                        if (representative.chamber !== 'house') {
-	                            continue;
-	                        }
-
-	                        var _iteratorNormalCompletion2 = true;
-	                        var _didIteratorError2 = false;
-	                        var _iteratorError2 = undefined;
-
-	                        try {
-	                            for (var _iterator2 = committeeMembers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-	                                var committeeMember = _step2.value;
-
-	                                if (committeeMember.district === representative.district && committeeMember.state === representative.state) {
-	                                    campaign = {
-	                                        callCampaign: 'ecpa-zip',
-	                                        twitterId: representative.twitter_id
-	                                    };
-
-	                                    break;
-	                                }
-	                            }
-	                        } catch (err) {
-	                            _didIteratorError2 = true;
-	                            _iteratorError2 = err;
-	                        } finally {
-	                            try {
-	                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-	                                    _iterator2.return();
-	                                }
-	                            } finally {
-	                                if (_didIteratorError2) {
-	                                    throw _iteratorError2;
-	                                }
-	                            }
-	                        }
-	                    }
-	                } catch (err) {
-	                    _didIteratorError = true;
-	                    _iteratorError = err;
-	                } finally {
-	                    try {
-	                        if (!_iteratorNormalCompletion && _iterator.return) {
-	                            _iterator.return();
-	                        }
-	                    } finally {
-	                        if (_didIteratorError) {
-	                            throw _iteratorError;
-	                        }
-	                    }
-	                }
-
-	                $signatureForm.submit();
-	            },
-	            url: 'https://congress.api.sunlightfoundation.com/legislators/locate'
-	        });
+	        $signatureForm.submit();
 
 	        // Thanking user, and disabling form
 	        showThanks();
@@ -455,21 +381,6 @@
 	        });
 	    }
 
-	    function fetchPetitionCount() {
-	        _jquery2.default.ajax({
-	            cache: false,
-	            url: './data/combined-signatures.html',
-	            success: function success(res) {
-	                if (res) {
-	                    res = res.replace(/[^\d]/g, '');
-
-	                    (0, _jquery2.default)('.counter').addClass('loaded');
-	                    (0, _jquery2.default)('.counter .number-of-signatures').text(numberWithCommas(res));
-	                }
-	            }
-	        });
-	    }
-
 	    function fetchCallCount() {
 	        _jquery2.default.getJSON(CALL_TOOL_COUNT_URL, function (res) {
 	            if (res.count) {
@@ -480,12 +391,96 @@
 	    }
 
 	    if ((0, _jquery2.default)('body.home-page').length) {
-	        fetchPetitionCount();
+	        _counter2.default.update();
 	    }
 
 	    // if ($('body.call-page').length) {
 	    //     fetchCallCount();
 	    // }
+
+	    function updateZip(zip, callback) {
+	        _jquery2.default.ajax({
+	            url: 'https://congress.api.sunlightfoundation.com/legislators/locate',
+	            data: {
+	                apikey: '3779f52f552743d999b2c5fe1cda70b6',
+	                zip: zip || (0, _jquery2.default)('#postcode').val()
+	            },
+	            dataType: 'json',
+	            success: function success(res) {
+	                // Default
+	                campaign = {
+	                    callCampaign: 'ecpa-goodlatte',
+	                    twitterId: 'RepGoodlatte'
+	                };
+
+	                // Search for a committee member who represents the visitor
+	                var _iteratorNormalCompletion = true;
+	                var _didIteratorError = false;
+	                var _iteratorError = undefined;
+
+	                try {
+	                    for (var _iterator = res.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                        var representative = _step.value;
+
+	                        if (representative.chamber !== 'house') {
+	                            continue;
+	                        }
+
+	                        var _iteratorNormalCompletion2 = true;
+	                        var _didIteratorError2 = false;
+	                        var _iteratorError2 = undefined;
+
+	                        try {
+	                            for (var _iterator2 = committeeMembers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                                var committeeMember = _step2.value;
+
+	                                if (committeeMember.district === representative.district && committeeMember.state === representative.state) {
+	                                    campaign = {
+	                                        callCampaign: 'ecpa-zip',
+	                                        twitterId: representative.twitter_id
+	                                    };
+
+	                                    break;
+	                                }
+	                            }
+	                        } catch (err) {
+	                            _didIteratorError2 = true;
+	                            _iteratorError2 = err;
+	                        } finally {
+	                            try {
+	                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                                    _iterator2.return();
+	                                }
+	                            } finally {
+	                                if (_didIteratorError2) {
+	                                    throw _iteratorError2;
+	                                }
+	                            }
+	                        }
+	                    }
+	                } catch (err) {
+	                    _didIteratorError = true;
+	                    _iteratorError = err;
+	                } finally {
+	                    try {
+	                        if (!_iteratorNormalCompletion && _iterator.return) {
+	                            _iterator.return();
+	                        }
+	                    } finally {
+	                        if (_didIteratorError) {
+	                            throw _iteratorError;
+	                        }
+	                    }
+	                }
+
+	                if (callback) {
+	                    callback();
+	                } else {
+	                    console.log('Campaign:', campaign);
+	                }
+	            }
+	        });
+	    }
 
 	    function numberWithCommas(x) {
 	        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -10529,6 +10524,41 @@
 	};
 
 	module.exports = StaticKit;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Counter = {
+	    update: function update() {
+	        _jquery2.default.ajax({
+	            url: 'https://act.demandprogress.org/progress/ecpa-www?callback=?',
+	            dataType: 'jsonp',
+	            success: function success(data) {
+	                (0, _jquery2.default)('.counter').addClass('loaded');
+	                (0, _jquery2.default)('.counter .number-of-signatures').text(commafiy(data.total.actions));
+	            }
+	        });
+	    }
+	};
+
+	function commafiy(number) {
+	    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+	exports.default = Counter;
 
 /***/ }
 /******/ ]);

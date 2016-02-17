@@ -1,5 +1,6 @@
 // Modules
 import $ from 'jquery';
+import Counter from './counter';
 import Email from './email';
 import Modal from './modal';
 import StaticKit from './statickit';
@@ -168,12 +169,7 @@ $(() => {
     $('[name=url]').val(location.href);
 
     let $signatureForm = $('.home-page .action form');
-    let zipWasFetched  = false;
     $signatureForm.on('submit', (e) => {
-        if (zipWasFetched) {
-            return true;
-        }
-
         e.preventDefault();
         let valid = true;
 
@@ -204,42 +200,7 @@ $(() => {
             return;
         }
 
-        $.ajax({
-            data: {
-                apikey: '3779f52f552743d999b2c5fe1cda70b6',
-                zip: $('#postcode').val(),
-            },
-            dataType: 'json',
-            success: (res) => {
-                // We can submit to AK after this
-                zipWasFetched = true;
-
-                // Search for a committee member who represents the visitor
-                for (let representative of res.results) {
-                    if (representative.chamber !== 'house') {
-                        continue;
-                    }
-
-                    for (let committeeMember of committeeMembers) {
-                        if (
-                            (committeeMember.district === representative.district)
-                            &&
-                            (committeeMember.state === representative.state)
-                        ) {
-                            campaign = {
-                                callCampaign : 'ecpa-zip',
-                                twitterId    : representative.twitter_id,
-                            };
-
-                            break;
-                        }
-                    }
-                }
-
-                $signatureForm.submit();
-            },
-            url: 'https://congress.api.sunlightfoundation.com/legislators/locate',
-        });
+        $signatureForm.submit();
 
         // Thanking user, and disabling form
         showThanks();
@@ -380,21 +341,6 @@ $(() => {
         });
     }
 
-    function fetchPetitionCount() {
-        $.ajax({
-            cache   : false,
-            url     : './data/combined-signatures.html',
-            success : (res) => {
-                if (res) {
-                    res = res.replace(/[^\d]/g, '');
-
-                    $('.counter').addClass('loaded');
-                    $('.counter .number-of-signatures').text(numberWithCommas(res));
-                }
-            },
-        });
-    }
-
     function fetchCallCount() {
         $.getJSON(CALL_TOOL_COUNT_URL, (res) => {
             if (res.count) {
@@ -405,12 +351,58 @@ $(() => {
     }
 
     if ($('body.home-page').length) {
-        fetchPetitionCount();
+        Counter.update();
     }
 
     // if ($('body.call-page').length) {
     //     fetchCallCount();
     // }
+
+    function updateZip(zip, callback) {
+        $.ajax({
+            url  : 'https://congress.api.sunlightfoundation.com/legislators/locate',
+            data : {
+                apikey : '3779f52f552743d999b2c5fe1cda70b6',
+                zip    : zip || $('#postcode').val(),
+            },
+            dataType : 'json',
+            success  : (res) => {
+                // Default
+                campaign = {
+                    callCampaign : 'ecpa-goodlatte',
+                    twitterId    : 'RepGoodlatte',
+                };
+
+                // Search for a committee member who represents the visitor
+                for (let representative of res.results) {
+                    if (representative.chamber !== 'house') {
+                        continue;
+                    }
+
+                    for (let committeeMember of committeeMembers) {
+                        if (
+                            (committeeMember.district === representative.district)
+                            &&
+                            (committeeMember.state === representative.state)
+                        ) {
+                            campaign = {
+                                callCampaign : 'ecpa-zip',
+                                twitterId    : representative.twitter_id,
+                            };
+
+                            break;
+                        }
+                    }
+                }
+
+                if (callback) {
+                    callback();
+                } else {
+                    console.log('Campaign:', campaign);
+                }
+            },
+        });
+    }
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
