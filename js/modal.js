@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
-const Modal = {
+
+let Modal = {
     show: function(modal) {
         var $modal = $(modal);
 
@@ -49,10 +50,27 @@ const Modal = {
         });
     },
 
-    wireAll: function() {
+    resizeTimeout: null,
+
+    onResize: function() {
+        clearTimeout(Modal.resizeTimeout);
+        Modal.resizeTimeout = setTimeout(Modal.updateMaxHeight, 300);
+    },
+
+    updateMaxHeight: function() {
+        $('.modal').css({
+            'max-height': innerHeight + 'px',
+        });
+    },
+
+    setup: function() {
+        // Wire all modals
         $('.overlay').each(function(i, el) {
             Modal.wire(el);
         });
+
+        // Update max-height on resize
+        $(window).off('resize', Modal.onResize).on('resize', Modal.onResize);
     },
 };
 

@@ -102,7 +102,7 @@ header .headlines h1 {
 }
 header .subtitle {
     background-color: #787878;
-    box-shadow: 3px 1px 7px rgba(0, 0, 0, 0.34);
+    box-shadow: 3px 1px 7px rgba(0, 0, 0, 0.24);
     color: #f1f1f1;
     font-size: 24px;
     font-style: italic;
@@ -161,7 +161,12 @@ header .subtitle {
 .options {
     margin: 0 auto;
     max-width: 905px;
+    opacity: 0;
     position: relative;
+    transition: opacity 0.3s;
+}
+.options.ready {
+    opacity: 1;
 }
 .options .call-wrapper {
     float: left;
@@ -293,7 +298,7 @@ header .subtitle {
     font-weight: 100;
     height: 60px;
     line-height: 60px;
-    margin-bottom: 14px;
+    margin: 18px 0 18px;
     padding: 0 20px;
     vertical-align: top;
     width: 100%;
