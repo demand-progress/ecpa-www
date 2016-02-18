@@ -10437,6 +10437,7 @@
 
 	        // Update max-height on resize
 	        (0, _jquery2.default)(window).off('resize', Modal.onResize).on('resize', Modal.onResize);
+	        Modal.updateMaxHeight();
 	    }
 	};
 
@@ -10568,6 +10569,8 @@
 
 	                    case 5:
 
+	                        _modal2.default.show('.calling');
+
 	                        $phone.val('');
 
 	                        // Send call
@@ -10590,7 +10593,7 @@
 
 	                        _modal2.default.show('calling');
 
-	                    case 15:
+	                    case 16:
 	                    case 'end':
 	                        return _context2.stop();
 	                }

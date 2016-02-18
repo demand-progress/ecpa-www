@@ -702,7 +702,9 @@ section .share {
     opacity: .6;
 }
 .overlay .modal h1 {
-    background: #192c4b;
+    background-color: #579542;
+    background-image: url(../images/background-v3.png);
+    background-position: 50% 36px;
     color: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 26px;

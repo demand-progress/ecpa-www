@@ -65,6 +65,8 @@ async function onCallFormSubmit(e) {
         return alert('Please enter your 10 digit phone number.');
     }
 
+    Modal.show('.calling');
+
     $phone.val('');
 
     // Send call

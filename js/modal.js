@@ -71,6 +71,7 @@ let Modal = {
 
         // Update max-height on resize
         $(window).off('resize', Modal.onResize).on('resize', Modal.onResize);
+        Modal.updateMaxHeight();
     },
 };
 
