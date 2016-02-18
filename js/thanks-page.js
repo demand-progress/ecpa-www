@@ -2,6 +2,7 @@ import $ from 'jquery';
 import commafy from './commafy';
 import Constants from './constants';
 import Modal from './modal';
+import StaticKit from './static-kit';
 
 
 let campaign = {
@@ -19,7 +20,8 @@ async function start() {
     // Update call tool URL
     callToolURL =
         'https://dp-call-congress.herokuapp.com/create' +
-        '?campaignId=' + campaign.callCampaign;
+        '?campaignId=' + campaign.callCampaign +
+        '?source_id='  + StaticKit.query.cleanedSource;
 
     if (zip) {
         callToolURL += '&zipcode=' + zip;
