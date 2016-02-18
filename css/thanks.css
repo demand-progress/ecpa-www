@@ -102,7 +102,7 @@ header .headlines h1 {
 }
 header .subtitle {
     background-color: #787878;
-    box-shadow: 3px 1px 7px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 3px 3.68px 0.32px rgba(0, 0, 0, 0.14);
     color: #f1f1f1;
     font-size: 24px;
     font-style: italic;
@@ -332,6 +332,20 @@ header .subtitle {
 }
 .action .form-wrapper button:hover {
     background-color: #d3440c;
+}
+.action .form-wrapper button .twitter {
+    height: 25px;
+    margin-right: 8px;
+    position: relative;
+    top: 3px;
+    width: 32px;
+}
+.action .form-wrapper button .phone {
+    height: 25px;
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+    width: 36px;
 }
 .action .sample-tweet {
     color: #ffffff;
