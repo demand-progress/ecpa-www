@@ -8,6 +8,20 @@ import StaticKit from './static-kit';
 import ThanksPage from './thanks-page';
 
 
+// Check for outdated browsers
+var isIE = navigator.userAgent.match(/MSIE (\d+)\./);
+if (isIE) {
+    var version = +isIE[1];
+    if (version < 9) {
+        alert('Unfortunately your browser, Internet Explorer ' + version + ', is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+        location.href = 'https://www.mozilla.org/en-US/firefox/';
+    }
+}
+
+if (navigator.userAgent.match(/Android 2\.3/)) {
+    alert('Unfortunately your browser, Android 2.3, is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+}
+
 // After the page loads
 $(() => {
     // Set up modals

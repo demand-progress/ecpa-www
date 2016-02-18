@@ -156,7 +156,7 @@ header .subtitle {
 .options-wrapper {
     background-color: #262525;
     overflow: hidden;
-    padding-bottom: 320px;
+    padding-bottom: 420px;
 }
 .options {
     margin: 0 auto;
@@ -237,7 +237,7 @@ header .subtitle {
     }
 
     .options-wrapper {
-        padding-bottom: 60px;
+        padding-bottom: 120px;
     }
 }
 @media screen and (max-width: 769px) {
@@ -340,6 +340,9 @@ header .subtitle {
     top: 3px;
     width: 32px;
 }
+.action .form-wrapper button.thanks {
+    background-color: #579542;
+}
 .action .form-wrapper button .phone {
     height: 25px;
     margin-right: 8px;
@@ -351,6 +354,7 @@ header .subtitle {
     color: #ffffff;
     font-size: 18px;
     padding: 16px 0 32px;
+    line-height: 1.24;
     text-align: left;
 }
 .action .sample-tweet .handle {
@@ -372,7 +376,7 @@ header .subtitle {
     font-size: 14px;
     line-height: 1.4;
     margin: 0 auto;
-    max-width: 370px;
+    max-width: 320px;
     padding: 16px 16px 0;
     text-align: center;
 }

@@ -76,6 +76,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// Check for outdated browsers
+	var isIE = navigator.userAgent.match(/MSIE (\d+)\./); // Modules
+
+	if (isIE) {
+	    var version = +isIE[1];
+	    if (version < 9) {
+	        alert('Unfortunately your browser, Internet Explorer ' + version + ', is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+	        location.href = 'https://www.mozilla.org/en-US/firefox/';
+	    }
+	}
+
+	if (navigator.userAgent.match(/Android 2\.3/)) {
+	    alert('Unfortunately your browser, Android 2.3, is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+	}
+
 	// After the page loads
 	(0, _jquery2.default)(function () {
 	    // Set up modals
@@ -124,7 +139,7 @@
 	            _thanksPage2.default.start();
 	            break;
 	    }
-	}); // Modules
+	});
 
 /***/ },
 /* 1 */
@@ -10493,14 +10508,19 @@
 	            while (1) {
 	                switch (_context.prev = _context.next) {
 	                    case 0:
-	                        console.log('Starting Thanks Page');
-
 	                        // Update campaign
 	                        zip = getSavedZip();
-	                        _context.next = 4;
+	                        _context.next = 3;
 	                        return updateCampaignWithZip(zip);
 
-	                    case 4:
+	                    case 3:
+
+	                        // Update call tool URL
+	                        callToolURL = 'https://dp-call-congress.herokuapp.com/create' + '?campaignId=' + campaign.callCampaign;
+
+	                        if (zip) {
+	                            callToolURL += '&zipcode=' + zip;
+	                        }
 
 	                        // Update forms
 	                        (0, _jquery2.default)('.sample-tweet .handle').text('@' + campaign.twitterId);
@@ -10508,7 +10528,13 @@
 	                        // Show forms
 	                        (0, _jquery2.default)('.options').addClass('ready');
 
-	                    case 6:
+	                        // Call form logic
+	                        (0, _jquery2.default)('.call-wrapper form').on('submit', onCallFormSubmit);
+
+	                        // Tweet form logic
+	                        (0, _jquery2.default)('.tweet-wrapper form').on('submit', onTweetFormSubmit);
+
+	                    case 9:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -10521,23 +10547,79 @@
 	    };
 	}();
 
-	var updateCampaignWithZip = function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(zip) {
-	        var res, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, representative, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, committeeMember;
-
+	var onCallFormSubmit = function () {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(e) {
+	        var $phone, phone, $submit;
 	        return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	            while (1) {
 	                switch (_context2.prev = _context2.next) {
 	                    case 0:
-	                        if (zip) {
-	                            _context2.next = 2;
+	                        e.preventDefault();
+
+	                        $phone = (0, _jquery2.default)('input[type=tel]');
+	                        phone = $phone.val().replace(/[^\d]/g, '');
+
+	                        if (!(phone.length < 10)) {
+	                            _context2.next = 5;
 	                            break;
 	                        }
 
-	                        return _context2.abrupt('return');
+	                        return _context2.abrupt('return', alert('Please enter your 10 digit phone number.'));
+
+	                    case 5:
+
+	                        $phone.val('');
+
+	                        // Send call
+	                        // $.ajax({
+	                        //     url: callToolURL + '&userPhone='  + phone,
+	                        // });
+
+	                        // Deselect input
+	                        document.activeElement.blur();
+
+	                        // Show thanks
+	                        $submit = (0, _jquery2.default)('.call-wrapper button');
+
+	                        $submit.addClass('thanks');
+	                        $submit.attr('disabled', true);
+	                        $submit.text('Thanks!');
+
+	                        (0, _jquery2.default)('.call-wrapper form input').remove();
+	                        (0, _jquery2.default)('.call-wrapper h2').remove();
+
+	                        _modal2.default.show('calling');
+
+	                    case 14:
+	                    case 'end':
+	                        return _context2.stop();
+	                }
+	            }
+	        }, _callee2, this);
+	    }));
+
+	    return function onCallFormSubmit(_x) {
+	        return ref.apply(this, arguments);
+	    };
+	}();
+
+	var updateCampaignWithZip = function () {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(zip) {
+	        var res, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, representative, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, committeeMember;
+
+	        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+	            while (1) {
+	                switch (_context3.prev = _context3.next) {
+	                    case 0:
+	                        if (zip) {
+	                            _context3.next = 2;
+	                            break;
+	                        }
+
+	                        return _context3.abrupt('return');
 
 	                    case 2:
-	                        _context2.next = 4;
+	                        _context3.next = 4;
 	                        return _jquery2.default.ajax({
 	                            url: 'https://congress.api.sunlightfoundation.com/legislators/locate',
 	                            data: {
@@ -10548,48 +10630,48 @@
 	                        });
 
 	                    case 4:
-	                        res = _context2.sent;
+	                        res = _context3.sent;
 
 
 	                        // Search for a committee member who represents the visitor
 	                        _iteratorNormalCompletion = true;
 	                        _didIteratorError = false;
 	                        _iteratorError = undefined;
-	                        _context2.prev = 8;
+	                        _context3.prev = 8;
 	                        _iterator = res.results[Symbol.iterator]();
 
 	                    case 10:
 	                        if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-	                            _context2.next = 44;
+	                            _context3.next = 44;
 	                            break;
 	                        }
 
 	                        representative = _step.value;
 
 	                        if (!(representative.chamber !== 'house')) {
-	                            _context2.next = 14;
+	                            _context3.next = 14;
 	                            break;
 	                        }
 
-	                        return _context2.abrupt('continue', 41);
+	                        return _context3.abrupt('continue', 41);
 
 	                    case 14:
 	                        _iteratorNormalCompletion2 = true;
 	                        _didIteratorError2 = false;
 	                        _iteratorError2 = undefined;
-	                        _context2.prev = 17;
+	                        _context3.prev = 17;
 	                        _iterator2 = _constants2.default.COMMITTEE_MEMBERS[Symbol.iterator]();
 
 	                    case 19:
 	                        if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-	                            _context2.next = 27;
+	                            _context3.next = 27;
 	                            break;
 	                        }
 
 	                        committeeMember = _step2.value;
 
 	                        if (!(committeeMember.district === representative.district && committeeMember.state === representative.state)) {
-	                            _context2.next = 24;
+	                            _context3.next = 24;
 	                            break;
 	                        }
 
@@ -10598,95 +10680,95 @@
 	                            twitterId: representative.twitter_id
 	                        };
 
-	                        return _context2.abrupt('break', 27);
+	                        return _context3.abrupt('break', 27);
 
 	                    case 24:
 	                        _iteratorNormalCompletion2 = true;
-	                        _context2.next = 19;
+	                        _context3.next = 19;
 	                        break;
 
 	                    case 27:
-	                        _context2.next = 33;
+	                        _context3.next = 33;
 	                        break;
 
 	                    case 29:
-	                        _context2.prev = 29;
-	                        _context2.t0 = _context2['catch'](17);
+	                        _context3.prev = 29;
+	                        _context3.t0 = _context3['catch'](17);
 	                        _didIteratorError2 = true;
-	                        _iteratorError2 = _context2.t0;
+	                        _iteratorError2 = _context3.t0;
 
 	                    case 33:
-	                        _context2.prev = 33;
-	                        _context2.prev = 34;
+	                        _context3.prev = 33;
+	                        _context3.prev = 34;
 
 	                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
 	                            _iterator2.return();
 	                        }
 
 	                    case 36:
-	                        _context2.prev = 36;
+	                        _context3.prev = 36;
 
 	                        if (!_didIteratorError2) {
-	                            _context2.next = 39;
+	                            _context3.next = 39;
 	                            break;
 	                        }
 
 	                        throw _iteratorError2;
 
 	                    case 39:
-	                        return _context2.finish(36);
+	                        return _context3.finish(36);
 
 	                    case 40:
-	                        return _context2.finish(33);
+	                        return _context3.finish(33);
 
 	                    case 41:
 	                        _iteratorNormalCompletion = true;
-	                        _context2.next = 10;
+	                        _context3.next = 10;
 	                        break;
 
 	                    case 44:
-	                        _context2.next = 50;
+	                        _context3.next = 50;
 	                        break;
 
 	                    case 46:
-	                        _context2.prev = 46;
-	                        _context2.t1 = _context2['catch'](8);
+	                        _context3.prev = 46;
+	                        _context3.t1 = _context3['catch'](8);
 	                        _didIteratorError = true;
-	                        _iteratorError = _context2.t1;
+	                        _iteratorError = _context3.t1;
 
 	                    case 50:
-	                        _context2.prev = 50;
-	                        _context2.prev = 51;
+	                        _context3.prev = 50;
+	                        _context3.prev = 51;
 
 	                        if (!_iteratorNormalCompletion && _iterator.return) {
 	                            _iterator.return();
 	                        }
 
 	                    case 53:
-	                        _context2.prev = 53;
+	                        _context3.prev = 53;
 
 	                        if (!_didIteratorError) {
-	                            _context2.next = 56;
+	                            _context3.next = 56;
 	                            break;
 	                        }
 
 	                        throw _iteratorError;
 
 	                    case 56:
-	                        return _context2.finish(53);
+	                        return _context3.finish(53);
 
 	                    case 57:
-	                        return _context2.finish(50);
+	                        return _context3.finish(50);
 
 	                    case 58:
 	                    case 'end':
-	                        return _context2.stop();
+	                        return _context3.stop();
 	                }
 	            }
-	        }, _callee2, this, [[8, 46, 50, 58], [17, 29, 33, 41], [34,, 36, 40], [51,, 53, 57]]);
+	        }, _callee3, this, [[8, 46, 50, 58], [17, 29, 33, 41], [34,, 36, 40], [51,, 53, 57]]);
 	    }));
 
-	    return function updateCampaignWithZip(_x) {
+	    return function updateCampaignWithZip(_x2) {
 	        return ref.apply(this, arguments);
 	    };
 	}();
@@ -10703,6 +10785,10 @@
 
 	var _constants2 = _interopRequireDefault(_constants);
 
+	var _modal = __webpack_require__(6);
+
+	var _modal2 = _interopRequireDefault(_modal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
@@ -10711,6 +10797,23 @@
 	    callCampaign: 'ecpa-goodlatte',
 	    twitterId: 'RepGoodlatte'
 	};
+
+	var callToolURL = undefined;
+
+	function onTweetFormSubmit(e) {
+	    e.preventDefault();
+
+	    var tweet = (0, _jquery2.default)('.sample-tweet').text().trim();
+
+	    var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet);
+
+	    window.open(url);
+
+	    // Show thanks
+	    var $submit = (0, _jquery2.default)('.tweet-wrapper button');
+	    $submit.addClass('thanks');
+	    $submit.text('Thanks!');
+	}
 
 	function getSavedZip() {
 	    try {

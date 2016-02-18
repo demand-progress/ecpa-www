@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import commafy from './commafy';
 import Constants from './constants';
+import Modal from './modal';
 
 
 let campaign = {
@@ -8,18 +9,82 @@ let campaign = {
     twitterId    : 'RepGoodlatte',
 };
 
-async function start() {
-    console.log('Starting Thanks Page');
+let callToolURL;
 
+async function start() {
     // Update campaign
     let zip = getSavedZip();
     await updateCampaignWithZip(zip);
+
+    // Update call tool URL
+    callToolURL =
+        'https://dp-call-congress.herokuapp.com/create' +
+        '?campaignId=' + campaign.callCampaign;
+
+    if (zip) {
+        callToolURL += '&zipcode=' + zip;
+    }
 
     // Update forms
     $('.sample-tweet .handle').text('@' + campaign.twitterId);
 
     // Show forms
     $('.options').addClass('ready');
+
+    // Call form logic
+    $('.call-wrapper form').on('submit', onCallFormSubmit);
+
+    // Tweet form logic
+    $('.tweet-wrapper form').on('submit', onTweetFormSubmit);
+}
+
+function onTweetFormSubmit(e) {
+    e.preventDefault();
+
+    let tweet = $('.sample-tweet').text().trim();
+
+    let url =
+        'https://twitter.com/intent/tweet?text=' +
+        encodeURIComponent(tweet);
+
+    window.open(url);
+
+    // Show thanks
+    let $submit = $('.tweet-wrapper button');
+    $submit.addClass('thanks');
+    $submit.text('Thanks!');
+}
+
+async function onCallFormSubmit(e) {
+    e.preventDefault();
+
+    let $phone = $('input[type=tel]');
+    let phone = $phone.val().replace(/[^\d]/g, '');
+
+    if (phone.length < 10) {
+        return alert('Please enter your 10 digit phone number.');
+    }
+
+    $phone.val('');
+
+    // Send call
+    // $.ajax({
+    //     url: callToolURL + '&userPhone='  + phone,
+    // });
+
+    // Deselect input
+    document.activeElement.blur();
+
+    // Show thanks
+    let $submit = $('.call-wrapper button');
+    $submit.addClass('thanks');
+    $submit.attr('disabled', true);
+    $submit.text('Thanks!');
+
+    $('.call-wrapper form input').remove();
+    $('.call-wrapper h2').remove();
+
+    Modal.show('calling');
 }
 
 function getSavedZip() {
