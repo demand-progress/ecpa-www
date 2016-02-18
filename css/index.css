@@ -349,11 +349,11 @@ header .headlines h3 {
     max-width: 200px;
     width: 100%;
 }
-.action-wrapper .counter .label, .action-wrapper .counter .number-of-signatures {
+.action-wrapper .counter .number-of-signatures-label, .action-wrapper .counter .number-of-signatures {
     opacity: 0;
     transition: opacity .32s;
 }
-.action-wrapper .counter.loaded .label, .action-wrapper .counter.loaded .number-of-signatures {
+.action-wrapper .counter.loaded .number-of-signatures-label, .action-wrapper .counter.loaded .number-of-signatures {
     opacity: 1;
 }
 .action-wrapper .counter .signatures-needed {
