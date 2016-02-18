@@ -68,9 +68,9 @@ async function onCallFormSubmit(e) {
     $phone.val('');
 
     // Send call
-    // $.ajax({
-    //     url: callToolURL + '&userPhone='  + phone,
-    // });
+    $.ajax({
+        url: callToolURL + '&userPhone='  + phone,
+    });
 
     // Deselect input
     document.activeElement.blur();

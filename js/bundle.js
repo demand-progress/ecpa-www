@@ -10571,9 +10571,9 @@
 	                        $phone.val('');
 
 	                        // Send call
-	                        // $.ajax({
-	                        //     url: callToolURL + '&userPhone='  + phone,
-	                        // });
+	                        _jquery2.default.ajax({
+	                            url: callToolURL + '&userPhone=' + phone
+	                        });
 
 	                        // Deselect input
 	                        document.activeElement.blur();
@@ -10590,7 +10590,7 @@
 
 	                        _modal2.default.show('calling');
 
-	                    case 14:
+	                    case 15:
 	                    case 'end':
 	                        return _context2.stop();
 	                }
