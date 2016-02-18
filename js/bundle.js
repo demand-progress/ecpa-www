@@ -50,19 +50,19 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _counter = __webpack_require__(5);
+	var _counter = __webpack_require__(2);
 
 	var _counter2 = _interopRequireDefault(_counter);
 
-	var _email = __webpack_require__(2);
+	var _email = __webpack_require__(3);
 
 	var _email2 = _interopRequireDefault(_email);
 
-	var _modal = __webpack_require__(3);
+	var _modal = __webpack_require__(4);
 
 	var _modal2 = _interopRequireDefault(_modal);
 
-	var _statickit = __webpack_require__(4);
+	var _statickit = __webpack_require__(5);
 
 	var _statickit2 = _interopRequireDefault(_statickit);
 
@@ -10342,6 +10342,41 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Counter = {
+	    update: function update(page) {
+	        _jquery2.default.ajax({
+	            url: 'https://act.demandprogress.org/progress/' + page + '?callback=?',
+	            dataType: 'jsonp',
+	            success: function success(data) {
+	                (0, _jquery2.default)('.counter').addClass('loaded');
+	                (0, _jquery2.default)('.counter .number-of-signatures').text(commafiy(data.total.actions));
+	            }
+	        });
+	    }
+	};
+
+	function commafiy(number) {
+	    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+	exports.default = Counter;
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10378,7 +10413,7 @@
 	};
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10448,7 +10483,7 @@
 	module.exports = Modal;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10523,41 +10558,6 @@
 	};
 
 	module.exports = StaticKit;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _jquery = __webpack_require__(1);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Counter = {
-	    update: function update(page) {
-	        _jquery2.default.ajax({
-	            url: 'https://act.demandprogress.org/progress/' + page + '?callback=?',
-	            dataType: 'jsonp',
-	            success: function success(data) {
-	                (0, _jquery2.default)('.counter').addClass('loaded');
-	                (0, _jquery2.default)('.counter .number-of-signatures').text(commafiy(data.total.actions));
-	            }
-	        });
-	    }
-	};
-
-	function commafiy(number) {
-	    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-
-	exports.default = Counter;
 
 /***/ }
 /******/ ]);
