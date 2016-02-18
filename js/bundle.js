@@ -98,6 +98,8 @@
 
 	    // Animated scrolls
 	    (0, _jquery2.default)('.animated-scroll').on('click', function (e) {
+	        e.preventDefault();
+
 	        var target = (0, _jquery2.default)(e.target).data('target');
 	        (0, _jquery2.default)('html, body').stop().animate({
 	            scrollTop: (0, _jquery2.default)(target).offset().top

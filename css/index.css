@@ -89,40 +89,35 @@ header .headlines h1, header .headlines h2, header .headlines h3 {
     margin: 0 auto;
 }
 header .headlines h1 {
-    color: #f1f1f1;
-    font-size: 64px;
+    color: #fff;
+    font-size: 48px;
+    line-height: 1.24;
     letter-spacing: 1px;
-    padding: 32px 16px;
+    padding: 32px 16px 16px;
 }
 header .headlines h2 {
-    color: #d3640a;
-    font-size: 30px;
+    color: #eee;
+    font-size: 24px;
     letter-spacing: 1px;
-    padding: 48px 16px 1px;
+    line-height: 1.24;
+    padding: 0 16px 16px;
+    text-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.75);
 }
 header .headlines h3 {
-    color: #0099ff;
+    color: #589742;
     font-size: 25px;
     letter-spacing: 1px;
     line-height: 1.3;
     padding: 2px 16px 44px;
     max-width: 500px;
 }
-@media screen and (max-width: 839px) {
-    header .headlines h1 {
-        font-size: 54px;
-    }
-}
 @media screen and (max-width: 769px) {
     header .headlines h1 {
-        font-size: 44px;
-        line-height: 1.2;
-        max-width: 320px;
+        font-size: 32px;
     }
     header .headlines h2 {
         font-size: 24px;
-        max-width: 320px;
-        padding-top: 37px;
+        padding-top: 8px;
     }
     header .headlines h3 {
         font-size: 20px;
@@ -165,9 +160,15 @@ header .headlines h3 {
     padding: 0 0 25px;
 }
 .petition p {
+    color: #eee;
     font-family: 'Arvo', sans-serif;
     font-size: 1em;
     padding: 0 0 24px;
+}
+.petition p a {
+    color: #4DB928;
+    font-weight: bold;
+    text-decoration: none;
 }
 .action-wrapper {
     float: right;
@@ -318,7 +319,7 @@ header .headlines h3 {
 }
 .action-wrapper .counter {
     background-attachment: fixed;
-    background-color: #579542;
+    background-color: #589742;
     background-image: url(../images/background-v3.png);
     background-position: 50% 46px;
     border-radius: 0 0 32px 32px;
@@ -454,12 +455,12 @@ section.twitter {
 }
 section.footer {
     background-color: #3c6731;
-    border-top: 8px solid #579542;
+    border-top: 8px solid #589742;
     box-sizing: content-box;
     height: 12px;
 }
 section a {
-    color: #0099ff;
+    color: #589742;
     font-weight: bold;
 }
 section a:hover {
@@ -547,7 +548,7 @@ section .share {
     background-color: #fff;
     margin: 0;
     overflow: hidden;
-    padding: 64px 0 0;
+    padding: 32px 0 0;
 }
 .logos .clamp {
     margin: 0 auto;
@@ -555,8 +556,9 @@ section .share {
     padding: 0 16px;
 }
 .logos h4 {
-    color: #0099ff;
+    color: #4DB928;
     font-size: 24px;
+    font-style: italic;
     line-height: 1.4;
     padding: 0 0 16px;
 }
@@ -575,7 +577,6 @@ section .share {
     max-width: 210px;
 }
 .logos .larger {
-    margin-bottom: 54px;
 }
 .logos .larger img {
     max-width: 320px;
@@ -806,16 +807,16 @@ section.midnight-share-train a:hover {
     line-height: 1.4;
     margin: 0;
     overflow: hidden;
-    padding: 32px 32px 64px;
+    padding: 32px 32px 32px;
 }
 .privacy a {
-    color: #0099ff;
+    color: #4DB928;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s;
 }
 .privacy a:hover {
-    color: #3b9cb0;
+    color: #589742;
 }
 
 /* Check your email prompt */

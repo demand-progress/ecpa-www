@@ -29,6 +29,8 @@ $(() => {
 
     // Animated scrolls
     $('.animated-scroll').on('click', (e) => {
+        e.preventDefault();
+
         let target = $(e.target).data('target');
         $('html, body').stop().animate({
             scrollTop: $(target).offset().top,
