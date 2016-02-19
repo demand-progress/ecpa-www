@@ -492,6 +492,7 @@ section.twitter-title {
 }
 section.twitter {
     background-color: #363535;
+    min-height: 667px;
     padding: 32px 0;
 }
 section.footer {
