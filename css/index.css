@@ -144,7 +144,7 @@ header .headlines h3 {
     font-size: 20px;
     line-height: 1.4;
     margin: 0 413px 0 0;
-    min-height: 705px;
+    min-height: 555px;
     padding: 16px 40px 24px;
     text-align: left;
     position: relative;
@@ -155,20 +155,26 @@ header .headlines h3 {
     }
 }
 .petition h2 {
-    font-size: 30px;
-    font-weight: bold;
-    padding: 0 0 25px;
+    font-size: 24px;
+    letter-spacing: 1px;
+    padding: 3px 0 24px;
+    text-align: center;
 }
 .petition p {
     color: #eee;
-    font-family: 'Arvo', sans-serif;
     font-size: 1em;
     padding: 0 0 24px;
 }
-.petition p a {
+.petition p a,
+.petition p a:hover,
+.petition p a:active {
     color: #4DB928;
     font-weight: bold;
     text-decoration: none;
+}
+.petition p.quote {
+    background-color: #191919;
+    padding: 24px;
 }
 .action-wrapper {
     float: right;
@@ -177,7 +183,6 @@ header .headlines h3 {
 }
 .action {
     background: #575757;
-    border-radius: 32px 32px 0 0;
     margin: 0 auto;
     max-width: 413px;
     padding: 24px 0 32px;
@@ -186,10 +191,9 @@ header .headlines h3 {
 }
 .action h2 {
     color: #f1f1f1;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 24px;
     letter-spacing: 1px;
-    padding: 0 0 16px;
+    padding: 0 0 22px;
 }
 .action .form-wrapper .input-grid {
     margin: 0 57px;
@@ -340,7 +344,6 @@ header .headlines h3 {
     clear: both;
     color: #e0e0e0;
     font-size: 28px;
-    font-weight: bold;
 }
 .action-wrapper .counter hr {
     background-color: #710024;
@@ -379,6 +382,32 @@ button {
     font-weight: 500;
     font-family: 'Open Sans', sans-serif;
 }
+section.more-info-title {
+    color: #bbb;
+    background-color: #191919;
+    font-size: 20px;
+    line-height: 1.4;
+    padding: 32px;
+}
+section.more-info-title div {
+    max-width: 720px;
+    margin: 0 auto;
+}
+.more-info {
+    background-color: #262525;
+}
+.more-info .petition {
+    margin: 0 auto;
+    padding: 38px 32px 1px;
+}
+.more-info .petition p {
+    text-align: left;
+    max-width: 720px;
+}
+
+.more-info .description {
+}
+
 .more-info-header {
     height: 198px;
     margin: 0 auto;
@@ -487,15 +516,6 @@ section button.sign-the-petition {
 }
 section button.sign-the-petition:hover {
     background-color: #d3440c;
-}
-@media screen and (max-width: 769px) {
-    section.more-info {
-        margin: -58px auto 0;
-        max-width: 413px;
-    }
-    section.more-info p, section.even-more-info p {
-        font-size: 17px;
-    }
 }
 .share {
     border-radius: 60px;
