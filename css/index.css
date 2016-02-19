@@ -478,8 +478,9 @@ section.more-info-title div {
 }
 section.twitter-title {
     color: #fff;
-    font-weight: bold;
     font-size: 32px;
+    font-weight: bold;
+    line-height: 1.24;
     padding: 32px;
 }
 section.twitter {
