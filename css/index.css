@@ -165,6 +165,9 @@ header .headlines h3 {
     font-size: 1em;
     padding: 0 0 24px;
 }
+.petition p em {
+    background-color: #222;
+}
 .petition p a {
     color: #4DB928;
     font-weight: bold;
