@@ -1,6 +1,7 @@
 // Modules
 import $ from 'jquery';
 import Constants from './constants';
+import FastClick from 'fastclick';
 import HomePage from './home-page';
 import Modal from './modal';
 import Polyfill from 'babel-polyfill';
@@ -21,6 +22,11 @@ if (isIE) {
 if (navigator.userAgent.match(/Android 2\.3/)) {
     alert('Unfortunately your browser, Android 2.3, is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
 }
+
+
+// FastClick for mobile
+FastClick.attach(document.body);
+
 
 // After the page loads
 $(() => {
