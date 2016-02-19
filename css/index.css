@@ -172,6 +172,8 @@ header .headlines h3 {
 }
 .petition p.quote {
     background-color: #191919;
+    border-radius: 2px;
+    font-size: 1.3em;
     padding: 24px;
 }
 .action-wrapper {
