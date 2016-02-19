@@ -49,6 +49,10 @@ em {
     font-style: italic;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     background-color: #262525;
     font-family: 'Open Sans', sans-serif;
