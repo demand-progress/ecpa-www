@@ -129,6 +129,9 @@ async function updateCampaignWithZip(zip) {
                     twitterId: representative.twitter_id,
                 };
 
+                // Update copy
+                $('body').removeClass('chairman-goodlatte').addClass('your-rep');
+
                 break;
             }
         }

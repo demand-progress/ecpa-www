@@ -116,6 +116,10 @@ header .subtitle {
         line-height: 58px;
     }
 }
+body.chairman-goodlatte .text-your-rep,
+body.your-rep .text-chairman-goodlatte {
+    display: none;
+}
 .petition-and-form-wrapper-background {
     background-color: #262525;
 }

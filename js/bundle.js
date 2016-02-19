@@ -15910,7 +15910,7 @@
 
 	                    case 10:
 	                        if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-	                            _context3.next = 44;
+	                            _context3.next = 45;
 	                            break;
 	                        }
 
@@ -15921,7 +15921,7 @@
 	                            break;
 	                        }
 
-	                        return _context3.abrupt('continue', 41);
+	                        return _context3.abrupt('continue', 42);
 
 	                    case 14:
 	                        _iteratorNormalCompletion2 = true;
@@ -15932,14 +15932,14 @@
 
 	                    case 19:
 	                        if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-	                            _context3.next = 27;
+	                            _context3.next = 28;
 	                            break;
 	                        }
 
 	                        committeeMember = _step2.value;
 
 	                        if (!(committeeMember.district === representative.district && committeeMember.state === representative.state)) {
-	                            _context3.next = 24;
+	                            _context3.next = 25;
 	                            break;
 	                        }
 
@@ -15948,92 +15948,95 @@
 	                            twitterId: representative.twitter_id
 	                        };
 
-	                        return _context3.abrupt('break', 27);
+	                        // Update copy
+	                        (0, _jquery2.default)('body').removeClass('chairman-goodlatte').addClass('your-rep');
 
-	                    case 24:
+	                        return _context3.abrupt('break', 28);
+
+	                    case 25:
 	                        _iteratorNormalCompletion2 = true;
 	                        _context3.next = 19;
 	                        break;
 
-	                    case 27:
-	                        _context3.next = 33;
+	                    case 28:
+	                        _context3.next = 34;
 	                        break;
 
-	                    case 29:
-	                        _context3.prev = 29;
+	                    case 30:
+	                        _context3.prev = 30;
 	                        _context3.t0 = _context3['catch'](17);
 	                        _didIteratorError2 = true;
 	                        _iteratorError2 = _context3.t0;
 
-	                    case 33:
-	                        _context3.prev = 33;
+	                    case 34:
 	                        _context3.prev = 34;
+	                        _context3.prev = 35;
 
 	                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
 	                            _iterator2.return();
 	                        }
 
-	                    case 36:
-	                        _context3.prev = 36;
+	                    case 37:
+	                        _context3.prev = 37;
 
 	                        if (!_didIteratorError2) {
-	                            _context3.next = 39;
+	                            _context3.next = 40;
 	                            break;
 	                        }
 
 	                        throw _iteratorError2;
 
-	                    case 39:
-	                        return _context3.finish(36);
-
 	                    case 40:
-	                        return _context3.finish(33);
+	                        return _context3.finish(37);
 
 	                    case 41:
+	                        return _context3.finish(34);
+
+	                    case 42:
 	                        _iteratorNormalCompletion = true;
 	                        _context3.next = 10;
 	                        break;
 
-	                    case 44:
-	                        _context3.next = 50;
+	                    case 45:
+	                        _context3.next = 51;
 	                        break;
 
-	                    case 46:
-	                        _context3.prev = 46;
+	                    case 47:
+	                        _context3.prev = 47;
 	                        _context3.t1 = _context3['catch'](8);
 	                        _didIteratorError = true;
 	                        _iteratorError = _context3.t1;
 
-	                    case 50:
-	                        _context3.prev = 50;
+	                    case 51:
 	                        _context3.prev = 51;
+	                        _context3.prev = 52;
 
 	                        if (!_iteratorNormalCompletion && _iterator.return) {
 	                            _iterator.return();
 	                        }
 
-	                    case 53:
-	                        _context3.prev = 53;
+	                    case 54:
+	                        _context3.prev = 54;
 
 	                        if (!_didIteratorError) {
-	                            _context3.next = 56;
+	                            _context3.next = 57;
 	                            break;
 	                        }
 
 	                        throw _iteratorError;
 
-	                    case 56:
-	                        return _context3.finish(53);
-
 	                    case 57:
-	                        return _context3.finish(50);
+	                        return _context3.finish(54);
 
 	                    case 58:
+	                        return _context3.finish(51);
+
+	                    case 59:
 	                    case 'end':
 	                        return _context3.stop();
 	                }
 	            }
-	        }, _callee3, this, [[8, 46, 50, 58], [17, 29, 33, 41], [34,, 36, 40], [51,, 53, 57]]);
+	        }, _callee3, this, [[8, 47, 51, 59], [17, 30, 34, 42], [35,, 37, 41], [52,, 54, 58]]);
 	    }));
 
 	    return function updateCampaignWithZip(_x2) {
