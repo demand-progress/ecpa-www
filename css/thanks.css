@@ -366,6 +366,9 @@ body.your-rep .text-chairman-goodlatte {
     color: #19b0fe;
     font-weight: bold;
 }
+.action .sample-tweet .link {
+    color: #19b0fe;
+}
 .action hr {
     background-color: #101c30;
     border: none;

@@ -8,6 +8,7 @@ import StaticKit from './static-kit';
 let campaign = {
     callCampaign : 'ecpa-goodlatte',
     twitterId    : 'RepGoodlatte',
+    twitterText  : 'stop blocking email privacy! It’s time to pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
 };
 
 let callToolURL;
@@ -38,12 +39,14 @@ async function start() {
 
     // Tweet form logic
     $('.tweet-wrapper form').on('submit', onTweetFormSubmit);
+
+    window.$ = $;
 }
 
 function onTweetFormSubmit(e) {
     e.preventDefault();
 
-    let tweet = $('.sample-tweet').text().trim();
+    let tweet = `.@${campaign.twitterId} ${campaign.twitterText}`;
 
     let url =
         'https://twitter.com/intent/tweet?text=' +
@@ -125,12 +128,14 @@ async function updateCampaignWithZip(zip) {
                 (committeeMember.state === representative.state)
             ) {
                 campaign = {
-                    callCampaign: 'ecpa-zip',
-                    twitterId: representative.twitter_id,
+                    callCampaign : 'ecpa-zip',
+                    twitterId    : representative.twitter_id,
+                    twitterText  : 'it’s time to pass the most popular bill in Congress, with no weakening amendments! #EmailPrivacyAct https://savethefourth.net',
                 };
 
                 // Update copy
                 $('body').removeClass('chairman-goodlatte').addClass('your-rep');
+                $('.tweet-content').html(campaign.twitterText.replace('#', '<span class="link">#') + '</span>');
 
                 break;
             }
