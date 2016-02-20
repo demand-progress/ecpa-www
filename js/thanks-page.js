@@ -130,7 +130,7 @@ async function updateCampaignWithZip(zip) {
                 campaign = {
                     callCampaign : 'ecpa-zip',
                     twitterId    : representative.twitter_id,
-                    twitterText  : 'it’s time to pass the most popular bill in Congress, with no weakening amendments! #EmailPrivacyAct https://savethefourth.net',
+                    twitterText  : 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net',
                 };
 
                 // Update copy
