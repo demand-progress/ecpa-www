@@ -20,6 +20,22 @@
     <meta property="og:title" content="Tell Chairman Goodlatte and Congress: Stop blocking email privacy!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://savethefourth.net/">
+
+    <script>
+        // Check for outdated browsers
+        var isIE = navigator.userAgent.match(/MSIE (\d+)\./);
+        if (isIE) {
+            var version = +isIE[1];
+            if (version < 9) {
+                alert('Unfortunately your browser, Internet Explorer ' + version + ', is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+                location.href = 'https://www.mozilla.org/en-US/firefox/';
+            }
+        }
+
+        if (navigator.userAgent.match(/Android 2\.3/)) {
+            alert('Unfortunately your browser, Android 2.3, is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+        }
+    </script>
 </head>
 
 <body data-page="thanks" class="chairman-goodlatte">
@@ -156,14 +172,8 @@
     <!-- Scripts -->
     <script src="../js/bundle.js?v=0.9.2"></script>
 
-    <!--[if lt IE 9]>
-    <script type="text/javascript">
-        location.href = 'https://petitions.whitehouse.gov/petition/take-action-fight-secret-money-immediately-and-redeem-your-failed-money-politics-legacy';
-    </script>
-    <![endif]-->
-
     <!--[if IE 9]>
-    <script src="../js/vendor/placeholders.jquery.min.js" async></script>
+    <script src="../js/vendor/placeholders.min.js" async></script>
     <script type="text/javascript">
         console.log('IE9 detected!');
     </script>

@@ -11,18 +11,10 @@ let campaign = {
     twitterText  : 'stop blocking email privacy! It’s time to pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
 };
 
-let callToolURL;
-
 async function start() {
     // Update campaign
     let zip = getSavedZip();
     await updateCampaignWithZip(zip);
-
-    // Update call tool URL
-    callToolURL =
-        'https://dp-call-congress.herokuapp.com/create' +
-        '?campaignId=' + campaign.callCampaign +
-        '?source_id='  + StaticKit.query.cleanedSource;
 
     if (zip) {
         callToolURL += '&zipcode=' + zip;
@@ -40,7 +32,26 @@ async function start() {
     // Tweet form logic
     $('.tweet-wrapper form').on('submit', onTweetFormSubmit);
 
-    window.$ = $;
+    // Feedback form logic
+    $('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
+}
+
+function onFeedbackFormSubmit(e) {
+    e.preventDefault();
+
+    let message = '';
+    const fields = $feedbackForm.serializeArray();
+    fields.forEach((field) => {
+        message += `${field.name}:\n${field.value}\n\n`;
+    });
+
+    $.getJSON(FEEDBACK_TOOL_URL, {
+        campaign: 'president-obamas-legacy',
+        subject: 'Feedback from President Obama\'s Legacy',
+        text: message,
+    });
+
+    $feedbackForm.addClass('sent');
 }
 
 function onTweetFormSubmit(e) {
@@ -63,7 +74,8 @@ function onTweetFormSubmit(e) {
 async function onCallFormSubmit(e) {
     e.preventDefault();
 
-    let $phone = $('input[type=tel]');
+    let $phone = $('input[name=phone]');
+
     let phone = $phone.val().replace(/[^\d]/g, '');
 
     if (phone.length < 10) {
@@ -75,8 +87,11 @@ async function onCallFormSubmit(e) {
     $phone.val('');
 
     // Send call
-    $.ajax({
-        url: callToolURL + '&userPhone='  + phone,
+    $.getJSON(Constants.CALL_TOOL_URL, {
+        campaignId: campaign.callCampaign,
+        source_id: StaticKit.query.cleanedSource,
+        userPhone: phone,
+        zipcode: getSavedZip(),
     });
 
     // Deselect input

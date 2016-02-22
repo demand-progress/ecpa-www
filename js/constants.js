@@ -4,8 +4,9 @@ import StaticKit from './static-kit';
 let constants = {};
 
 constants.ACTIONKIT_CAMPAIGN  = 'ecpa-www';
-constants.CALL_TOOL_URL       = 'https://call-congress.fightforthefuture.org/create?callback=?';
+constants.CALL_TOOL_URL       = 'https://dp-call-congress.herokuapp.com/create?callback=?';
 constants.DOMAIN              = 'savethefourth.net';
+constants.FEEDBACK_TOOL_URL   = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
 constants.SOURCE              = StaticKit.query.source;
 constants.SOURCE_CLEANED      = StaticKit.query.cleanedSource;
 constants.EMAIL_SUBJECT       = 'Sign this petition: Tell Congress to stop blocking email privacy!';

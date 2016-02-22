@@ -80,22 +80,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// Check for outdated browsers
-	// Modules
-	var isIE = navigator.userAgent.match(/MSIE (\d+)\./);
-	if (isIE) {
-	    var version = +isIE[1];
-	    if (version < 9) {
-	        alert('Unfortunately your browser, Internet Explorer ' + version + ', is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
-	        location.href = 'https://www.mozilla.org/en-US/firefox/';
-	    }
-	}
-
-	if (navigator.userAgent.match(/Android 2\.3/)) {
-	    alert('Unfortunately your browser, Android 2.3, is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
-	}
-
 	// FastClick for mobile
+	// Modules
 	_fastclick2.default.attach(document.body);
 
 	// After the page loads
@@ -10006,8 +9992,9 @@
 	var constants = {};
 
 	constants.ACTIONKIT_CAMPAIGN = 'ecpa-www';
-	constants.CALL_TOOL_URL = 'https://call-congress.fightforthefuture.org/create?callback=?';
+	constants.CALL_TOOL_URL = 'https://dp-call-congress.herokuapp.com/create?callback=?';
 	constants.DOMAIN = 'savethefourth.net';
+	constants.FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
 	constants.SOURCE = _staticKit2.default.query.source;
 	constants.SOURCE_CLEANED = _staticKit2.default.query.cleanedSource;
 	constants.EMAIL_SUBJECT = 'Sign this petition: Tell Congress to stop blocking email privacy!';
@@ -16635,9 +16622,6 @@
 
 	                    case 3:
 
-	                        // Update call tool URL
-	                        callToolURL = 'https://dp-call-congress.herokuapp.com/create' + '?campaignId=' + campaign.callCampaign + '?source_id=' + _staticKit2.default.query.cleanedSource;
-
 	                        if (zip) {
 	                            callToolURL += '&zipcode=' + zip;
 	                        }
@@ -16654,9 +16638,10 @@
 	                        // Tweet form logic
 	                        (0, _jquery2.default)('.tweet-wrapper form').on('submit', onTweetFormSubmit);
 
-	                        window.$ = _jquery2.default;
+	                        // Feedback form logic
+	                        (0, _jquery2.default)('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
 
-	                    case 10:
+	                    case 9:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -16678,7 +16663,7 @@
 	                    case 0:
 	                        e.preventDefault();
 
-	                        $phone = (0, _jquery2.default)('input[type=tel]');
+	                        $phone = (0, _jquery2.default)('input[name=phone]');
 	                        phone = $phone.val().replace(/[^\d]/g, '');
 
 	                        if (!(phone.length < 10)) {
@@ -16695,8 +16680,11 @@
 	                        $phone.val('');
 
 	                        // Send call
-	                        _jquery2.default.ajax({
-	                            url: callToolURL + '&userPhone=' + phone
+	                        _jquery2.default.getJSON(_constants2.default.CALL_TOOL_URL, {
+	                            campaignId: campaign.callCampaign,
+	                            source_id: _staticKit2.default.query.cleanedSource,
+	                            userPhone: phone,
+	                            zipcode: getSavedZip()
 	                        });
 
 	                        // Deselect input
@@ -16932,7 +16920,23 @@
 	    twitterText: 'stop blocking email privacy! It’s time to pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net'
 	};
 
-	var callToolURL = undefined;
+	function onFeedbackFormSubmit(e) {
+	    e.preventDefault();
+
+	    var message = '';
+	    var fields = $feedbackForm.serializeArray();
+	    fields.forEach(function (field) {
+	        message += field.name + ':\n' + field.value + '\n\n';
+	    });
+
+	    _jquery2.default.getJSON(FEEDBACK_TOOL_URL, {
+	        campaign: 'president-obamas-legacy',
+	        subject: 'Feedback from President Obama\'s Legacy',
+	        text: message
+	    });
+
+	    $feedbackForm.addClass('sent');
+	}
 
 	function onTweetFormSubmit(e) {
 	    e.preventDefault();
