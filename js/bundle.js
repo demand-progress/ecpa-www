@@ -16628,6 +16628,7 @@
 
 	                        // Show forms
 	                        (0, _jquery2.default)('.options').addClass('ready');
+	                        (0, _jquery2.default)('.tweet-prompt').addClass('ready');
 
 	                        // Call form logic
 	                        (0, _jquery2.default)('.call-wrapper form').on('submit', onCallFormSubmit);
@@ -16638,7 +16639,7 @@
 	                        // Feedback form logic
 	                        (0, _jquery2.default)('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
 
-	                    case 8:
+	                    case 9:
 	                    case 'end':
 	                        return _context.stop();
 	                }

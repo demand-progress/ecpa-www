@@ -110,6 +110,13 @@ header .subtitle {
     position: relative;
     z-index: 999;
 }
+header .subtitle.tweet-prompt {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+header .subtitle.tweet-prompt.ready {
+    opacity: 1;
+}
 @media screen and (max-width: 769px) {
     header .subtitle {
         font-size: 19px;
@@ -160,11 +167,11 @@ body.your-rep .text-chairman-goodlatte {
 .options-wrapper {
     background-color: #262525;
     overflow: hidden;
-    padding-bottom: 420px;
+    min-height: calc(100vh - 240px);
 }
 .options {
     margin: 0 auto;
-    max-width: 905px;
+    max-width: 910px;
     opacity: 0;
     position: relative;
     transition: opacity 0.3s;
@@ -173,12 +180,19 @@ body.your-rep .text-chairman-goodlatte {
     opacity: 1;
 }
 .options .call-wrapper {
-    float: left;
     margin: 0 auto;
     position: relative;
 }
-.options .tweet-wrapper {
+.options .call-wrapper .description {
+    color: #f1f1f1;
     float: right;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 410px;
+    margin: 72px 36px 0 0;
+    text-align: left;
+}
+.options .tweet-wrapper {
     margin: 0 auto;
     position: relative;
 }
@@ -200,10 +214,10 @@ body.your-rep .text-chairman-goodlatte {
 }
 .options .action {
     background: #575757;
-    border-radius: 0 0 32px 32px;
-    margin: 0 auto;
+    border-radius: 32px;
+    margin: 24px auto 60px;
     max-width: 395px;
-    padding: 24px 0 32px;
+    padding: 17px 0 22px;
     position: relative;
     z-index: 99;
 }
@@ -213,12 +227,46 @@ body.your-rep .text-chairman-goodlatte {
     font-weight: bold;
     letter-spacing: 1px;
     line-height: 1.24;
-    padding: 0 0 16px;
+    padding: 0 0 5px;
 }
 .options .action .form-wrapper .input-grid {
     margin: 0 57px;
     position: relative;
 }
+.options .call-wrapper {
+    overflow: hidden;
+}
+.options .call-wrapper .action {
+    background-color: #d3640a;
+    float: left;
+}
+.options .call-wrapper .action .form-wrapper button {
+    background-color: #dc853f;
+    box-shadow: 0px 4px 4.75px 0.25px rgba(0, 0, 0, 0.15);
+}
+.options .call-wrapper .action span.disclaimer {
+    color: #ecb589;
+}
+.options .tweet-wrapper .action {
+    max-width: 910px;
+}
+.options .tweet-wrapper .action .form-wrapper {
+    max-width: none;
+    overflow: hidden;
+    padding: 0 72px;
+}
+.options .tweet-wrapper .action .sample-tweet {
+    float: left;
+    max-width: 380px;
+    padding-bottom: 12px;
+}
+.options .tweet-wrapper .action button {
+    box-shadow: 0px 4px 4.75px 0.25px rgba(0, 0, 0, 0.15);
+    float: right;
+    margin-top: 24px;
+    max-width: 300px;
+}
+
 @media screen and (max-width: 969px) {
     .options .call-wrapper,
     .options .tweet-wrapper {
@@ -241,8 +289,35 @@ body.your-rep .text-chairman-goodlatte {
         display: none;
     }
 
-    .options-wrapper {
-        padding-bottom: 120px;
+    .options .call-wrapper .action {
+        float: none;
+        margin-bottom: 32px;
+    }
+
+    .options .call-wrapper .description {
+        float: none;
+        margin: 0 auto 48px;
+        max-width: 320px;
+    }
+
+    .options .tweet-wrapper .action {
+        max-width: 320px;
+        padding: 16px 32px 32px;
+    }
+
+    .options .tweet-wrapper .action .form-wrapper {
+        padding: 0;
+        overflow: visible;
+    }
+
+    .options .tweet-wrapper .action .sample-tweet {
+        float: none;
+        padding-bottom: 5px;
+    }
+
+    .options .tweet-wrapper .action button {
+        float: none;
+        margin-top: 16px;
     }
 }
 @media screen and (max-width: 769px) {
@@ -303,7 +378,7 @@ body.your-rep .text-chairman-goodlatte {
     font-weight: 100;
     height: 60px;
     line-height: 60px;
-    margin: 18px 0 18px;
+    margin: 18px 0 14px;
     padding: 0 20px;
     vertical-align: top;
     width: 100%;
@@ -385,7 +460,7 @@ body.your-rep .text-chairman-goodlatte {
     line-height: 1.4;
     margin: 0 auto;
     max-width: 320px;
-    padding: 16px 16px 0;
+    padding: 21px 16px 0;
     text-align: center;
 }
 .action span.disclaimer a {

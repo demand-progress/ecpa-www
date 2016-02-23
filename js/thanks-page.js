@@ -21,6 +21,7 @@ async function start() {
 
     // Show forms
     $('.options').addClass('ready');
+    $('.tweet-prompt').addClass('ready');
 
     // Call form logic
     $('.call-wrapper form').on('submit', onCallFormSubmit);
