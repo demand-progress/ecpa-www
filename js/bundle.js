@@ -9997,6 +9997,7 @@
 	constants.FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
 	constants.SOURCE = _staticKit2.default.query.source;
 	constants.SOURCE_CLEANED = _staticKit2.default.query.cleanedSource;
+	constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/legislators/locate?callback=?';
 	constants.EMAIL_SUBJECT = 'Sign this petition: Tell Congress to stop blocking email privacy!';
 	constants.EMAIL_BODY = 'Hi,\n\nI just signed a petition at SaveTheFourth.net telling Members of Congress to stop blocking email privacy and to pass the most cosponsored bill in Congress — the Email Privacy Act.\n\nRight now, the law says the government can access emails without a warrant just because they’re over 180 days old. I know — it’s crazy.\n\nHowever, there is a bill in the House, known as the Email Privacy Act, that has 310 cosponsors —that’s well over two-thirds of the House, making it the most popular bill in Congress. The bill would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer. However, right now it\'s being blocked by opponents of privacy rights. It’s up to us to make sure it finally passes.';
 	constants.TWEET_TEXT = 'Join me: Tell @POTUS that he must fight secret money in politics right away. SaveTheFourth.net/?source=' + _staticKit2.default.query.cleanedSource + '-twittershare #ObamaMustAct';
@@ -16726,13 +16727,9 @@
 
 	                    case 2:
 	                        _context3.next = 4;
-	                        return _jquery2.default.ajax({
-	                            url: 'https://congress.api.sunlightfoundation.com/legislators/locate',
-	                            data: {
-	                                apikey: '3779f52f552743d999b2c5fe1cda70b6',
-	                                zip: zip || (0, _jquery2.default)('#postcode').val()
-	                            },
-	                            dataType: 'json'
+	                        return _jquery2.default.getJSON(_constants2.default.SUNLIGHT_LOCATE_URL, {
+	                            apikey: '3779f52f552743d999b2c5fe1cda70b6',
+	                            zip: zip || (0, _jquery2.default)('#postcode').val()
 	                        });
 
 	                    case 4:

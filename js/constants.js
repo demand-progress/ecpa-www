@@ -9,6 +9,7 @@ constants.DOMAIN              = 'savethefourth.net';
 constants.FEEDBACK_TOOL_URL   = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
 constants.SOURCE              = StaticKit.query.source;
 constants.SOURCE_CLEANED      = StaticKit.query.cleanedSource;
+constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/legislators/locate?callback=?';
 constants.EMAIL_SUBJECT       = 'Sign this petition: Tell Congress to stop blocking email privacy!';
 constants.EMAIL_BODY          = `Hi,
 

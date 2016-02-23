@@ -117,13 +117,9 @@ async function updateCampaignWithZip(zip) {
         return;
     }
 
-    let res = await $.ajax({
-        url: 'https://congress.api.sunlightfoundation.com/legislators/locate',
-        data: {
-            apikey: '3779f52f552743d999b2c5fe1cda70b6',
-            zip: zip || $('#postcode').val(),
-        },
-        dataType: 'json',
+    let res = await $.getJSON(Constants.SUNLIGHT_LOCATE_URL, {
+        apikey: '3779f52f552743d999b2c5fe1cda70b6',
+        zip: zip || $('#postcode').val(),
     });
 
     // Search for a committee member who represents the visitor
