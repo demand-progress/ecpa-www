@@ -120,7 +120,8 @@ header .subtitle.tweet-prompt.ready {
 @media screen and (max-width: 769px) {
     header .subtitle {
         font-size: 19px;
-        line-height: 58px;
+        line-height: 1.4;
+        padding: 16px;
     }
 }
 body.chairman-goodlatte .text-your-rep,
