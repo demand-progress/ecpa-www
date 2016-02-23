@@ -419,13 +419,14 @@ section.more-info-title div {
 }
 .more-info .petition {
     margin: 0 auto;
-    padding: 38px 32px 1px;
+    padding: 38px 32px 12px;
 }
 .more-info .petition p {
-    text-align: left;
-    max-width: 720px;
-    line-height: 1.4;
     font-size: 18px;
+    line-height: 1.4;
+    margin: 0 auto 12px;
+    max-width: 720px;
+    text-align: left;
 }
 body.background-option-a .more-info .petition {
     background-color: #575757;
