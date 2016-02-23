@@ -10,8 +10,8 @@
 
     <!-- Style -->
     <link rel="icon" type="image/png" href="./images/icon.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-    <link rel="stylesheet" href="./css/index.v3.css?v=0.9.12">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="./css/index.css?v=0.9.12">
 
     <!-- Facebook -->
     <meta property="og:description" content="The Email Privacy Act is the most cosponsored bill in Congress — it would require the government get a warrant for email, just like it needs a warrant for postal mail. It’s a no-brainer, but Congress has still failed to act.">
@@ -19,9 +19,25 @@
     <meta property="og:site_name" content="Save the Fourth">
     <meta property="og:title" content="Tell Chairman Goodlatte and Congress: Stop blocking email privacy!">
     <meta property="og:type" content="website">
+
+    <script>
+        // Check for outdated browsers
+        var isIE = navigator.userAgent.match(/MSIE (\d+)\./);
+        if (isIE) {
+            var version = +isIE[1];
+            if (version < 9) {
+                alert('Unfortunately your browser, Internet Explorer ' + version + ', is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+                location.href = 'https://www.mozilla.org/en-US/firefox/';
+            }
+        }
+
+        if (navigator.userAgent.match(/Android 2\.3/)) {
+            alert('Unfortunately your browser, Android 2.3, is not supported.\nPlease visit the site with a modern browser like Firefox or Chrome.\nThanks!');
+        }
+    </script>
 </head>
 
-<body data-page="home" class="font-option-b background-option-a">
+<body data-page="home">
     <div class="floating-background"></div>
     <header>
         <div class="headlines">
@@ -35,8 +51,9 @@
                 <div class="outer-padding">
                     <div class="action-wrapper">
                         <div class="action">
-                            <h2>Sign the Petition</h2>
+                            <h2>SIGN THE PETITION</h2>
 
+                            <!-- <form method="POST" action="https://dp-phantom-express.herokuapp.com/act/?to=reps" accept-charset="utf-8"> -->
                             <form method="GET" action="https://act.demandprogress.org/act/" accept-charset="utf-8">
                                 <div class="form-wrapper">
                                     <div class="input-grid">
@@ -90,7 +107,7 @@
                     <!-- .action-wrapper -->
 
                     <div class="petition">
-                        <h2>Petition to Chairman Bob Goodlatte and Congress:</h2>
+                        <h2>PETITION TO CHAIRMAN BOB GOODLATTE AND CONGRESS:</h2>
 
                         <p class="quote">
                             <em>
@@ -110,9 +127,7 @@
 
     <section class="more-info-title">
         <div class="">
-            Congress can pass the most popular bill in the House
-            <br>
-            And ensure an end to warrantless email snooping
+            CONGRESS HAS THE CHANCE TO PASS THE MOST POPULAR BILL IN THE HOUSE AND FINALLY ENSURE AN END TO WARRANTLESS EMAIL SNOOPING
         </div>
     </section>
 
@@ -204,6 +219,8 @@
 
             <h4>In partnership with</h4>
             <div class="smaller">
+                <a title="American Civil Liberties Union" href="https://www.aclu.org/" target="_blank"><img src="images/logos/aclu.png"></a>
+                <a title="Free Press Action Fund" href="http://www.freepress.net/" target="_blank"><img src="images/logos/free-press-action-fund.png"></a>
                 <a title="RootsAction" href="http://rootsaction.org" target="_blank"><img src="images/logos/roots-action.png"></a>
                 <a title="The Other 98%" href="http://other98.com" target="_blank"><img src="images/logos/other-98.png"></a>
             </div>
@@ -235,14 +252,8 @@
     <!-- Scripts -->
     <script src="./js/bundle.js?v=0.9.12"></script>
 
-    <!--[if lt IE 9]>
-    <script type="text/javascript">
-        location.href = 'https://petitions.whitehouse.gov/petition/take-action-fight-secret-money-immediately-and-redeem-your-failed-money-politics-legacy';
-    </script>
-    <![endif]-->
-
     <!--[if IE 9]>
-    <script src="./js/vendor/placeholders.jquery.min.js" async></script>
+    <script src="./js/vendor/placeholders.min.js" async></script>
     <script type="text/javascript">
         console.log('IE9 detected!');
     </script>
