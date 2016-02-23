@@ -1,5 +1,6 @@
 // Modules
 import $ from 'jquery';
+import { addGoogleAnalytics } from './analytics';
 import Constants from './constants';
 import FastClick from 'fastclick';
 import HomePage from './home-page';
@@ -69,4 +70,7 @@ $(() => {
             ThanksPage.start();
             break;
     }
+
+    // Google Analytics
+    addGoogleAnalytics();
 });
