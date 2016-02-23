@@ -298,7 +298,8 @@ body.your-rep .text-chairman-goodlatte {
     .options .call-wrapper .description {
         float: none;
         margin: 0 auto 48px;
-        max-width: 320px;
+        padding: 0 24px;
+        max-width: 368px;
     }
 
     .options .tweet-wrapper .action {
