@@ -142,10 +142,12 @@ header .headlines h3 {
     font-size: 20px;
     line-height: 1.4;
     margin: 0 420px 0 0;
-    min-height: 555px;
     padding: 16px 40px 24px;
     text-align: left;
     position: relative;
+}
+.petition-and-form-wrapper .petition {
+    min-height: 555px;
 }
 @media screen and (max-width: 839px) {
     .petition {
@@ -424,7 +426,7 @@ section.more-info-title div {
 .more-info .petition p {
     font-size: 18px;
     line-height: 1.4;
-    margin: 0 auto 12px;
+    margin: 0 auto 11px;
     max-width: 720px;
     text-align: left;
 }
