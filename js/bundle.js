@@ -10026,7 +10026,7 @@
 	constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/legislators/locate?callback=?';
 	constants.EMAIL_SUBJECT = 'Sign this petition: Tell Congress to stop blocking email privacy!';
 	constants.EMAIL_BODY = 'Hi,\n\nI just signed a petition at SaveTheFourth.net telling Members of Congress to stop blocking email privacy and to pass the most cosponsored bill in Congress — the Email Privacy Act.\n\nRight now, the law says the government can access emails without a warrant just because they’re over 180 days old. I know — it’s crazy.\n\nHowever, there is a bill in the House, known as the Email Privacy Act, that has 310 cosponsors —that’s well over two-thirds of the House, making it the most popular bill in Congress. The bill would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer. However, right now it\'s being blocked by opponents of privacy rights. It’s up to us to make sure it finally passes.';
-	constants.TWEET_TEXT = 'Join me: Tell @POTUS that he must fight secret money in politics right away. SaveTheFourth.net/?source=' + _staticKit2.default.query.cleanedSource + '-twittershare #ObamaMustAct';
+	constants.TWEET_TEXT = '.@RepGoodlatte stop blocking email privacy! It\'s time to pass the most popular bill in Congress #EmailPrivacyAct https://savethefourth.net/?source=' + _staticKit2.default.query.cleanedSource + '-twittershare';
 	constants.REQUIRED_FIELDS = ['name', 'email', 'address1', 'postcode'];
 	constants.NON_SWAP_SOURCES = [];
 	constants.NON_SWAP_3RD_PARTY_SOURCES = {};
