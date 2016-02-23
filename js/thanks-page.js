@@ -104,8 +104,13 @@ async function onCallFormSubmit(e) {
     document.activeElement.blur();
 
     // Show thanks
+    showCallFormThanks();
+}
+
+function showCallFormThanks() {
+    let $callWrapper = $('.call-wrapper');
+    $callWrapper.addClass('thanks');
     let $submit = $('.call-wrapper button');
-    $submit.addClass('thanks');
     $submit.attr('disabled', true);
     $submit.text('Thanks!');
 

@@ -422,8 +422,8 @@ body.your-rep .text-chairman-goodlatte {
     top: 3px;
     width: 32px;
 }
-.action .form-wrapper button.thanks {
-    background-color: #579542;
+.call-wrapper.thanks .action .form-wrapper button {
+    margin-top: 16px;
 }
 .action .form-wrapper button .phone {
     height: 25px;

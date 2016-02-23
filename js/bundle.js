@@ -16683,7 +16683,7 @@
 
 	var onCallFormSubmit = function () {
 	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(e) {
-	        var $phone, phone, callParams, $submit;
+	        var $phone, phone, callParams;
 	        return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	            while (1) {
 	                switch (_context2.prev = _context2.next) {
@@ -16724,16 +16724,9 @@
 	                        document.activeElement.blur();
 
 	                        // Show thanks
-	                        $submit = (0, _jquery2.default)('.call-wrapper button');
+	                        showCallFormThanks();
 
-	                        $submit.addClass('thanks');
-	                        $submit.attr('disabled', true);
-	                        $submit.text('Thanks!');
-
-	                        (0, _jquery2.default)('.call-wrapper form input').remove();
-	                        (0, _jquery2.default)('.call-wrapper h2').remove();
-
-	                    case 17:
+	                    case 12:
 	                    case 'end':
 	                        return _context2.stop();
 	                }
@@ -16979,6 +16972,17 @@
 	    var $submit = (0, _jquery2.default)('.tweet-wrapper button');
 	    $submit.addClass('thanks');
 	    $submit.text('Thanks!');
+	}
+
+	function showCallFormThanks() {
+	    var $callWrapper = (0, _jquery2.default)('.call-wrapper');
+	    $callWrapper.addClass('thanks');
+	    var $submit = (0, _jquery2.default)('.call-wrapper button');
+	    $submit.attr('disabled', true);
+	    $submit.text('Thanks!');
+
+	    (0, _jquery2.default)('.call-wrapper form input').remove();
+	    (0, _jquery2.default)('.call-wrapper h2').remove();
 	}
 
 	function getSavedZip() {
