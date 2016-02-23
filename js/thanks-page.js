@@ -5,7 +5,6 @@ import Modal from './modal';
 import StaticKit from './static-kit';
 
 
-Modal.show('.calling');
 let campaign = {
     callCampaign : 'ecpa-goodlatte',
     twitterId    : 'RepGoodlatte',
