@@ -181,10 +181,11 @@ header .headlines h3 {
     color: #d3640a;
 }
 .petition p.quote {
+    background-color: #2b2b2b;
     border-radius: 2px;
     font-size: 1.3em;
     padding: 24px;
-    background-color: #2b2b2b;
+    text-align: center;
 }
 .action-wrapper {
     float: right;
