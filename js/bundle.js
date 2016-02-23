@@ -16918,15 +16918,16 @@
 	function onFeedbackFormSubmit(e) {
 	    e.preventDefault();
 
+	    var $feedbackForm = (0, _jquery2.default)(e.target);
 	    var message = '';
 	    var fields = $feedbackForm.serializeArray();
 	    fields.forEach(function (field) {
 	        message += field.name + ':\n' + field.value + '\n\n';
 	    });
 
-	    _jquery2.default.getJSON(FEEDBACK_TOOL_URL, {
-	        campaign: 'president-obamas-legacy',
-	        subject: 'Feedback from President Obama\'s Legacy',
+	    _jquery2.default.getJSON(_constants2.default.FEEDBACK_TOOL_URL, {
+	        campaign: 'save-the-fourth',
+	        subject: 'Feedback from Save the Fourth',
 	        text: message
 	    });
 

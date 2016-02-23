@@ -968,3 +968,93 @@ section.midnight-share-train a:hover {
         font-size: 12px;
     }
 }
+
+.overlay .calling-wrapper {
+    color: #579542;
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 16px auto 0;
+    max-width: 720px;
+    padding: 24px 32px 32px;
+    position: relative;
+    border-top: 1px solid #ccc;
+}
+.overlay .calling-wrapper h3 {
+    font-weight: bold;
+    margin: 0 auto;
+    max-width: 360px;
+}
+.overlay .calling-wrapper form {
+    background-color: #579542;
+    background-image: url(../images/background-v3.png);
+    background-position: 50% 36px;
+    color: white;
+    border-radius: 3px;
+    color: #eee;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+    margin: 32px auto 0;
+    max-width: 300px;
+    padding: 16px 32px 32px;
+    position: relative;
+}
+.overlay .calling-wrapper form .wrapper {
+    position: relative;
+}
+.overlay .calling-wrapper form h4 {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0 auto;
+    padding: 16px 16px 8px;
+}
+.overlay .calling-wrapper form input {
+    border: 1px solid #aaa;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.16);
+    padding: 8px;
+    width: 100%;
+}
+.overlay .calling-wrapper form button {
+    background: none;
+    background-color: #ff9000;
+    border-radius: 3px;
+    border: none;
+    color: #f0f4f5;
+    font-size: 20px;
+    font-weight: bold;
+    height: auto;
+    line-height: 2.4;
+    margin: 16px 0 0;
+    padding: 0 16px;
+    text-shadow: none;
+    transition: background-color 0.16s;
+    width: 100%;
+}
+.overlay .calling-wrapper button:hover {
+    background-color: #d3640a;
+}
+.overlay .calling-wrapper #thanks {
+    background: #ff9000;
+    color: #f0f4f5;
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    left: 0;
+    letter-spacing: 1px;
+    line-height: 2.4;
+    margin: 16px 0 0;
+    max-width: 430px;
+    padding: 0 16px;
+    position: absolute;
+    text-transform: uppercase;
+    transition: opacity 0.4s ease-out;
+    width: 100%;
+    z-index: 2;
+}
+.overlay .calling-wrapper .sent br,
+.overlay .calling-wrapper .sent h4,
+.overlay .calling-wrapper .sent input {
+    display: none;
+}
+.overlay .calling-wrapper .sent #thanks {
+    display: block;
+}
