@@ -12,6 +12,9 @@ let campaign = {
 };
 
 async function start() {
+    // Debug
+    debug();
+
     // Update campaign
     let zip = getSavedZip();
     await updateCampaignWithZip(zip);
@@ -147,6 +150,24 @@ async function updateCampaignWithZip(zip) {
                 break;
             }
         }
+    }
+}
+
+function debug() {
+    switch (StaticKit.query.debug) {
+        case 'calling-goodlatte':
+            Modal.show('.calling');
+            break;
+        case 'calling-rep':
+            sessionStorage.zip = '95046';
+            Modal.show('.calling');
+            break;
+        case 'rep':
+            sessionStorage.zip = '95046';
+            break;
+        case 'goodlatte':
+            sessionStorage.zip = '90210';
+            break;
     }
 }
 

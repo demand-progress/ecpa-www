@@ -16616,12 +16616,15 @@
 	            while (1) {
 	                switch (_context.prev = _context.next) {
 	                    case 0:
+	                        // Debug
+	                        debug();
+
 	                        // Update campaign
 	                        zip = getSavedZip();
-	                        _context.next = 3;
+	                        _context.next = 4;
 	                        return updateCampaignWithZip(zip);
 
-	                    case 3:
+	                    case 4:
 
 	                        // Update forms
 	                        (0, _jquery2.default)('.sample-tweet .handle').text('@' + campaign.twitterId);
@@ -16639,7 +16642,7 @@
 	                        // Feedback form logic
 	                        (0, _jquery2.default)('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
 
-	                    case 9:
+	                    case 10:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -16951,6 +16954,24 @@
 	        return sessionStorage.zip;
 	    } catch (e) {
 	        return null;
+	    }
+	}
+
+	function debug() {
+	    switch (_staticKit2.default.query.debug) {
+	        case 'calling-goodlatte':
+	            _modal2.default.show('.calling');
+	            break;
+	        case 'calling-rep':
+	            sessionStorage.zip = '95046';
+	            _modal2.default.show('.calling');
+	            break;
+	        case 'rep':
+	            sessionStorage.zip = '95046';
+	            break;
+	        case 'goodlatte':
+	            sessionStorage.zip = '90210';
+	            break;
 	    }
 	}
 

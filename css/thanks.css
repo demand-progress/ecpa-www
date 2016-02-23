@@ -800,6 +800,10 @@ section .share {
     padding: 30px 16px;
     text-align: center;
 }
+.overlay .modal h1 .smaller {
+    font-size: 0.8em;
+    padding-top: 8px;
+}
 .overlay .modal h2 {
     font-size: 16px;
     line-height: 20px;
