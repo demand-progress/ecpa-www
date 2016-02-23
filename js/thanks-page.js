@@ -5,6 +5,7 @@ import Modal from './modal';
 import StaticKit from './static-kit';
 
 
+Modal.show('.calling');
 let campaign = {
     callCampaign : 'ecpa-goodlatte',
     twitterId    : 'RepGoodlatte',
@@ -15,10 +16,6 @@ async function start() {
     // Update campaign
     let zip = getSavedZip();
     await updateCampaignWithZip(zip);
-
-    if (zip) {
-        callToolURL += '&zipcode=' + zip;
-    }
 
     // Update forms
     $('.sample-tweet .handle').text('@' + campaign.twitterId);
@@ -105,8 +102,6 @@ async function onCallFormSubmit(e) {
 
     $('.call-wrapper form input').remove();
     $('.call-wrapper h2').remove();
-
-    Modal.show('calling');
 }
 
 function getSavedZip() {

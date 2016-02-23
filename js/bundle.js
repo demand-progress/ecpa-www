@@ -16622,10 +16622,6 @@
 
 	                    case 3:
 
-	                        if (zip) {
-	                            callToolURL += '&zipcode=' + zip;
-	                        }
-
 	                        // Update forms
 	                        (0, _jquery2.default)('.sample-tweet .handle').text('@' + campaign.twitterId);
 
@@ -16641,7 +16637,7 @@
 	                        // Feedback form logic
 	                        (0, _jquery2.default)('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
 
-	                    case 9:
+	                    case 8:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -16700,9 +16696,7 @@
 	                        (0, _jquery2.default)('.call-wrapper form input').remove();
 	                        (0, _jquery2.default)('.call-wrapper h2').remove();
 
-	                        _modal2.default.show('calling');
-
-	                    case 16:
+	                    case 15:
 	                    case 'end':
 	                        return _context2.stop();
 	                }
@@ -16914,6 +16908,7 @@
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
+	_modal2.default.show('.calling');
 	var campaign = {
 	    callCampaign: 'ecpa-goodlatte',
 	    twitterId: 'RepGoodlatte',
