@@ -88,12 +88,17 @@ async function onCallFormSubmit(e) {
     $phone.val('');
 
     // Send call
-    $.getJSON(Constants.CALL_TOOL_URL, {
+    let callParams = {
         campaignId: campaign.callCampaign,
         source_id: StaticKit.query.cleanedSource,
         userPhone: phone,
-        zipcode: getSavedZip(),
-    });
+    };
+
+    if (callParams.campaignId === 'ecpa-zip') {
+        callParams.zipcode = getSavedZip();
+    }
+
+    $.getJSON(Constants.CALL_TOOL_URL, callParams);
 
     // Deselect input
     document.activeElement.blur();

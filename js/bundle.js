@@ -16683,7 +16683,7 @@
 
 	var onCallFormSubmit = function () {
 	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(e) {
-	        var $phone, phone, $submit;
+	        var $phone, phone, callParams, $submit;
 	        return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	            while (1) {
 	                switch (_context2.prev = _context2.next) {
@@ -16707,12 +16707,18 @@
 	                        $phone.val('');
 
 	                        // Send call
-	                        _jquery2.default.getJSON(_constants2.default.CALL_TOOL_URL, {
+	                        callParams = {
 	                            campaignId: campaign.callCampaign,
 	                            source_id: _staticKit2.default.query.cleanedSource,
-	                            userPhone: phone,
-	                            zipcode: getSavedZip()
-	                        });
+	                            userPhone: phone
+	                        };
+
+
+	                        if (callParams.campaignId === 'ecpa-zip') {
+	                            callParams.zipcode = getSavedZip();
+	                        }
+
+	                        _jquery2.default.getJSON(_constants2.default.CALL_TOOL_URL, callParams);
 
 	                        // Deselect input
 	                        document.activeElement.blur();
@@ -16727,7 +16733,7 @@
 	                        (0, _jquery2.default)('.call-wrapper form input').remove();
 	                        (0, _jquery2.default)('.call-wrapper h2').remove();
 
-	                    case 15:
+	                    case 17:
 	                    case 'end':
 	                        return _context2.stop();
 	                }
