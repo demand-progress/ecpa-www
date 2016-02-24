@@ -19,7 +19,7 @@ Right now, the law says the government can access emails without a warrant just 
 
 However, there is a bill in the House, known as the Email Privacy Act, that has 310 cosponsors —that’s well over two-thirds of the House, making it the most popular bill in Congress. The bill would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer. However, right now it's being blocked by opponents of privacy rights. It’s up to us to make sure it finally passes.
 
-https://${DOMAIN}/?source=${SOURCE_CLEANED}-emailshare
+https://${constants.DOMAIN}/?source=${constants.SOURCE_CLEANED}-emailshare
 
 Thanks!`;
 constants.TWEET_TEXT      = `.@RepGoodlatte stop blocking email privacy! It's time to pass the most popular bill in Congress #EmailPrivacyAct https://savethefourth.net/?source=${StaticKit.query.cleanedSource}-twittershare`;
