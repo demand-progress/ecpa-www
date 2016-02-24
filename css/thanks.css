@@ -767,6 +767,7 @@ section .share {
 }
 .overlay .gutter .modal {
     background: white;
+    border-radius: 6px;
     color: black;
     margin: 0 auto;
     max-width: 550px;
@@ -780,17 +781,15 @@ section .share {
     font-size: 30px;
     opacity: .4;
     position: absolute;
-    right: 10px;
+    right: 16px;
     text-decoration: none;
-    top: 0;
+    top: 4px;
 }
 .overlay .modal a.close:hover {
     opacity: .6;
 }
 .overlay .modal h1 {
     background-color: #579542;
-    background-image: url(../images/background-v3.png);
-    background-position: 50% 36px;
     color: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 26px;
@@ -798,7 +797,7 @@ section .share {
     letter-spacing: 1px;
     line-height: 31px;
     margin-bottom: 25px;
-    padding: 30px 16px;
+    padding: 20px 16px;
     text-align: center;
 }
 .overlay .modal h1 .smaller {
