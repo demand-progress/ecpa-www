@@ -245,7 +245,8 @@ body.your-rep .text-chairman-goodlatte {
     background-color: #dc853f;
     box-shadow: 0px 4px 4.75px 0.25px rgba(0, 0, 0, 0.15);
 }
-.options .call-wrapper .action span.disclaimer {
+.options .call-wrapper .action span.disclaimer,
+.options .call-wrapper .action span.disclaimer a {
     color: #ecb589;
 }
 .options .tweet-wrapper .action {
