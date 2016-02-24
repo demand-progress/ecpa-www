@@ -166,6 +166,7 @@ async function updateCampaignWithZip(zip) {
 function debug() {
     switch (StaticKit.query.debug) {
         case 'calling-goodlatte':
+            sessionStorage.zip = '90210';
             Modal.show('.calling');
             break;
         case 'calling-rep':

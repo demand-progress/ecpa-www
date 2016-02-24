@@ -16996,6 +16996,7 @@
 	function debug() {
 	    switch (_staticKit2.default.query.debug) {
 	        case 'calling-goodlatte':
+	            sessionStorage.zip = '90210';
 	            _modal2.default.show('.calling');
 	            break;
 	        case 'calling-rep':
