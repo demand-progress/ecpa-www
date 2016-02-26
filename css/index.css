@@ -621,6 +621,7 @@ section .share {
     height: auto;
     margin: 0 20px 32px;
     max-width: 280px;
+    max-height: 100px;
     vertical-align: middle;
 }
 .logos .smaller img {
