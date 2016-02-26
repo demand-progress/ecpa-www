@@ -176,7 +176,7 @@ function tweetToAdditionalMember() {
     }
 
     // Find additional members
-    while (campaign.twitterIds.length < 3) {
+    while (campaign.twitterIds.join(' @').length <= 40) {
         let member = sample(Constants.COMMITTEE_MEMBERS).twitter;
 
         if (campaign.twitterIds.indexOf(member) > -1) {

@@ -17048,7 +17048,7 @@
 	    }
 
 	    // Find additional members
-	    while (campaign.twitterIds.length < 3) {
+	    while (campaign.twitterIds.join(' @').length <= 40) {
 	        var member = (0, _sample2.default)(_constants2.default.COMMITTEE_MEMBERS).twitter;
 
 	        if (campaign.twitterIds.indexOf(member) > -1) {
