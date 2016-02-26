@@ -2,13 +2,14 @@ import $ from 'jquery';
 import commafy from './commafy';
 import Constants from './constants';
 import Modal from './modal';
+import sample from 'lodash/sample';
 import StaticKit from './static-kit';
 
 
 let campaign = {
     callCampaign : 'ecpa-goodlatte',
-    twitterId    : 'RepGoodlatte',
-    twitterText  : 'stop blocking email privacy! It’s time to pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
+    twitterIds   : [ 'RepGoodlatte' ],
+    twitterText  : 'Pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
 };
 
 async function start() {
@@ -18,9 +19,13 @@ async function start() {
     // Update campaign
     let zip = getSavedZip();
     await updateCampaignWithZip(zip);
+    tweetToAdditionalMember();
+
+    // Update suggested Tweet
+    $('.tweet-content').html(campaign.twitterText.replace('#', '<span class="link">#') + '</span>');
 
     // Update forms
-    $('.sample-tweet .handle').text('@' + campaign.twitterId);
+    $('.sample-tweet .handle').text('@' + campaign.twitterIds.join(' @'));
 
     // Show forms
     $('.options').addClass('ready');
@@ -58,7 +63,7 @@ function onFeedbackFormSubmit(e) {
 function onTweetFormSubmit(e) {
     e.preventDefault();
 
-    let tweet = `.@${campaign.twitterId} ${campaign.twitterText}`;
+    let tweet = `.@${campaign.twitterIds.join(' @')} ${campaign.twitterText}`;
 
     let url =
         'https://twitter.com/intent/tweet?text=' +
@@ -149,18 +154,35 @@ async function updateCampaignWithZip(zip) {
             ) {
                 campaign = {
                     callCampaign : 'ecpa-zip',
-                    twitterId    : representative.twitter_id,
+                    twitterIds   : [ representative.twitter_id ],
                     twitterText  : 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net',
                 };
 
                 // Update copy
                 $('body').removeClass('chairman-goodlatte').addClass('your-rep');
-                $('.tweet-content').html(campaign.twitterText.replace('#', '<span class="link">#') + '</span>');
 
                 break;
             }
         }
     }
+}
+
+function tweetToAdditionalMember() {
+    let chair = 'RepGoodlatte';
+
+    // Only add to default tweets
+    if (campaign.twitterIds[0] !== chair) {
+        return;
+    }
+
+    // Find an additional member
+    let member;
+    do {
+        member = sample(Constants.COMMITTEE_MEMBERS).twitter;
+    } while (member === chair);
+
+    // Add to list
+    campaign.twitterIds.push(member);
 }
 
 function debug() {
