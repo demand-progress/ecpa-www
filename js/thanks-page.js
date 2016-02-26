@@ -175,14 +175,16 @@ function tweetToAdditionalMember() {
         return;
     }
 
-    // Find an additional member
-    let member;
-    do {
-        member = sample(Constants.COMMITTEE_MEMBERS).twitter;
-    } while (member === chair);
+    // Find additional members
+    while (campaign.twitterIds.length < 3) {
+        let member = sample(Constants.COMMITTEE_MEMBERS).twitter;
 
-    // Add to list
-    campaign.twitterIds.push(member);
+        if (campaign.twitterIds.indexOf(member) > -1) {
+            continue;
+        }
+
+        campaign.twitterIds.push(member);
+    }
 }
 
 function debug() {

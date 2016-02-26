@@ -17047,14 +17047,16 @@
 	        return;
 	    }
 
-	    // Find an additional member
-	    var member = undefined;
-	    do {
-	        member = (0, _sample2.default)(_constants2.default.COMMITTEE_MEMBERS).twitter;
-	    } while (member === chair);
+	    // Find additional members
+	    while (campaign.twitterIds.length < 3) {
+	        var member = (0, _sample2.default)(_constants2.default.COMMITTEE_MEMBERS).twitter;
 
-	    // Add to list
-	    campaign.twitterIds.push(member);
+	        if (campaign.twitterIds.indexOf(member) > -1) {
+	            continue;
+	        }
+
+	        campaign.twitterIds.push(member);
+	    }
 	}
 
 	function debug() {
