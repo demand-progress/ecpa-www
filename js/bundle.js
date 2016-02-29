@@ -16769,7 +16769,15 @@
 	                        // Show thanks
 	                        showCallFormThanks();
 
-	                    case 12:
+	                        // Send event
+	                        ga('send', {
+	                            hitType: 'event',
+	                            eventCategory: 'ThanksPageCall',
+	                            eventAction: 'sent',
+	                            eventLabel: callParams.campaignId
+	                        });
+
+	                    case 13:
 	                    case 'end':
 	                        return _context2.stop();
 	                }
@@ -17018,6 +17026,14 @@
 	    var $submit = (0, _jquery2.default)('.tweet-wrapper button');
 	    $submit.addClass('thanks');
 	    $submit.text('Thanks!');
+
+	    // Send event
+	    ga('send', {
+	        hitType: 'event',
+	        eventCategory: 'ThanksPageTweet',
+	        eventAction: 'sent',
+	        eventLabel: campaign.campaignId
+	    });
 	}
 
 	function showCallFormThanks() {

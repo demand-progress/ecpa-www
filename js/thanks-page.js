@@ -75,6 +75,14 @@ function onTweetFormSubmit(e) {
     let $submit = $('.tweet-wrapper button');
     $submit.addClass('thanks');
     $submit.text('Thanks!');
+
+    // Send event
+    ga('send', {
+        hitType       : 'event',
+        eventCategory : 'ThanksPageTweet',
+        eventAction   : 'sent',
+        eventLabel    : campaign.campaignId,
+    });
 }
 
 async function onCallFormSubmit(e) {
@@ -110,6 +118,14 @@ async function onCallFormSubmit(e) {
 
     // Show thanks
     showCallFormThanks();
+
+    // Send event
+    ga('send', {
+        hitType       : 'event',
+        eventCategory : 'ThanksPageCall',
+        eventAction   : 'sent',
+        eventLabel    : callParams.campaignId,
+    });
 }
 
 function showCallFormThanks() {
