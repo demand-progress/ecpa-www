@@ -403,6 +403,16 @@ button {
     font-weight: 500;
     font-family: 'Open Sans', sans-serif;
 }
+.success-update {
+    background-color: #262525;
+    padding: 0 32px 64px;
+    font-size: 21px;
+    line-height: 1.4;
+    color: #fff;
+}
+.success-update a {
+    color: #3af;
+}
 section.more-info-title {
     color: #eee;
     background-color: #497c3a;
