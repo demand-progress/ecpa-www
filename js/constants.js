@@ -32,6 +32,28 @@ constants.REQUIRED_FIELDS = [
 ];
 constants.NON_SWAP_SOURCES           = [];
 constants.NON_SWAP_3RD_PARTY_SOURCES = {};
+constants.COMMITTEE_MEMBERS_SENATE   = [
+    'G000386', // Grassley
+    'L000174', // Leahy
+    'F000062', // Feinstein
+    'S001141', // Sessions
+    'S000148', // Schumer
+    'G000359', // Graham
+    'D000563', // Durbin
+    'W000802', // Whitehouse
+    'F000444', // Flake
+    'C001088', // Coons
+    'V000127', // Vitter
+    'B001277', // Blumenthal
+    'P000612', // Perdue
+    'T000476', // Tillis
+    'H000338', // Hatch
+    'L000577', // Lee
+    'C001056', // Cornyn
+    'C001098', // Cruz
+    'K000367', // Klobuchar
+    'F000457', // Franken
+];
 constants.COMMITTEE_MEMBERS          = [{
     "state": "VA",
     "district": 6,

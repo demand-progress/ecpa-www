@@ -3,12 +3,14 @@ import commafy from './commafy';
 import Constants from './constants';
 import Modal from './modal';
 import sample from 'lodash/sample';
+import shuffle from 'lodash/shuffle';
 import StaticKit from './static-kit';
 
 
-let campaign = {
+let state = {
+    bioguideIDs  : [],
     callCampaign : 'ecpa-goodlatte',
-    twitterIds   : [ 'RepGoodlatte' ],
+    twitterIDs   : [],
     twitterText  : 'Pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
 };
 
@@ -22,10 +24,10 @@ async function start() {
     tweetToAdditionalMember();
 
     // Update suggested Tweet
-    $('.tweet-content').html(campaign.twitterText.replace('#', '<span class="link">#') + '</span>');
+    $('.tweet-content').html(state.twitterText.replace('#', '<span class="link">#') + '</span>');
 
     // Update forms
-    $('.sample-tweet .handle').text('@' + campaign.twitterIds.join(' @'));
+    $('.sample-tweet .handle').text('@' + state.twitterIDs.join(' @'));
 
     // Show forms
     $('.options').addClass('ready');
@@ -63,7 +65,7 @@ function onFeedbackFormSubmit(e) {
 function onTweetFormSubmit(e) {
     e.preventDefault();
 
-    let tweet = `.@${campaign.twitterIds.join(' @')} ${campaign.twitterText}`;
+    let tweet = `.@${state.twitterIDs.join(' @')} ${state.twitterText}`;
 
     let url =
         'https://twitter.com/intent/tweet?text=' +
@@ -81,7 +83,7 @@ function onTweetFormSubmit(e) {
         hitType       : 'event',
         eventCategory : 'ThanksPageTweet',
         eventAction   : 'sent',
-        eventLabel    : campaign.campaignId,
+        eventLabel    : state.campaignId,
     });
 }
 
@@ -102,14 +104,11 @@ async function onCallFormSubmit(e) {
 
     // Send call
     let callParams = {
-        campaignId: campaign.callCampaign,
+        campaignId: state.callCampaign,
         source_id: StaticKit.query.cleanedSource,
         userPhone: phone,
+        repIds: state.bioguideIDs,
     };
-
-    if (callParams.campaignId === 'ecpa-zip') {
-        callParams.zipcode = getSavedZip();
-    }
 
     $.getJSON(Constants.CALL_TOOL_URL, callParams);
 
@@ -148,78 +147,95 @@ function getSavedZip() {
 }
 
 async function updateCampaignWithZip(zip) {
-    if (!zip) {
-        return;
-    }
-
     let res = await $.getJSON(Constants.SUNLIGHT_LOCATE_URL, {
         apikey: '3779f52f552743d999b2c5fe1cda70b6',
-        zip: zip || $('#postcode').val(),
+        zip: zip || 50316,
     });
 
-    // Search for a committee member who represents the visitor
+    // Search for committee members who represents the visitor
+    var senators = [];
+    var senatorsWithinCommittee = [];
     for (let representative of res.results) {
-        if (representative.chamber !== 'house') {
+        if (representative.chamber !== 'senate') {
             continue;
         }
 
-        for (let committeeMember of Constants.COMMITTEE_MEMBERS) {
-            if (
-                (committeeMember.district === representative.district) &&
-                (committeeMember.state === representative.state)
-            ) {
-                campaign = {
-                    callCampaign : 'ecpa-zip',
-                    twitterIds   : [ representative.twitter_id ],
-                    twitterText  : 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net',
-                };
+        senators.push(representative);
 
-                // Update copy
-                $('body')
-                    .removeClass('variation-default')
-                    .addClass('variation-specific');
-
-                break;
+        for (let bioguideID of Constants.COMMITTEE_MEMBERS_SENATE) {
+            if (representative.bioguide_id === bioguideID) {
+                senatorsWithinCommittee.push(representative);
             }
         }
     }
+
+    if (zip && senatorsWithinCommittee.length > 0) {
+        senators = senatorsWithinCommittee;
+
+        // Update page
+        state.callCampaign = 'savethefourthnet-senate-specific';
+        state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+        $('body')
+            .removeClass('variation-default')
+            .addClass('variation-specific');
+    }
+
+    for (let senator of senators) {
+        state.bioguideIDs.push(senator.bioguide_id);
+        state.twitterIDs.push(senator.twitter_id);
+    }
+
+    state.bioguideIDs = shuffle(state.bioguideIDs);
+    state.twitterIDs = shuffle(state.twitterIDs);
 }
 
 function tweetToAdditionalMember() {
     let chair = 'RepGoodlatte';
 
     // Only add to default tweets
-    if (campaign.twitterIds[0] !== chair) {
+    if (state.twitterIDs[0] !== chair) {
         return;
     }
 
     // Find additional members
-    while (campaign.twitterIds.join(' @').length <= 40) {
+    while (state.twitterIDs.join(' @').length <= 40) {
         let member = sample(Constants.COMMITTEE_MEMBERS).twitter;
 
-        if (campaign.twitterIds.indexOf(member) > -1) {
+        if (state.twitterIDs.indexOf(member) > -1) {
             continue;
         }
 
-        campaign.twitterIds.push(member);
+        state.twitterIDs.push(member);
     }
 }
 
 function debug() {
     switch (StaticKit.query.debug) {
-        case 'calling-goodlatte':
+        case 'default':
+            sessionStorage.zip = '33880';
+            break;
+
+        case 'match':
+            sessionStorage.zip = '90210';
+            break;
+
+        case 'matches':
+            sessionStorage.zip = '84622';
+            break;
+
+        case 'default-calling':
+            sessionStorage.zip = '33880';
+            Modal.show('.calling');
+            break;
+
+        case 'match-calling':
             sessionStorage.zip = '90210';
             Modal.show('.calling');
             break;
-        case 'calling-rep':
-            sessionStorage.zip = '95046';
+
+        case 'matches-calling':
+            sessionStorage.zip = '84622';
             Modal.show('.calling');
-            break;
-        case 'rep':
-            sessionStorage.zip = '95046';
-            break;
-        case 'goodlatte':
-            sessionStorage.zip = '90210';
             break;
     }
 }

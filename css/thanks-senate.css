@@ -231,6 +231,11 @@ body.variation-specific .text-variation-default {
     line-height: 1.24;
     padding: 0 0 5px;
 }
+@media (max-width: 419px) {
+    .options .action h2 {
+        font-size: 26px;
+    }
+}
 .options .action .form-wrapper .input-grid {
     margin: 0 57px;
     position: relative;
