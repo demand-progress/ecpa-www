@@ -255,6 +255,9 @@ body.variation-specific .text-variation-default {
 .options .call-wrapper .action span.disclaimer a {
     color: #ecb589;
 }
+.options .call-wrapper.thanks .action span.disclaimer {
+    display: none;
+}
 .options .tweet-wrapper .action {
     max-width: 910px;
 }
