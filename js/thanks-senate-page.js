@@ -9,7 +9,7 @@ import StaticKit from './static-kit';
 
 let state = {
     bioguideIDs  : [],
-    callCampaign : 'ecpa-goodlatte',
+    callCampaign : 'savethefourthnet-senate-default',
     twitterIDs   : [],
     twitterText  : 'Pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
 };
@@ -54,8 +54,8 @@ function onFeedbackFormSubmit(e) {
     });
 
     $.getJSON(Constants.FEEDBACK_TOOL_URL, {
-        campaign: 'save-the-fourth',
-        subject: 'Feedback from Save the Fourth',
+        campaign: 'save-the-fourth-senate',
+        subject: 'Feedback from Save the Fourth (Senate)',
         text: message,
     });
 

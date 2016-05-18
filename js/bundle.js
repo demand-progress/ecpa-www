@@ -21097,7 +21097,7 @@
 
 	var state = {
 	    bioguideIDs: [],
-	    callCampaign: 'ecpa-goodlatte',
+	    callCampaign: 'savethefourthnet-senate-default',
 	    twitterIDs: [],
 	    twitterText: 'Pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net'
 	};
@@ -21113,8 +21113,8 @@
 	    });
 
 	    _jquery2.default.getJSON(_constants2.default.FEEDBACK_TOOL_URL, {
-	        campaign: 'save-the-fourth',
-	        subject: 'Feedback from Save the Fourth',
+	        campaign: 'save-the-fourth-senate',
+	        subject: 'Feedback from Save the Fourth (Senate)',
 	        text: message
 	    });
 
