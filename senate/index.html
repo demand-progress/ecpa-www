@@ -37,7 +37,7 @@
                         <div class="action">
                             <h2>Sign the Petition</h2>
 
-                            <form method="POST" action="https://dp-phantom-express.herokuapp.com/act/?to=reps" accept-charset="utf-8">
+                            <form method="POST" action="https://act.demandprogress.org/act/" accept-charset="utf-8">
                                 <div class="form-wrapper">
                                     <div class="input-grid">
                                         <input id="name" name="name" placeholder="Name" type="text" autocomplete="on" required="required" />
@@ -54,7 +54,7 @@
                                         <input type="hidden" name="form_name" value="act-petition" />
                                         <input type="hidden" name="js" value="1" />
                                         <input type="hidden" name="opt_in" value="1" />
-                                        <input type="hidden" name="page" value="ecpa-www" />
+                                        <input type="hidden" name="page" value="savethefourthnet-senate-www" />
                                         <input type="hidden" name="source" value="" />
                                         <input type="hidden" name="url" value="" />
                                         <input type="hidden" name="want_progress" value="1" />
@@ -234,6 +234,11 @@
     </div>
 
     <!-- Scripts -->
+    <script>
+    var PageConfig = {
+        house: 'senate',
+    };
+    </script>
     <script src="../js/bundle.js?v=1.0.1"></script>
 
     <!--[if lt IE 9]>

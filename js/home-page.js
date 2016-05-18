@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Constants from './constants';
 import Email from './email';
 import Modal from './modal';
+import PageConfig from './page-config';
 import SignatureCounter from './counter';
 import StaticKit from './static-kit';
 
@@ -15,7 +16,11 @@ function start() {
     });
 
     // Update counter
-    SignatureCounter.update(Constants.ACTIONKIT_CAMPAIGN);
+    if (PageConfig.house === 'senate') {
+        SignatureCounter.update(Constants.ACTIONKIT_CAMPAIGN_SENATE);
+    } else {
+        SignatureCounter.update(Constants.ACTIONKIT_CAMPAIGN);
+    }
 
     // Populate special form fields
     $('[name=action_user_agent]').val(navigator.userAgent);

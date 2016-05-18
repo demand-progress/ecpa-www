@@ -3,15 +3,16 @@ import StaticKit from './static-kit';
 
 let constants = {};
 
-constants.ACTIONKIT_CAMPAIGN  = 'ecpa-www';
-constants.CALL_TOOL_URL       = 'https://dp-call-congress.herokuapp.com/create?callback=?';
-constants.DOMAIN              = 'savethefourth.net';
-constants.FEEDBACK_TOOL_URL   = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
-constants.SOURCE              = StaticKit.query.source;
-constants.SOURCE_CLEANED      = StaticKit.query.cleanedSource;
+constants.ACTIONKIT_CAMPAIGN = 'ecpa-www';
+constants.ACTIONKIT_CAMPAIGN_SENATE = 'savethefourthnet-senate-www';
+constants.CALL_TOOL_URL = 'https://dp-call-congress.herokuapp.com/create?callback=?';
+constants.DOMAIN = 'savethefourth.net';
+constants.FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/feedback?callback=?';
+constants.SOURCE = StaticKit.query.source;
+constants.SOURCE_CLEANED = StaticKit.query.cleanedSource;
 constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/legislators/locate?callback=?';
-constants.EMAIL_SUBJECT       = 'Sign this petition: Tell Congress to stop blocking email privacy!';
-constants.EMAIL_BODY          = `Hi,
+constants.EMAIL_SUBJECT = 'Sign this petition: Tell Congress to stop blocking email privacy!';
+constants.EMAIL_BODY = `Hi,
 
 I just signed a petition at SaveTheFourth.net telling Members of Congress to stop blocking email privacy and to pass the most cosponsored bill in Congress — the Email Privacy Act.
 
