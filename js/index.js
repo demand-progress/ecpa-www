@@ -8,6 +8,7 @@ import Modal from './modal';
 import Polyfill from 'babel-polyfill';
 import StaticKit from './static-kit';
 import ThanksPage from './thanks-page';
+import ThanksSenatePage from './thanks-senate-page';
 
 
 // FastClick for mobile
@@ -68,6 +69,10 @@ $(() => {
 
         case 'thanks':
             ThanksPage.start();
+            break;
+
+        case 'thanks-senate':
+            ThanksSenatePage.start();
             break;
     }
 
