@@ -11,7 +11,7 @@ constants.FEEDBACK_TOOL_URL = 'https://dp-feedback-tool.herokuapp.com/api/v1/fee
 constants.SOURCE = StaticKit.query.source;
 constants.SOURCE_CLEANED = StaticKit.query.cleanedSource;
 constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/legislators/locate?callback=?';
-constants.EMAIL_SUBJECT = 'Sign this petition: Tell Congress to stop blocking email privacy!';
+constants.EMAIL_SUBJECT = 'Sign this petition: Tell the Senate to end warrantless snooping';
 constants.EMAIL_BODY = `Hi,
 
 I just signed a petition at SaveTheFourth.net telling the Senate to finally #ReformECPA and pass legislation to require the government to get a warrant if it wants to access our private email.
