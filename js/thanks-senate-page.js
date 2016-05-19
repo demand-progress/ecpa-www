@@ -18,6 +18,9 @@ async function start() {
     // Debug
     debug();
 
+    // DEBUG: Updating domain constant
+    Constants.DOMAIN = 'savethefourth.net/senate';
+
     // Update campaign
     let zip = getSavedZip();
     await updateCampaignWithZip(zip);

@@ -23,7 +23,7 @@ However, there is a bill before the Senate that would require the government get
 https://${constants.DOMAIN}/?source=${constants.SOURCE_CLEANED}-emailshare
 
 Thanks!`;
-constants.TWEET_TEXT      = `.@SenateMajLdr @ChuckGrassley it’s time to #ReformECPA & pass privacy legislation with no weakening amendments! https://savethefourth.net/?source=${StaticKit.query.cleanedSource}-twittershare`;
+constants.TWEET_TEXT      = `.@SenateMajLdr @ChuckGrassley it’s time to #ReformECPA & pass privacy legislation with no weakening amendments! https://savethefourth.net`;
 constants.REQUIRED_FIELDS = [
     'name',
     'email',

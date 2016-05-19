@@ -10046,7 +10046,7 @@
 	constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/legislators/locate?callback=?';
 	constants.EMAIL_SUBJECT = 'Sign this petition: Tell the Senate to end warrantless snooping';
 	constants.EMAIL_BODY = 'Hi,\n\nI just signed a petition at SaveTheFourth.net telling the Senate to finally #ReformECPA and pass legislation to require the government to get a warrant if it wants to access our private email.\n\nRight now, the law says the government can access emails without a warrant just because they’re over 180 days old. I know — it’s crazy.\n\nHowever, there is a bill before the Senate that would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer, and the bill has already passed the House on a vote of 419-0(!) thanks to grassroots mobilization. Now, we need to let the Senate know that the public wants this commonsense reform passed now. Will you take a moment to contact the Senate?\n\nhttps://' + constants.DOMAIN + '/?source=' + constants.SOURCE_CLEANED + '-emailshare\n\nThanks!';
-	constants.TWEET_TEXT = '.@SenateMajLdr @ChuckGrassley it’s time to #ReformECPA & pass privacy legislation with no weakening amendments! https://savethefourth.net/?source=' + _staticKit2.default.query.cleanedSource + '-twittershare';
+	constants.TWEET_TEXT = '.@SenateMajLdr @ChuckGrassley it’s time to #ReformECPA & pass privacy legislation with no weakening amendments! https://savethefourth.net';
 	constants.REQUIRED_FIELDS = ['name', 'email', 'address1', 'postcode'];
 	constants.NON_SWAP_SOURCES = [];
 	constants.NON_SWAP_3RD_PARTY_SOURCES = {};
@@ -11201,6 +11201,11 @@
 	        e.preventDefault();
 	        _modal2.default.show('#letter');
 	    });
+
+	    // DEBUG: Updating domain constant
+	    if (_pageConfig2.default.house === 'senate') {
+	        _constants2.default.DOMAIN = 'savethefourth.net/senate';
+	    }
 
 	    // Update counter
 	    if (_pageConfig2.default.house === 'senate') {
@@ -20759,12 +20764,15 @@
 	                        // Debug
 	                        debug();
 
+	                        // DEBUG: Updating domain constant
+	                        _constants2.default.DOMAIN = 'savethefourth.net/senate';
+
 	                        // Update campaign
 	                        zip = getSavedZip();
-	                        _context.next = 4;
+	                        _context.next = 5;
 	                        return updateCampaignWithZip(zip);
 
-	                    case 4:
+	                    case 5:
 	                        tweetToAdditionalMember();
 
 	                        // Update suggested Tweet
@@ -20786,7 +20794,7 @@
 	                        // Feedback form logic
 	                        (0, _jquery2.default)('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
 
-	                    case 12:
+	                    case 13:
 	                    case 'end':
 	                        return _context.stop();
 	                }
