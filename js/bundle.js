@@ -11202,11 +11202,6 @@
 	        _modal2.default.show('#letter');
 	    });
 
-	    // DEBUG: Updating domain constant
-	    if (_pageConfig2.default.house === 'senate') {
-	        _constants2.default.DOMAIN = 'savethefourth.net/senate';
-	    }
-
 	    // Update counter
 	    if (_pageConfig2.default.house === 'senate') {
 	        _counter2.default.update(_constants2.default.ACTIONKIT_CAMPAIGN_SENATE);
@@ -20764,15 +20759,12 @@
 	                        // Debug
 	                        debug();
 
-	                        // DEBUG: Updating domain constant
-	                        _constants2.default.DOMAIN = 'savethefourth.net/senate';
-
 	                        // Update campaign
 	                        zip = getSavedZip();
-	                        _context.next = 5;
+	                        _context.next = 4;
 	                        return updateCampaignWithZip(zip);
 
-	                    case 5:
+	                    case 4:
 	                        tweetToAdditionalMember();
 
 	                        // Update suggested Tweet
@@ -20782,6 +20774,7 @@
 	                        (0, _jquery2.default)('.sample-tweet .handle').text('@' + state.twitterIDs.join(' @'));
 
 	                        // Show forms
+	                        (0, _jquery2.default)('body').addClass('ready');
 	                        (0, _jquery2.default)('.options').addClass('ready');
 	                        (0, _jquery2.default)('.tweet-prompt').addClass('ready');
 

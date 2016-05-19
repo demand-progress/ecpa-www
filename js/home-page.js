@@ -15,12 +15,6 @@ function start() {
         Modal.show('#letter');
     });
 
-
-    // DEBUG: Updating domain constant
-    if (PageConfig.house === 'senate') {
-        Constants.DOMAIN = 'savethefourth.net/senate';
-    }
-
     // Update counter
     if (PageConfig.house === 'senate') {
         SignatureCounter.update(Constants.ACTIONKIT_CAMPAIGN_SENATE);

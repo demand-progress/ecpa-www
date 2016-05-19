@@ -111,6 +111,13 @@ header .subtitle {
     position: relative;
     z-index: 999;
 }
+header .subtitle span {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+body.ready header .subtitle span {
+    opacity: 1;
+}
 header .subtitle.tweet-prompt {
     opacity: 0;
     transition: opacity 0.3s;
@@ -439,7 +446,7 @@ body.variation-matches .text-variation-matches {
     width: 32px;
 }
 .call-wrapper.thanks .action .form-wrapper button {
-    margin-top: 16px;
+    margin: 16px auto 12px;
     padding: 0 32px;
 }
 .action .form-wrapper button .phone {
