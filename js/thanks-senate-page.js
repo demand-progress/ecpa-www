@@ -180,13 +180,11 @@ async function updateCampaignWithZip(zip) {
             .addClass('variation-specific');
     }
 
+    senators = shuffle(senators);
     for (let senator of senators) {
         state.bioguideIDs.push(senator.bioguide_id);
         state.twitterIDs.push(senator.twitter_id);
     }
-
-    state.bioguideIDs = shuffle(state.bioguideIDs);
-    state.twitterIDs = shuffle(state.twitterIDs);
 }
 
 function tweetToAdditionalMember() {

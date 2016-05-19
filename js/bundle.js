@@ -21002,60 +21002,56 @@
 	                            (0, _jquery2.default)('body').removeClass('variation-default').addClass('variation-specific');
 	                        }
 
+	                        senators = (0, _shuffle2.default)(senators);
 	                        _iteratorNormalCompletion2 = true;
 	                        _didIteratorError2 = false;
 	                        _iteratorError2 = undefined;
-	                        _context3.prev = 55;
+	                        _context3.prev = 56;
 	                        for (_iterator2 = senators[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
 	                            senator = _step2.value;
 
 	                            state.bioguideIDs.push(senator.bioguide_id);
 	                            state.twitterIDs.push(senator.twitter_id);
 	                        }
-
-	                        _context3.next = 63;
+	                        _context3.next = 64;
 	                        break;
 
-	                    case 59:
-	                        _context3.prev = 59;
-	                        _context3.t2 = _context3['catch'](55);
+	                    case 60:
+	                        _context3.prev = 60;
+	                        _context3.t2 = _context3['catch'](56);
 	                        _didIteratorError2 = true;
 	                        _iteratorError2 = _context3.t2;
 
-	                    case 63:
-	                        _context3.prev = 63;
+	                    case 64:
 	                        _context3.prev = 64;
+	                        _context3.prev = 65;
 
 	                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
 	                            _iterator2.return();
 	                        }
 
-	                    case 66:
-	                        _context3.prev = 66;
+	                    case 67:
+	                        _context3.prev = 67;
 
 	                        if (!_didIteratorError2) {
-	                            _context3.next = 69;
+	                            _context3.next = 70;
 	                            break;
 	                        }
 
 	                        throw _iteratorError2;
 
-	                    case 69:
-	                        return _context3.finish(66);
-
 	                    case 70:
-	                        return _context3.finish(63);
+	                        return _context3.finish(67);
 
 	                    case 71:
-	                        state.bioguideIDs = (0, _shuffle2.default)(state.bioguideIDs);
-	                        state.twitterIDs = (0, _shuffle2.default)(state.twitterIDs);
+	                        return _context3.finish(64);
 
-	                    case 73:
+	                    case 72:
 	                    case 'end':
 	                        return _context3.stop();
 	                }
 	            }
-	        }, _callee3, this, [[8, 39, 43, 51], [18, 22, 26, 34], [27,, 29, 33], [44,, 46, 50], [55, 59, 63, 71], [64,, 66, 70]]);
+	        }, _callee3, this, [[8, 39, 43, 51], [18, 22, 26, 34], [27,, 29, 33], [44,, 46, 50], [56, 60, 64, 72], [65,, 67, 71]]);
 	    }));
 
 	    return function updateCampaignWithZip(_x2) {
