@@ -14,11 +14,11 @@ constants.SUNLIGHT_LOCATE_URL = 'https://congress.api.sunlightfoundation.com/leg
 constants.EMAIL_SUBJECT = 'Sign this petition: Tell Congress to stop blocking email privacy!';
 constants.EMAIL_BODY = `Hi,
 
-I just signed a petition at SaveTheFourth.net telling Members of Congress to stop blocking email privacy and to pass the most cosponsored bill in Congress — the Email Privacy Act.
+I just signed a petition at SaveTheFourth.net telling the Senate to finally #ReformECPA and pass legislation to require the government to get a warrant if it wants to access our private email.
 
 Right now, the law says the government can access emails without a warrant just because they’re over 180 days old. I know — it’s crazy.
 
-However, there is a bill in the House, known as the Email Privacy Act, that has 310 cosponsors —that’s well over two-thirds of the House, making it the most popular bill in Congress. The bill would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer. However, right now it's being blocked by opponents of privacy rights. It’s up to us to make sure it finally passes.
+However, there is a bill before the Senate that would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer, and the bill has already passed the House on a vote of 419-0(!) thanks to grassroots mobilization. Now, we need to let the Senate know that the public wants this commonsense reform passed now. Will you take a moment to contact the Senate?
 
 https://${constants.DOMAIN}/?source=${constants.SOURCE_CLEANED}-emailshare
 
