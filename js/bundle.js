@@ -20994,12 +20994,19 @@
 	                    case 51:
 
 	                        if (zip && senatorsWithinCommittee.length > 0) {
-	                            senators = senatorsWithinCommittee;
+	                            if (senatorsWithinCommittee.length === 1) {
+	                                // Update page
+	                                state.callCampaign = 'savethefourthnet-senate-match';
+	                                state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+	                                (0, _jquery2.default)('body').removeClass('variation-default').addClass('variation-match');
+	                            } else {
+	                                // Update page
+	                                state.callCampaign = 'savethefourthnet-senate-matches';
+	                                state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+	                                (0, _jquery2.default)('body').removeClass('variation-default').addClass('variation-matches');
+	                            }
 
-	                            // Update page
-	                            state.callCampaign = 'savethefourthnet-senate-specific';
-	                            state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
-	                            (0, _jquery2.default)('body').removeClass('variation-default').addClass('variation-specific');
+	                            senators = senatorsWithinCommittee;
 	                        }
 
 	                        senators = (0, _shuffle2.default)(senators);
@@ -21079,7 +21086,7 @@
 
 	var _sample2 = _interopRequireDefault(_sample);
 
-	var _shuffle = __webpack_require__(338);
+	var _shuffle = __webpack_require__(336);
 
 	var _shuffle2 = _interopRequireDefault(_shuffle);
 
@@ -21215,27 +21222,10 @@
 	};
 
 /***/ },
-/* 336 */,
-/* 337 */
-/***/ function(module, exports) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
-
-/***/ },
-/* 338 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sampleSize = __webpack_require__(339);
+	var sampleSize = __webpack_require__(337);
 
 	/** Used as references for the maximum length and index of an array. */
 	var MAX_ARRAY_LENGTH = 4294967295;
@@ -21263,14 +21253,14 @@
 
 
 /***/ },
-/* 339 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseClamp = __webpack_require__(340),
+	var baseClamp = __webpack_require__(338),
 	    baseRandom = __webpack_require__(312),
-	    isIterateeCall = __webpack_require__(341),
-	    toArray = __webpack_require__(343),
-	    toInteger = __webpack_require__(362);
+	    isIterateeCall = __webpack_require__(339),
+	    toArray = __webpack_require__(341),
+	    toInteger = __webpack_require__(361);
 
 	/**
 	 * Gets `n` random elements at unique keys from `collection` up to the
@@ -21318,7 +21308,7 @@
 
 
 /***/ },
-/* 340 */
+/* 338 */
 /***/ function(module, exports) {
 
 	/**
@@ -21346,10 +21336,10 @@
 
 
 /***/ },
-/* 341 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(342),
+	var eq = __webpack_require__(340),
 	    isArrayLike = __webpack_require__(313),
 	    isIndex = __webpack_require__(333),
 	    isObject = __webpack_require__(317);
@@ -21382,7 +21372,7 @@
 
 
 /***/ },
-/* 342 */
+/* 340 */
 /***/ function(module, exports) {
 
 	/**
@@ -21425,18 +21415,18 @@
 
 
 /***/ },
-/* 343 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(344),
-	    copyArray = __webpack_require__(347),
-	    getTag = __webpack_require__(348),
+	var Symbol = __webpack_require__(342),
+	    copyArray = __webpack_require__(346),
+	    getTag = __webpack_require__(347),
 	    isArrayLike = __webpack_require__(313),
 	    isString = __webpack_require__(332),
-	    iteratorToArray = __webpack_require__(358),
-	    mapToArray = __webpack_require__(359),
-	    setToArray = __webpack_require__(360),
-	    stringToArray = __webpack_require__(361),
+	    iteratorToArray = __webpack_require__(357),
+	    mapToArray = __webpack_require__(358),
+	    setToArray = __webpack_require__(359),
+	    stringToArray = __webpack_require__(360),
 	    values = __webpack_require__(319);
 
 	/** `Object#toString` result references. */
@@ -21489,10 +21479,10 @@
 
 
 /***/ },
-/* 344 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(345);
+	var root = __webpack_require__(343);
 
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -21501,10 +21491,10 @@
 
 
 /***/ },
-/* 345 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module, global) {var checkGlobal = __webpack_require__(346);
+	/* WEBPACK VAR INJECTION */(function(module, global) {var checkGlobal = __webpack_require__(345);
 
 	/** Used to determine if values are of the language type `Object`. */
 	var objectTypes = {
@@ -21546,10 +21536,26 @@
 
 	module.exports = root;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(337)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(344)(module), (function() { return this; }())))
 
 /***/ },
-/* 346 */
+/* 344 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 345 */
 /***/ function(module, exports) {
 
 	/**
@@ -21567,7 +21573,7 @@
 
 
 /***/ },
-/* 347 */
+/* 346 */
 /***/ function(module, exports) {
 
 	/**
@@ -21593,15 +21599,15 @@
 
 
 /***/ },
-/* 348 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var DataView = __webpack_require__(349),
-	    Map = __webpack_require__(354),
-	    Promise = __webpack_require__(355),
-	    Set = __webpack_require__(356),
-	    WeakMap = __webpack_require__(357),
-	    toSource = __webpack_require__(353);
+	var DataView = __webpack_require__(348),
+	    Map = __webpack_require__(353),
+	    Promise = __webpack_require__(354),
+	    Set = __webpack_require__(355),
+	    WeakMap = __webpack_require__(356),
+	    toSource = __webpack_require__(352);
 
 	/** `Object#toString` result references. */
 	var mapTag = '[object Map]',
@@ -21669,11 +21675,11 @@
 
 
 /***/ },
-/* 349 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(350),
-	    root = __webpack_require__(345);
+	var getNative = __webpack_require__(349),
+	    root = __webpack_require__(343);
 
 	/* Built-in method references that are verified to be native. */
 	var DataView = getNative(root, 'DataView');
@@ -21682,10 +21688,10 @@
 
 
 /***/ },
-/* 350 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isNative = __webpack_require__(351);
+	var isNative = __webpack_require__(350);
 
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -21704,13 +21710,13 @@
 
 
 /***/ },
-/* 351 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isFunction = __webpack_require__(316),
-	    isHostObject = __webpack_require__(352),
+	    isHostObject = __webpack_require__(351),
 	    isObject = __webpack_require__(317),
-	    toSource = __webpack_require__(353);
+	    toSource = __webpack_require__(352);
 
 	/**
 	 * Used to match `RegExp`
@@ -21766,7 +21772,7 @@
 
 
 /***/ },
-/* 352 */
+/* 351 */
 /***/ function(module, exports) {
 
 	/**
@@ -21792,7 +21798,7 @@
 
 
 /***/ },
-/* 353 */
+/* 352 */
 /***/ function(module, exports) {
 
 	/** Used to resolve the decompiled source of functions. */
@@ -21821,11 +21827,11 @@
 
 
 /***/ },
-/* 354 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(350),
-	    root = __webpack_require__(345);
+	var getNative = __webpack_require__(349),
+	    root = __webpack_require__(343);
 
 	/* Built-in method references that are verified to be native. */
 	var Map = getNative(root, 'Map');
@@ -21834,11 +21840,11 @@
 
 
 /***/ },
-/* 355 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(350),
-	    root = __webpack_require__(345);
+	var getNative = __webpack_require__(349),
+	    root = __webpack_require__(343);
 
 	/* Built-in method references that are verified to be native. */
 	var Promise = getNative(root, 'Promise');
@@ -21847,11 +21853,11 @@
 
 
 /***/ },
-/* 356 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(350),
-	    root = __webpack_require__(345);
+	var getNative = __webpack_require__(349),
+	    root = __webpack_require__(343);
 
 	/* Built-in method references that are verified to be native. */
 	var Set = getNative(root, 'Set');
@@ -21860,11 +21866,11 @@
 
 
 /***/ },
-/* 357 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(350),
-	    root = __webpack_require__(345);
+	var getNative = __webpack_require__(349),
+	    root = __webpack_require__(343);
 
 	/* Built-in method references that are verified to be native. */
 	var WeakMap = getNative(root, 'WeakMap');
@@ -21873,7 +21879,7 @@
 
 
 /***/ },
-/* 358 */
+/* 357 */
 /***/ function(module, exports) {
 
 	/**
@@ -21897,7 +21903,7 @@
 
 
 /***/ },
-/* 359 */
+/* 358 */
 /***/ function(module, exports) {
 
 	/**
@@ -21921,7 +21927,7 @@
 
 
 /***/ },
-/* 360 */
+/* 359 */
 /***/ function(module, exports) {
 
 	/**
@@ -21945,7 +21951,7 @@
 
 
 /***/ },
-/* 361 */
+/* 360 */
 /***/ function(module, exports) {
 
 	/** Used to compose unicode character classes. */
@@ -21989,10 +21995,10 @@
 
 
 /***/ },
-/* 362 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toFinite = __webpack_require__(363);
+	var toFinite = __webpack_require__(362);
 
 	/**
 	 * Converts `value` to an integer.
@@ -22031,10 +22037,10 @@
 
 
 /***/ },
-/* 363 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toNumber = __webpack_require__(364);
+	var toNumber = __webpack_require__(363);
 
 	/** Used as references for various `Number` constants. */
 	var INFINITY = 1 / 0,
@@ -22079,12 +22085,12 @@
 
 
 /***/ },
-/* 364 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isFunction = __webpack_require__(316),
 	    isObject = __webpack_require__(317),
-	    isSymbol = __webpack_require__(365);
+	    isSymbol = __webpack_require__(364);
 
 	/** Used as references for various `Number` constants. */
 	var NAN = 0 / 0;
@@ -22152,7 +22158,7 @@
 
 
 /***/ },
-/* 365 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObjectLike = __webpack_require__(330);

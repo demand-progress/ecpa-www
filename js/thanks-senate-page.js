@@ -170,14 +170,23 @@ async function updateCampaignWithZip(zip) {
     }
 
     if (zip && senatorsWithinCommittee.length > 0) {
-        senators = senatorsWithinCommittee;
+        if (senatorsWithinCommittee.length === 1) {
+            // Update page
+            state.callCampaign = 'savethefourthnet-senate-match';
+            state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+            $('body')
+                .removeClass('variation-default')
+                .addClass('variation-match');
+        } else {
+            // Update page
+            state.callCampaign = 'savethefourthnet-senate-matches';
+            state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+            $('body')
+                .removeClass('variation-default')
+                .addClass('variation-matches');
+        }
 
-        // Update page
-        state.callCampaign = 'savethefourthnet-senate-specific';
-        state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
-        $('body')
-            .removeClass('variation-default')
-            .addClass('variation-specific');
+        senators = senatorsWithinCommittee;
     }
 
     senators = shuffle(senators);

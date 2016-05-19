@@ -125,9 +125,15 @@ header .subtitle.tweet-prompt.ready {
         padding: 16px;
     }
 }
-body.variation-default .text-variation-specific,
-body.variation-specific .text-variation-default {
+.text-variation-default,
+.text-variation-match,
+.text-variation-matches {
     display: none;
+}
+body.variation-default .text-variation-default,
+body.variation-match .text-variation-match,
+body.variation-matches .text-variation-matches {
+    display: block;
 }
 .petition-and-form-wrapper-background {
     background-color: #262525;
