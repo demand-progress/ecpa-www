@@ -23,7 +23,7 @@ However, there is a bill in the House, known as the Email Privacy Act, that has 
 https://${constants.DOMAIN}/?source=${constants.SOURCE_CLEANED}-emailshare
 
 Thanks!`;
-constants.TWEET_TEXT      = `.@RepGoodlatte stop blocking email privacy! It's time to pass the most popular bill in Congress #EmailPrivacyAct https://savethefourth.net/?source=${StaticKit.query.cleanedSource}-twittershare`;
+constants.TWEET_TEXT      = `.@SenateMajLdr @ChuckGrassley it’s time to #ReformECPA & pass privacy legislation with no weakening amendments! https://savethefourth.net/?source=${StaticKit.query.cleanedSource}-twittershare`;
 constants.REQUIRED_FIELDS = [
     'name',
     'email',
