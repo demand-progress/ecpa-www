@@ -11,7 +11,7 @@ let state = {
     bioguideIDs  : [],
     callCampaign : 'savethefourthnet-senate-default',
     twitterIDs   : [],
-    twitterText  : 'Pass the most popular bill in Congress! #EmailPrivacyAct https://savethefourth.net',
+    twitterText  : 'support the effort to #ReformECPA & urge leadership to swiftly pass a clean bill! https://savethefourth.net',
 };
 
 async function start() {
@@ -24,7 +24,11 @@ async function start() {
     tweetToAdditionalMember();
 
     // Update suggested Tweet
-    $('.tweet-content').html(state.twitterText.replace('#', '<span class="link">#') + '</span>');
+    $('.tweet-content').html(
+        state.twitterText
+            .replace(/#(\w+)/g, '<span class="link">#$1</span>')
+            .replace(/http([^ ]+)/g, '<span class="link">http$1</span>')
+    );
 
     // Update forms
     $('.sample-tweet .handle').text('@' + state.twitterIDs.join(' @'));
@@ -171,16 +175,16 @@ async function updateCampaignWithZip(zip) {
 
     if (zip && senatorsWithinCommittee.length > 0) {
         if (senatorsWithinCommittee.length === 1) {
-            // Update page
+            // Update page (Match)
             state.callCampaign = 'savethefourthnet-senate-match';
-            state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+            state.twitterText = 'the time to #ReformECPA & require warrants for email is now — reject privacy weakening amendments! https://savethefourth.net';
             $('body')
                 .removeClass('variation-default')
                 .addClass('variation-match');
         } else {
-            // Update page
+            // Update page (Matches)
             state.callCampaign = 'savethefourthnet-senate-matches';
-            state.twitterText = 'it’s time to pass the most popular bill in Congress, with no weakening amendments #EmailPrivacyAct https://savethefourth.net';
+            state.twitterText = 'the time to #ReformECPA is now — reject all privacy weakening amendments! https://savethefourth.net';
             $('body')
                 .removeClass('variation-default')
                 .addClass('variation-matches');
