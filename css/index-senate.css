@@ -397,9 +397,11 @@ header .headlines h3 {
 .action-wrapper .team {
     background-color: #fff;
     border-radius: 0 0 8px 8px;
-    max-width: 413px;
+    border: solid 2px #999;
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
     margin: 0 auto;
-    padding: 8px;
+    max-width: 413px;
+    padding: 4px;
 }
 button {
     height: 60px;
