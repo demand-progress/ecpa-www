@@ -20998,7 +20998,7 @@
 	    var $feedbackForm = (0, _jquery2.default)(e.target);
 	    var message = '';
 	    var fields = $feedbackForm.serializeArray();
-	    _.each(function (field) {
+	    (0, _each2.default)(function (field) {
 	        return message += field.name + ':\n' + field.value + '\n\n';
 	    });
 
