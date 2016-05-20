@@ -18,7 +18,7 @@ I just signed a petition at SaveTheFourth.net telling the Senate to finally #Ref
 
 Right now, the law says the government can access emails without a warrant just because they’re over 180 days old. I know — it’s crazy.
 
-However, there is a bill before the Senate that would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer, and the bill has already passed the House on a vote of 419-0(!) thanks to grassroots mobilization. Now, we need to let the Senate know that the public wants this commonsense reform passed now. Will you take a moment to contact the Senate?
+However, there is a bill before the Senate Judiciary Committee that would require the government get a warrant for email, just like it needs a warrant to access postal mail. It’s a no-brainer, and the bill has already passed the House on a vote of 419-0, thanks to grassroots mobilization. Now, we need to let the Senate know that the public wants this commonsense reform passed. Will you take a moment to contact the Senate?
 
 https://${constants.DOMAIN}/?source=${constants.SOURCE_CLEANED}-emailshare
 
