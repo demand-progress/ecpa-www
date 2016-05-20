@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import commafy from './commafy';
 import Constants from './constants';
+import each from 'lodash/each';
 import Modal from './modal';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
@@ -54,9 +55,7 @@ function onFeedbackFormSubmit(e) {
     let $feedbackForm = $(e.target);
     let message = '';
     let fields = $feedbackForm.serializeArray();
-    fields.forEach((field) => {
-        message += `${field.name}:\n${field.value}\n\n`;
-    });
+    _.each(field => message += `${field.name}:\n${field.value}\n\n`);
 
     $.getJSON(Constants.FEEDBACK_TOOL_URL, {
         campaign: 'save-the-fourth-senate',
@@ -160,19 +159,22 @@ async function updateCampaignWithZip(zip) {
     // Search for committee members who represents the visitor
     var senators = [];
     var senatorsWithinCommittee = [];
-    for (let representative of res.results) {
+    each(res.results, representative => {
         if (representative.chamber !== 'senate') {
-            continue;
+            return;
         }
 
         senators.push(representative);
+        representative.committee = 0;
 
-        for (let bioguideID of Constants.COMMITTEE_MEMBERS_SENATE) {
+        each(Constants.COMMITTEE_MEMBERS_SENATE, bioguideID => {
             if (representative.bioguide_id === bioguideID) {
                 senatorsWithinCommittee.push(representative);
+                representative.committee = 1;
+                return false;
             }
-        }
-    }
+        });
+    });
 
     if (zip && senatorsWithinCommittee.length > 0) {
         if (senatorsWithinCommittee.length === 1) {
@@ -191,14 +193,25 @@ async function updateCampaignWithZip(zip) {
                 .addClass('variation-matches');
         }
 
-        senators = senatorsWithinCommittee;
+        // Shuffle and store Twitter IDs
+        each(shuffle(senatorsWithinCommittee), senator => {
+            state.twitterIDs.push(senator.twitter_id);
+        });
+    } else {
+        // Shuffle and store Twitter IDs
+        each(shuffle(senators), senator => {
+            state.twitterIDs.push(senator.twitter_id);
+        });
     }
 
-    senators = shuffle(senators);
-    for (let senator of senators) {
+    // Shuffle the order of calls
+    // Sort committee members higher though
+    senators = shuffle(senators).sort((a, b) => b.committee - a.committee);
+
+    // Store bioguide IDs for call tool
+    each(senators, senator => {
         state.bioguideIDs.push(senator.bioguide_id);
-        state.twitterIDs.push(senator.twitter_id);
-    }
+    });
 }
 
 function tweetToAdditionalMember() {
