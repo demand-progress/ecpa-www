@@ -176,6 +176,16 @@ async function updateCampaignWithZip(zip) {
         });
     });
 
+    if (senators.length === 0) {
+        state.twitterText = 'the time to #ReformECPA & require warrants for email is now — reject privacy weakening amendments! https://savethefourth.net';
+        senators = [
+            {
+                bioguide_id: 'G000386',
+                twitter_id: 'ChuckGrassley',
+            },
+        ];
+    }
+
     if (zip && senatorsWithinCommittee.length > 0) {
         if (senatorsWithinCommittee.length === 1) {
             // Update page (Match)
