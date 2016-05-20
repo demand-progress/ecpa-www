@@ -55,7 +55,7 @@ function onFeedbackFormSubmit(e) {
     let $feedbackForm = $(e.target);
     let message = '';
     let fields = $feedbackForm.serializeArray();
-    each(field => message += `${field.name}:\n${field.value}\n\n`);
+    each(fields, field => message += `${field.name}:\n${field.value}\n\n`);
 
     $.getJSON(Constants.FEEDBACK_TOOL_URL, {
         campaign: 'save-the-fourth-senate',
