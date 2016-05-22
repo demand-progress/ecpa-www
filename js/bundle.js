@@ -20945,8 +20945,6 @@
 	                            });
 	                        }
 
-	                        console.log(state);
-
 	                        if ((0, _isEmpty2.default)((0, _compact2.default)(state.twitterIDs))) {
 	                            state.twitterIDs = ['ChuckGrassley'];
 	                        }
@@ -20962,7 +20960,7 @@
 	                            state.bioguideIDs.push(senator.bioguide_id);
 	                        });
 
-	                    case 12:
+	                    case 11:
 	                    case 'end':
 	                        return _context3.stop();
 	                }

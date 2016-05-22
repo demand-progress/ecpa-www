@@ -221,8 +221,6 @@ async function updateCampaignWithZip(zip) {
         });
     }
 
-    console.log(state);
-
     if (isEmpty(compact(state.twitterIDs))) {
         state.twitterIDs = ['ChuckGrassley'];
     }
