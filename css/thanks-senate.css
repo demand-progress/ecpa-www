@@ -133,11 +133,13 @@ header .subtitle.tweet-prompt.ready {
     }
 }
 .text-variation-default,
+.text-variation-missing,
 .text-variation-match,
 .text-variation-matches {
     display: none;
 }
 body.variation-default .text-variation-default,
+body.variation-missing .text-variation-missing,
 body.variation-match .text-variation-match,
 body.variation-matches .text-variation-matches {
     display: block;

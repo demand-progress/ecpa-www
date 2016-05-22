@@ -20919,6 +20919,7 @@
 	                                bioguide_id: 'G000386',
 	                                twitter_id: 'ChuckGrassley'
 	                            }];
+	                            (0, _jquery2.default)('body').removeClass('variation-default').addClass('variation-missing');
 	                        }
 
 	                        if (zip && senatorsWithinCommittee.length > 0) {
@@ -20945,10 +20946,6 @@
 	                            });
 	                        }
 
-	                        if ((0, _isEmpty2.default)((0, _compact2.default)(state.twitterIDs))) {
-	                            state.twitterIDs = ['ChuckGrassley'];
-	                        }
-
 	                        // Shuffle the order of calls
 	                        // Sort committee members higher though
 	                        senators = (0, _shuffle2.default)(senators).sort(function (a, b) {
@@ -20960,7 +20957,7 @@
 	                            state.bioguideIDs.push(senator.bioguide_id);
 	                        });
 
-	                    case 11:
+	                    case 10:
 	                    case 'end':
 	                        return _context3.stop();
 	                }
@@ -20981,10 +20978,6 @@
 
 	var _commafy2 = _interopRequireDefault(_commafy);
 
-	var _compact = __webpack_require__(438);
-
-	var _compact2 = _interopRequireDefault(_compact);
-
 	var _constants = __webpack_require__(3);
 
 	var _constants2 = _interopRequireDefault(_constants);
@@ -20992,10 +20985,6 @@
 	var _each = __webpack_require__(336);
 
 	var _each2 = _interopRequireDefault(_each);
-
-	var _isEmpty = __webpack_require__(439);
-
-	var _isEmpty2 = _interopRequireDefault(_isEmpty);
 
 	var _modal = __webpack_require__(8);
 
@@ -21119,6 +21108,10 @@
 	            sessionStorage.zip = '84622';
 	            break;
 
+	        case 'missing':
+	            sessionStorage.zip = '85001';
+	            break;
+
 	        case 'default-calling':
 	            sessionStorage.zip = '33880';
 	            _modal2.default.show('.calling');
@@ -21131,6 +21124,11 @@
 
 	        case 'matches-calling':
 	            sessionStorage.zip = '84622';
+	            _modal2.default.show('.calling');
+	            break;
+
+	        case 'missing-calling':
+	            sessionStorage.zip = '85001';
 	            _modal2.default.show('.calling');
 	            break;
 	    }
@@ -24580,215 +24578,6 @@
 	}
 
 	module.exports = toNumber;
-
-
-/***/ },
-/* 438 */
-/***/ function(module, exports) {
-
-	/**
-	 * Creates an array with all falsey values removed. The values `false`, `null`,
-	 * `0`, `""`, `undefined`, and `NaN` are falsey.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Array
-	 * @param {Array} array The array to compact.
-	 * @returns {Array} Returns the new array of filtered values.
-	 * @example
-	 *
-	 * _.compact([0, 1, false, 2, '', 3]);
-	 * // => [1, 2, 3]
-	 */
-	function compact(array) {
-	  var index = -1,
-	      length = array ? array.length : 0,
-	      resIndex = 0,
-	      result = [];
-
-	  while (++index < length) {
-	    var value = array[index];
-	    if (value) {
-	      result[resIndex++] = value;
-	    }
-	  }
-	  return result;
-	}
-
-	module.exports = compact;
-
-
-/***/ },
-/* 439 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getTag = __webpack_require__(397),
-	    isArguments = __webpack_require__(328),
-	    isArray = __webpack_require__(331),
-	    isArrayLike = __webpack_require__(313),
-	    isBuffer = __webpack_require__(440),
-	    isFunction = __webpack_require__(316),
-	    isObjectLike = __webpack_require__(330),
-	    isString = __webpack_require__(332),
-	    keys = __webpack_require__(322);
-
-	/** `Object#toString` result references. */
-	var mapTag = '[object Map]',
-	    setTag = '[object Set]';
-
-	/** Used for built-in method references. */
-	var objectProto = Object.prototype;
-
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-
-	/** Built-in value references. */
-	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-
-	/** Detect if properties shadowing those on `Object.prototype` are non-enumerable. */
-	var nonEnumShadows = !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf');
-
-	/**
-	 * Checks if `value` is an empty object, collection, map, or set.
-	 *
-	 * Objects are considered empty if they have no own enumerable string keyed
-	 * properties.
-	 *
-	 * Array-like values such as `arguments` objects, arrays, buffers, strings, or
-	 * jQuery-like collections are considered empty if they have a `length` of `0`.
-	 * Similarly, maps and sets are considered empty if they have a `size` of `0`.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is empty, else `false`.
-	 * @example
-	 *
-	 * _.isEmpty(null);
-	 * // => true
-	 *
-	 * _.isEmpty(true);
-	 * // => true
-	 *
-	 * _.isEmpty(1);
-	 * // => true
-	 *
-	 * _.isEmpty([1, 2, 3]);
-	 * // => false
-	 *
-	 * _.isEmpty({ 'a': 1 });
-	 * // => false
-	 */
-	function isEmpty(value) {
-	  if (isArrayLike(value) &&
-	      (isArray(value) || isString(value) || isFunction(value.splice) ||
-	        isArguments(value) || isBuffer(value))) {
-	    return !value.length;
-	  }
-	  if (isObjectLike(value)) {
-	    var tag = getTag(value);
-	    if (tag == mapTag || tag == setTag) {
-	      return !value.size;
-	    }
-	  }
-	  for (var key in value) {
-	    if (hasOwnProperty.call(value, key)) {
-	      return false;
-	    }
-	  }
-	  return !(nonEnumShadows && keys(value).length);
-	}
-
-	module.exports = isEmpty;
-
-
-/***/ },
-/* 440 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {var constant = __webpack_require__(441),
-	    root = __webpack_require__(375);
-
-	/** Used to determine if values are of the language type `Object`. */
-	var objectTypes = {
-	  'function': true,
-	  'object': true
-	};
-
-	/** Detect free variable `exports`. */
-	var freeExports = (objectTypes[typeof exports] && exports && !exports.nodeType)
-	  ? exports
-	  : undefined;
-
-	/** Detect free variable `module`. */
-	var freeModule = (objectTypes[typeof module] && module && !module.nodeType)
-	  ? module
-	  : undefined;
-
-	/** Detect the popular CommonJS extension `module.exports`. */
-	var moduleExports = (freeModule && freeModule.exports === freeExports)
-	  ? freeExports
-	  : undefined;
-
-	/** Built-in value references. */
-	var Buffer = moduleExports ? root.Buffer : undefined;
-
-	/**
-	 * Checks if `value` is a buffer.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.3.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
-	 * @example
-	 *
-	 * _.isBuffer(new Buffer(2));
-	 * // => true
-	 *
-	 * _.isBuffer(new Uint8Array(2));
-	 * // => false
-	 */
-	var isBuffer = !Buffer ? constant(false) : function(value) {
-	  return value instanceof Buffer;
-	};
-
-	module.exports = isBuffer;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(376)(module)))
-
-/***/ },
-/* 441 */
-/***/ function(module, exports) {
-
-	/**
-	 * Creates a function that returns `value`.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 2.4.0
-	 * @category Util
-	 * @param {*} value The value to return from the new function.
-	 * @returns {Function} Returns the new constant function.
-	 * @example
-	 *
-	 * var object = { 'user': 'fred' };
-	 * var getter = _.constant(object);
-	 *
-	 * getter() === object;
-	 * // => true
-	 */
-	function constant(value) {
-	  return function() {
-	    return value;
-	  };
-	}
-
-	module.exports = constant;
 
 
 /***/ }

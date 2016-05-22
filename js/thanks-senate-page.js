@@ -1,9 +1,7 @@
 import $ from 'jquery';
 import commafy from './commafy';
-import compact from 'lodash/compact';
 import Constants from './constants';
 import each from 'lodash/each';
-import isEmpty from 'lodash/isEmpty';
 import Modal from './modal';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
@@ -191,6 +189,9 @@ async function updateCampaignWithZip(zip) {
                 twitter_id: 'ChuckGrassley',
             },
         ];
+        $('body')
+            .removeClass('variation-default')
+            .addClass('variation-missing');
     }
 
     if (zip && senatorsWithinCommittee.length > 0) {
@@ -219,10 +220,6 @@ async function updateCampaignWithZip(zip) {
         each(shuffle(senators), senator => {
             state.twitterIDs.push(senator.twitter_id);
         });
-    }
-
-    if (isEmpty(compact(state.twitterIDs))) {
-        state.twitterIDs = ['ChuckGrassley'];
     }
 
     // Shuffle the order of calls
@@ -269,6 +266,10 @@ function debug() {
             sessionStorage.zip = '84622';
             break;
 
+        case 'missing':
+            sessionStorage.zip = '85001';
+            break;
+
         case 'default-calling':
             sessionStorage.zip = '33880';
             Modal.show('.calling');
@@ -281,6 +282,11 @@ function debug() {
 
         case 'matches-calling':
             sessionStorage.zip = '84622';
+            Modal.show('.calling');
+            break;
+
+        case 'missing-calling':
+            sessionStorage.zip = '85001';
             Modal.show('.calling');
             break;
     }
