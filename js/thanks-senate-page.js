@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import commafy from './commafy';
+import compact from 'lodash/compact';
 import Constants from './constants';
 import each from 'lodash/each';
+import isEmpty from 'lodash/isEmpty';
 import Modal from './modal';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
@@ -164,6 +166,11 @@ async function updateCampaignWithZip(zip) {
             return;
         }
 
+        // A few Senators didn't have Twitter IDs in the Sunlight DB
+        if (!representative.twitter_id) {
+            representative.twitter_id = Constants.TWITTER_ID_BACKUPS[representative.bioguide_id];
+        }
+
         senators.push(representative);
         representative.committee = 0;
 
@@ -212,6 +219,12 @@ async function updateCampaignWithZip(zip) {
         each(shuffle(senators), senator => {
             state.twitterIDs.push(senator.twitter_id);
         });
+    }
+
+    console.log(state);
+
+    if (isEmpty(compact(state.twitterIDs))) {
+        state.twitterIDs = ['ChuckGrassley'];
     }
 
     // Shuffle the order of calls

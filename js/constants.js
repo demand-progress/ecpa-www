@@ -54,6 +54,13 @@ constants.COMMITTEE_MEMBERS_SENATE   = [
     'K000367', // Klobuchar
     'F000457', // Franken
 ];
+constants.TWITTER_ID_BACKUPS = {
+    'C001075': 'BillCassidy',
+    'F000457': 'AlFranken',
+    'K000367': 'AmyKlobuchar',
+    'P000603': 'RandPaul',
+    'V000127': 'DavidVitter',
+};
 constants.COMMITTEE_MEMBERS          = [{
     "state": "VA",
     "district": 6,
