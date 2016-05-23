@@ -21040,6 +21040,8 @@
 	        return message += field.name + ':\n' + field.value + '\n\n';
 	    });
 
+	    message += '\n\nBioguide IDs: ( ' + state.bioguideIDs.join(', ') + ' )';
+
 	    _jquery2.default.getJSON(_constants2.default.FEEDBACK_TOOL_URL, {
 	        campaign: 'save-the-fourth-senate',
 	        subject: 'Feedback from Save the Fourth (Senate)',

@@ -59,6 +59,8 @@ function onFeedbackFormSubmit(e) {
     let fields = $feedbackForm.serializeArray();
     each(fields, field => message += `${field.name}:\n${field.value}\n\n`);
 
+    message += '\n\nBioguide IDs: ( ' + state.bioguideIDs.join(', ') + ' )';
+
     $.getJSON(Constants.FEEDBACK_TOOL_URL, {
         campaign: 'save-the-fourth-senate',
         subject: 'Feedback from Save the Fourth (Senate)',
