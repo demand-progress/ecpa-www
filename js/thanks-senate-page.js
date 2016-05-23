@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import clone from 'lodash/clone';
 import commafy from './commafy';
 import Constants from './constants';
 import each from 'lodash/each';
@@ -6,6 +7,7 @@ import Modal from './modal';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
 import StaticKit from './static-kit';
+import uniq from 'lodash/uniq';
 
 
 let state = {
@@ -230,6 +232,13 @@ async function updateCampaignWithZip(zip) {
     each(senators, senator => {
         state.bioguideIDs.push(senator.bioguide_id);
     });
+
+    // Add Grassley. Then add the remaining committee members, in shuffled order.
+    var bioguideIDs = state.bioguideIDs;
+    var shuffledCommitteeMembers = shuffle(clone(Constants.COMMITTEE_MEMBERS_SENATE));
+    bioguideIDs = bioguideIDs.concat('G000386');
+    bioguideIDs = bioguideIDs.concat(shuffledCommitteeMembers);
+    bioguideIDs = uniq(bioguideIDs);
 }
 
 function tweetToAdditionalMember() {
