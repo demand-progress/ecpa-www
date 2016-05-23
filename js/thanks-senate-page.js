@@ -234,11 +234,12 @@ async function updateCampaignWithZip(zip) {
     });
 
     // Add Grassley. Then add the remaining committee members, in shuffled order.
-    var bioguideIDs = state.bioguideIDs;
+    var targets = state.bioguideIDs;
     var shuffledCommitteeMembers = shuffle(clone(Constants.COMMITTEE_MEMBERS_SENATE));
-    bioguideIDs = bioguideIDs.concat('G000386');
-    bioguideIDs = bioguideIDs.concat(shuffledCommitteeMembers);
-    bioguideIDs = uniq(bioguideIDs);
+    targets = targets.concat('G000386');
+    targets = targets.concat(shuffledCommitteeMembers);
+    targets = uniq(targets);
+    state.bioguideIDs = targets;
 }
 
 function tweetToAdditionalMember() {
