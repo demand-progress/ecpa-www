@@ -15,6 +15,7 @@ let state = {
     callCampaign : 'savethefourthnet-senate-default',
     twitterIDs   : [],
     twitterText  : 'support the effort to #ReformECPA & urge leadership to swiftly pass a clean bill! https://savethefourth.net',
+    zip: '',
 };
 
 async function start() {
@@ -23,6 +24,7 @@ async function start() {
 
     // Update campaign
     let zip = getSavedZip();
+    state.zip = zip;
     await updateCampaignWithZip(zip);
     tweetToAdditionalMember();
 
@@ -60,6 +62,7 @@ function onFeedbackFormSubmit(e) {
     each(fields, field => message += `${field.name}:\n${field.value}\n\n`);
 
     message += '\n\nBioguide IDs: ( ' + state.bioguideIDs.join(', ') + ' )';
+    message += '\n\nZIP: ' + state.zip;
 
     $.getJSON(Constants.FEEDBACK_TOOL_URL, {
         campaign: 'save-the-fourth-senate',

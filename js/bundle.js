@@ -20768,10 +20768,12 @@
 
 	                        // Update campaign
 	                        zip = getSavedZip();
-	                        _context.next = 4;
+
+	                        state.zip = zip;
+	                        _context.next = 5;
 	                        return updateCampaignWithZip(zip);
 
-	                    case 4:
+	                    case 5:
 	                        tweetToAdditionalMember();
 
 	                        // Update suggested Tweet
@@ -20794,7 +20796,7 @@
 	                        // Feedback form logic
 	                        (0, _jquery2.default)('.calling-wrapper form').on('submit', onFeedbackFormSubmit);
 
-	                    case 13:
+	                    case 14:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -21027,7 +21029,8 @@
 	    bioguideIDs: [],
 	    callCampaign: 'savethefourthnet-senate-default',
 	    twitterIDs: [],
-	    twitterText: 'support the effort to #ReformECPA & urge leadership to swiftly pass a clean bill! https://savethefourth.net'
+	    twitterText: 'support the effort to #ReformECPA & urge leadership to swiftly pass a clean bill! https://savethefourth.net',
+	    zip: ''
 	};
 
 	function onFeedbackFormSubmit(e) {
@@ -21041,6 +21044,7 @@
 	    });
 
 	    message += '\n\nBioguide IDs: ( ' + state.bioguideIDs.join(', ') + ' )';
+	    message += '\n\nZIP: ' + state.zip;
 
 	    _jquery2.default.getJSON(_constants2.default.FEEDBACK_TOOL_URL, {
 	        campaign: 'save-the-fourth-senate',
